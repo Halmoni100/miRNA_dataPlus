@@ -1,0 +1,53 @@
+SampleID,SpecimenNumber,ParticipantID,Disease,Symptomatic,Timepoint,TimepointSimple,mirdeepID,combined
+ET101,DU11-02S11173,5020,H3N2,1,58 hours (Day 2),T,aaa,H3N21T
+ET102,DU11-02S11132,5006,H3N2,1,58 hours (Day 2),T,aab,H3N21T
+ET103,DU11-02S11337,5014,H3N2,0,66 hours (Day 3),T,aac,H3N20T
+ET104,DU11-02S11442,5017,H3N2,0,66 hours (Day 3),T,aad,H3N20T
+ET105,DU11-02S10594,5019,H3N2,1,50 hours (Day 2),T,aae,H3N21T
+ET106,DU11-02S11405,5013,H3N2,0,66 hours (Day 3),T,aaf,H3N20T
+ET107,DU11-02S11257,5007,H3N2,0,66 hours (Day 3),T,aag,H3N20T
+ET108,DU11-02S11263,5005,H3N2,0,66 hours (Day 3),T,aah,H3N20T
+ET109,DU11-02S10612,5003,H3N2,1,50 hours (Day 2),T,aai,H3N21T
+ET110,DU11-02S11390,5010,H3N2,0,66 hours (Day 3),T,aaj,H3N20T
+ET111,DU11-02S11275,5001,H3N2,1,66 hours (Day 3),T,aak,H3N21T
+ET112,DU11-02S11384,5011,H3N2,0,66 hours (Day 3),T,aal,H3N20T
+ET113,DU11-02S11396,5016,H3N2,1,66 hours (Day 3),T,aam,H3N21T
+ET114,DU11-02S11387,5012,H3N2,0,66 hours (Day 3),T,aan,H3N20T
+ET115,DU11-02S08855,5002,H3N2,1,58 hours (Day 2),T,aao,H3N21T
+ET116,DU11-02S11167,5018,H3N2,1,58 hours (Day 2),T,aap,H3N21T
+ET117,DU11-02S11126,5008,H3N2,1,58 hours (Day 2),T,aaq,H3N21T
+ET118,DU11-02S13981,5021,H3N2,1,98 hours (Day 4),T,aar,H3N21T
+ET119,DU11-02S14192,5009,H3N2,1,114 hours (Day 5),T,aas,H3N21T
+ET120,DU11-02S11334,5015,H3N2,1,66 hours (Day 3),T,aat,H3N21T
+ET121,DU11-02S11610,5004,H3N2,1,74 hours (Day 3),T,aau,H3N21T
+ET122,DU11-02S09470,5020,H3N2,1,Baseline -30 hours (Day -1),Baseline,aav,H3N21Baseline
+ET123,DU11-02S09461,5021,H3N2,1,Baseline -30 hours (Day -1),Baseline,aaw,H3N21Baseline
+ET124,DU11-02S09458,5019,H3N2,1,Baseline -30 hours (Day -1),Baseline,aay,H3N21Baseline
+ET125,DU11-02S09467,5017,H3N2,0,Baseline -30 hours (Day -1),Baseline,aaz,H3N20Baseline
+ET126,DU11-02S09464,5018,H3N2,1,Baseline -30 hours (Day -1),Baseline,aba,H3N21Baseline
+ET127,DU11-02S09434,5001,H3N2,1,Baseline -30 hours (Day -1),Baseline,abb,H3N21Baseline
+ET128,DU11-02S09413,5008,H3N2,1,Baseline -30 hours (Day -1),Baseline,abc,H3N21Baseline
+ET129,DU11-02S09431,5002,H3N2,1,Baseline -30 hours (Day -1),Baseline,abd,H3N21Baseline
+ET130,DU11-02S09437,5010,H3N2,0,Baseline -30 hours (Day -1),Baseline,abe,H3N20Baseline
+ET131,DU11-02S09428,5003,H3N2,1,Baseline -30 hours (Day -1),Baseline,abf,H3N21Baseline
+ET132,DU11-02S09410,5012,H3N2,0,Baseline -30 hours (Day -1),Baseline,abg,H3N20Baseline
+ET133,DU11-02S09449,5015,H3N2,1,Baseline -30 hours (Day -1),Baseline,abh,H3N21Baseline
+ET134,DU11-02S09425,5004,H3N2,1,Baseline -30 hours (Day -1),Baseline,abi,H3N21Baseline
+ET135,DU11-02S09446,5011,H3N2,0,Baseline -30 hours (Day -1),Baseline,abj,H3N20Baseline
+ET136,DU11-02S09422,5005,H3N2,0,Baseline -30 hours (Day -1),Baseline,abk,H3N20Baseline
+ET137,DU11-02S09443,5009,H3N2,1,Baseline -30 hours (Day -1),Baseline,abl,H3N21Baseline
+ET138,DU11-02S09419,5007,H3N2,0,Baseline -30 hours (Day -1),Baseline,abm,H3N20Baseline
+ET139,DU11-02S09440,5013,H3N2,0,Baseline -30 hours (Day -1),Baseline,abn,H3N20Baseline
+ET140,DU11-02S09452,5014,H3N2,0,Baseline -30 hours (Day -1),Baseline,abo,H3N20Baseline
+ET141,DU11-02S09416,5006,H3N2,1,Baseline -30 hours (Day -1),Baseline,abp,H3N21Baseline
+ET142,DU11-02S09455,5016,H3N2,1,Baseline -30 hours (Day -1),Baseline,abq,H3N21Baseline
+ET143,DU10-01S07560,004-0228,S.pneumo,1,T=0(Baseline),Baseline,abr,S.pneumo1Baseline
+ET144,DU10-01S02954,004-0090,S.pneumo,1,T=0(Baseline),Baseline,abs,S.pneumo1Baseline
+ET145,DU09-03S82619,001-0625,S.pneumo,1,T=0(Baseline),Baseline,abt,S.pneumo1Baseline
+ET146,DU10-01S00373,004-0007,S.pneumo,1,T=0(Baseline),Baseline,abu,S.pneumo1Baseline
+ET147,F 02128,002-0010,S.pneumo,1,T=0(Baseline),Baseline,abv,S.pneumo1Baseline
+ET148,F 01857,002-0026,S.pneumo,1,T=0(Baseline),Baseline,abw,S.pneumo1Baseline
+ET149,F01802,002-0029,S.pneumo,1,T=0(Baseline),Baseline,aby,S.pneumo1Baseline
+ET150,F01731,002-0034,S.pneumo,1,T=0(Baseline),Baseline,abz,S.pneumo1Baseline
+ET151,F00098,002-0130,S.pneumo,1,T=0(Baseline),Baseline,aca,S.pneumo1Baseline
+ET152,0142 Paxgene ENR,002-0142,S.pneumo,1,T=0(Baseline),Baseline,acb,S.pneumo1Baseline
