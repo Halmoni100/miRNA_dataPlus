@@ -1,5 +1,5 @@
 # insert data set
-known_miRNAs_expressed_all_samples <- read.delim("~/Desktop/Data+/known_miRNAs_expressed_all_samples.txt", header=TRUE)
+known_miRNAs_expressed_all_samples <- read.delim("Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)
 View(known_miRNAs_expressed_all_samples)
 
 
