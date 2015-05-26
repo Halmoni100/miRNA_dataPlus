@@ -26,5 +26,3 @@ heatmap.2(log2_data, trace="none")
 zero_data <- length(which(raw_data == 0))
 proportion_zero_data <- zero_data/sum(raw_data)
 proportion_zero_data
-
-
