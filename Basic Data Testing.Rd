@@ -1,8 +1,10 @@
+##############
+Format Data
+##############
+
 # insert data set
 setwd("~/Desktop/Data+/miRNA_dataPlus/Data")
 known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)
-
-
 
 # subset vector for aaa into virus, healthy & bacteria
 virus <- known_data[1,5:25]
@@ -17,7 +19,11 @@ known_data <- known_data[,1:56]
 # extract raw data into matrix (just #s)
 raw_data <- known_data[,5:56]
 raw_data <- data.matrix(raw_data)
-class(raw_data)
+
+
+##############
+Preliminary Testing (zero proportions)
+##############
 
 # function to count zeros, return proportions
 count_zeros <- function(v) {
@@ -49,6 +55,10 @@ all_zeros <- function(v) {
 	return(FALSE)
 }
 
+
+##############
+Delete data w/ no info
+##############
 # Mark and delete all miRNAs with only zeros
 only_zeros <- apply(raw_data, 1, all_zeros)
 raw_data <- raw_data[!only_zeros,]
@@ -57,7 +67,12 @@ zero_counts_miRNA <- apply(raw_data, 1, count_zeros)
 head(zero_counts_miRNA[,1:50])
 hist(zero_counts_miRNA[1,])
 
-#PCA analysis
+
+
+##############
+PCA analysis
+##############
+
 #transpose data for PCA analysis
 raw_data_trans <- t(raw_data)
 dimnames(raw_data_trans) <- c(NULL, NULL)
