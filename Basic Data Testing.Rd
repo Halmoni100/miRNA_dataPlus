@@ -12,20 +12,14 @@ baseline <- known_data[1,26:46]
 bacteria <- known_data[1,47:56]
 infection_status <- c(virus, baseline, bacteria)
 
-
-
-
 # remove miRDeep2 "norm" data
 known_data <- known_data[,1:56]
-
 
 
 # extract raw data into matrix (just #s)
 raw_data <- known_data[,5:56]
 raw_data <- data.matrix(raw_data)
 class(raw_data)
-
-
 
 # function to count zeros, return proportions
 count_zeros <- function(v) {
@@ -46,6 +40,7 @@ head(zero_counts_sample)
 # find zero proprotions for each miRNA
 zero_counts_miRNA <- apply(raw_data, 1, count_zeros)
 head(zero_counts_miRNA[,1:50])
+hist(zero_counts_miRNA[1,])
 
 
 
