@@ -67,3 +67,40 @@ pca1$sdev
 head(pca1$rotation)
 head(pca1$x)
 str(pca1$x)
+
+# Graph PCA
+pca_result <- pca1$x
+pca_comp_1 <- pca_result[,1]
+pca_comp_2 <- pca_result[,2]
+pca_comp_3 <- pca_result[,3]
+
+pca_comp_1_viral <- pca_comp_1[1:21]
+pca_comp_1_baseline <- pca_comp_1[22:42]
+pca_comp_1_bacteria <- pca_comp_1[43:52]
+pca_comp_2_viral <- pca_comp_2[1:21]
+pca_comp_2_baseline <- pca_comp_2[22:42]
+pca_comp_2_bacteria <- pca_comp_2[43:52]
+pca_comp_3_viral <- pca_comp_3[1:21]
+pca_comp_3_baseline <- pca_comp_3[22:42]
+pca_comp_3_bacteria <- pca_comp_3[43:52]
+
+pca_comp_3_bacteria
+plot(pca_comp_1_viral,pca_comp_2_viral,col="red",
+		xlim=c(min(pca_comp_1), max(pca_comp_1)),
+		ylim=c(min(pca_comp_2), max(pca_comp_2)))
+points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")
+points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")
+
+quartz()
+plot(pca_comp_1_viral,pca_comp_3_viral,col="red",
+		xlim=c(min(pca_comp_1), max(pca_comp_1)),
+		ylim=c(min(pca_comp_3), max(pca_comp_3)))
+points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")
+points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")
+
+quartz()
+plot(pca_comp_2_viral,pca_comp_3_viral,col="red",
+		xlim=c(min(pca_comp_2), max(pca_comp_2)),
+		ylim=c(min(pca_comp_3), max(pca_comp_3)))
+points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")
+points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
