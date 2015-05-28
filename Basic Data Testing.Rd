@@ -1,5 +1,3 @@
-
-
 # insert data set
 setwd("~/Desktop/Data+/miRNA_dataPlus/Data")
 known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)
@@ -42,9 +40,29 @@ zero_counts_miRNA <- apply(raw_data, 1, count_zeros)
 head(zero_counts_miRNA[,1:50])
 hist(zero_counts_miRNA[1,])
 
+# function to determine if all zeros
+all_zeros <- function(v) {
+	sum <- sum(v)
+	if (sum == 0) {
+		return(TRUE)
+	}
+	return(FALSE)
+}
+
+# Mark and delete all miRNAs with only zeros
+only_zeros <- apply(raw_data, 1, all_zeros)
+raw_data <- raw_data[!only_zeros,]
+# Double check: find zero proportions for each miRNA
+zero_counts_miRNA <- apply(raw_data, 1, count_zeros)
+head(zero_counts_miRNA[,1:50])
+hist(zero_counts_miRNA[1,])
 
 #PCA analysis
-pca1 = prcomp(raw_data, scale. = TRUE)
+#transpose data for PCA analysis
+raw_data_trans <- t(raw_data)
+dimnames(raw_data_trans) <- c(NULL, NULL)
+str(raw_data_trans)
+pca1 = prcomp(raw_data_trans, scale. = TRUE)
 pca1$sdev
 head(pca1$rotation)
 head(pca1$x)
