@@ -37,10 +37,15 @@ count_zeros <- function(v) {
 zero_counts_sample <- apply(raw_data, 2, count_zeros)
 head(zero_counts_sample)
 
-# find zero proprotions for each miRNA
+# find zero proportions for each miRNA
 zero_counts_miRNA <- apply(raw_data, 1, count_zeros)
 head(zero_counts_miRNA[,1:50])
 hist(zero_counts_miRNA[1,])
 
 
-
+#PCA analysis
+pca1 = prcomp(raw_data, scale. = TRUE)
+pca1$sdev
+head(pca1$rotation)
+head(pca1$x)
+str(pca1$x)
