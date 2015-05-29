@@ -1,0 +1,23 @@
+Important:
+- ALWAYS set working directory to this directory before you start working(miRNA_dataPlus)
+- Sync your work with Github
+- Make sure you store important objects (vectors, matrices, data frames, etc.) in the R_Data folder
+- Also, you can load the data from the files so that you don’t have to process it again.  Makes things easier.
+- Make sure folder and file names have no spaces or special characters
+- Make sure all code is not in the root Github directory (not directly in the miRNA_dataPlus folder).  Helps with organization.
+
+Changes:
+- Improved the work flow for our code…
+- The mirDeep2 output is now in the miRDeep2_Data folder
+- All the code we worked on so far is in the Preliminary_Steps folder
+- I saved the raw_data matrix into the R_Data folder as “saved_raw_data” so that you can use it.  Just type load(“R_Data/saved_raw_data”) and R will load raw_data into the workspace.  See “prelim_PCA.r” in the Preliminary_Steps folder for an example
+- I combined the code for reading off of the mirDeep2 data, finding zero proportions, and eliminating any miRNAs with >50% zero proportion in “retrieve_and_process_data.r” in the Preliminary_Steps folder
+- The PCA code is now in “prelim_PCA.r”
+- A vector for the zero proportions of the miRNAs from the raw data as well as the matrix for the processed data are now objects called zero_props_miRNA and processed_data in the files “saved_zero_props_miRNA” and “saved_processed_data” respectively.  The files are in the R_Data folder
+- I changed “Normalization.r” so that we’re working with the processed data (>50% zero proportion miRNAs eliminated)
+- Added heatmap code in “heatmap.r”.  For some reason it can’t do it on the raw data (overflow in memory perhaps).
+
+Future plans:
+- I will separate the data into separate matrices for viral/baseline/bacteria after we normalize the data
+
+
