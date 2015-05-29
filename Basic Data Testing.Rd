@@ -12,8 +12,12 @@ baseline <- known_data[1,26:46]
 bacteria <- known_data[1,47:56]
 infection_status <- c(virus, baseline, bacteria)
 
+
+
+
 # remove miRDeep2 "norm" data
 known_data <- known_data[,1:56]
+
 
 
 # extract raw data into matrix (just #s)
@@ -24,6 +28,8 @@ raw_data <- data.matrix(raw_data)
 ##############
 Preliminary Testing (zero proportions)
 ##############
+
+
 
 # function to count zeros, return proportions
 count_zeros <- function(v) {
@@ -44,7 +50,6 @@ head(zero_counts_sample)
 # find zero proportions for each miRNA
 zero_counts_miRNA <- apply(raw_data, 1, count_zeros)
 head(zero_counts_miRNA[,1:50])
-hist(zero_counts_miRNA[1,])
 
 # function to determine if all zeros
 all_zeros <- function(v) {
@@ -56,6 +61,7 @@ all_zeros <- function(v) {
 }
 
 
+<<<<<<< Updated upstream
 ##############
 Delete data w/ no info
 ##############
@@ -68,6 +74,28 @@ head(zero_counts_miRNA[,1:50])
 hist(zero_counts_miRNA[1,])
 
 
+##############
+Normalizing Data
+##############
+
+#Upper Quartile Normalization
+UQNorm <- function(v) {
+	quartiles <- quantile(v)
+	uq <- quartiles[4]
+	v <- v / uq
+	return(v)
+}
+
+
+#Quantile Normalization
+normalize.quantiles(v, copy=TRUE)
+
+
+
+
+
+
+
 
 ##############
 PCA analysis
@@ -78,10 +106,16 @@ raw_data_trans <- t(raw_data)
 dimnames(raw_data_trans) <- c(NULL, NULL)
 str(raw_data_trans)
 pca1 = prcomp(raw_data_trans, scale. = TRUE)
+=======
+#PCA analysis
+#source:http://gastonsanchez.com/blog/how-to/2012/06/17/PCA-in-R.html
+pca1 = prcomp(raw_data, scale. = TRUE)
+>>>>>>> Stashed changes
 pca1$sdev
 head(pca1$rotation)
 head(pca1$x)
 str(pca1$x)
+<<<<<<< Updated upstream
 
 # Graph PCA
 pca_result <- pca1$x
@@ -119,3 +153,5 @@ plot(pca_comp_2_viral,pca_comp_3_viral,col="red",
 		ylim=c(min(pca_comp_3), max(pca_comp_3)))
 points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")
 points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
+=======
+>>>>>>> Stashed changes

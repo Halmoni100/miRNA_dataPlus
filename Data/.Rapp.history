@@ -1,74 +1,149 @@
-# Load packages#
-library("gplots", lib="R_packages")#
-#
 # insert data set#
-known_data <- read.delim("Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
+setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
+known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
 # subset vector for aaa into virus, healthy & bacteria#
 virus <- known_data[1,5:25]#
 baseline <- known_data[1,26:46]#
 bacteria <- known_data[1,47:56]#
 infection_status <- c(virus, baseline, bacteria)#
-#
 # remove miRDeep2 "norm" data#
 known_data <- known_data[,1:56]#
-#
 # extract raw data into matrix (just #s)#
 raw_data <- known_data[,5:56]#
 raw_data <- data.matrix(raw_data)#
 class(raw_data)
+head(raw_data)
+raw_data
+?nrow
+which(known_data == 0)
+which(raw_data == 0)
+?which
+row_sub = apply(raw_data, 1, function(row) all(row !=0 ))
+row_sub
+row_sub = apply(raw_data, 1, function(row) all(row == 0 ))
+row_sub
+dd[row_sub,]
+raw_data[raw_sub,]
+raw_data[row_sub,]
+?count
+?counts
+row_sub = apply(raw_data, 1, function(row) all(row !=0 ))#
+col_sub = raw_data[,1]
+col_sub
+length(which(col_sub == row_sub))
+known_data
+raw_data
+row_sub = apply(raw_data, 1, function(row) all(row == 0 ))
+row_sub
+head(known_data)
+head(raw_data)
+col_sub = raw_data[,1]
+col_sub
+length(which(col_sub == row_sub))
+row_sub = apply(raw_data, 1, function(row) all(row !=0 ))#
+col_sub = raw_data[,1]#
+length(which(col_sub == row_sub))
+zero_counts <- length(which(row_sub == "TRUE"))
+zero_counts
+nzrow_sub = apply(raw_data, 1, function(row) all(row !=0 ))#
+nzcol_sub = raw_data[,1]#
+nonzero_counts <- length(which(nzrow_sub == "TRUE"))
+nonzero_counts
+zrow_sub = apply(raw_data, 1, function(row) all(row == 0 ))#
+zcol_sub = raw_data[,1]#
+zero_counts <- length(which(zrow_sub == "TRUE"))
+zero_counts
+install.packages("ggplot2")
+#subsetting to only column 1#
+colraw_data <- raw_data[,1]#
+#
+#choosing zero counts#
+zrow_sub = apply(colraw_data, 1, function(row) all(row == 0 ))#
+zero_counts <- length(which(zrow_sub == "TRUE"))
+#choosing zero counts#
+zrow_sub = apply(colraw_data, 1, function(row) all(row == 0 ))#
+zero_counts <- length(which(zrow_sub == "TRUE"))
 # insert data set#
-known_data <- read.delim("Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)
-set.wd(~/Desktop/Data+)#
-known_data <- read.delim("Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)
-set.wd(~/Desktop/Data+/miRNA_dataPlus/Data)#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)
-set.wd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)
 setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
 known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)
-known_data
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
 # remove miRDeep2 "norm" data#
 known_data <- known_data[,1:56]#
-#
 # extract raw data into matrix (just #s)#
 raw_data <- known_data[,5:56]#
 raw_data <- data.matrix(raw_data)#
 class(raw_data)
+#choosing zero counts#
+zrow_sub = apply(colraw_data, 1, function(row) all(row == 0 ))#
+zero_counts <- length(which(zrow_sub == "TRUE"))
+#choosing zero counts#
+zrow_sub = apply(raw_data, 1, function(row) all(row == 0 ))#
+zero_counts <- length(which(zrow_sub == "TRUE"))
+zero_counts
+zrow_sub
+zero_counts[,1]
+zrow_sub[,1]
+head(zrow_sub)
+?all
+zrow_sub = apply(raw_data, 1, all(row == 0 ))
+?row
+colraw_data <- raw_data[,1]
+zrow_sub <- apply(colraw_data, 1, function(row) all(row !=0 ))
+?function
+?row
+?row
+zrow_sub <- apply(colraw_data, 1, all(row !=0 ))
+zrow_sub <- apply(colraw_data, 1, function(row) all(colraw_data !=0 ))
+x <- matrix( c(.007, 0.012, .022, 0.000, .005, 0.112, .027, 1.000, .037, .001, .061, .055), nrow=4, ncol=3, byrow=TRUE
+)
+y <- x>0.05#
+y
+x[y]
+colraw_data <- raw_data[,1]
+nzrow_sub <- colraw_data>0
+nzrow_sub
+#choosing non-zero counts#
+nzrow_sub <- colraw_data>0#
+nonzero_counts <- length(which(nzrow_sub == "TRUE"))
+nonzero_counts
+#choosing zero counts#
+colraw_data <- raw_data[,1]#
+zrow_sub <- colraw_data==0#
+zero_counts <- length(which(zrow_sub == "TRUE"))#
+#choosing non-zero counts#
+nzrow_sub <- colraw_data>0#
+nonzero_counts <- length(which(nzrow_sub == "TRUE"))#
+#finding proportion counts#
+total_counts = zero_counts + nonzero_counts
+total_counts
+zero_counts
+nonzero_counts
+#finding proportion zero counts#
+proportion_zero_counts <- zero_counts/total_counts#
+#finding proportion non-zero counts#
+proportion_nonzero_counts <- nonzero_counts/total_counts
+proportion_zero_counts
+proportion_nonzero_counts
+head(raw_data)
 raw_data
-x <- known_data[,1:56]#
-for (i in x {#
-	zero_data <- length(which(raw_data == 0))#
-proportion_zero_data <- zero_data/sum(raw_data)#
-proportion_zero_data = list()#
-}
-for (i in x) {#
-	zero_data <- length(which(raw_data == 0))#
-proportion_zero_data <- zero_data/sum(raw_data)#
-proportion_zero_data = list()#
-}
-list
-proportion_zero_data
+B = matrix( #
+   c(2, 4, 3, 1, 5, 7), #
+   nrow=3, #
+   ncol=2)
+B
+pickcol <- B[,1]
+pickcol
+row_sub <- pickcol==0
+row_sub
+B = matrix( #
+    c(2, 4, 0, 1, 5, 7), #
+    nrow=3, #
+    ncol=2)
+B
+pickcol <- B[,1]
+row_sub <- pickcol==0
+counts <- length(which(row_sub == "TRUE"))
+counts
+?function
 # insert data set#
 setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
 known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
@@ -85,4 +160,173 @@ raw_data <- data.matrix(raw_data)#
 class(raw_data)#
 # make log2 heat map#
 log2_data <- log2(raw_data + 1)#
-heatmap.2(log2_data, trace="none")
+heatmap.2(log2_data, trace="none")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props <- c(0,0)#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions#
+zero_counts <- apply(raw_data, 1, count_zeros)#
+#
+head(zero_counts)
+# insert data set#
+setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
+known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+# subset vector for aaa into virus, healthy & bacteria#
+virus <- known_data[1,5:25]#
+baseline <- known_data[1,26:46]#
+bacteria <- known_data[1,47:56]#
+infection_status <- c(virus, baseline, bacteria)#
+# remove miRDeep2 "norm" data#
+known_data <- known_data[,1:56]#
+# extract raw data into matrix (just #s)#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
+class(raw_data)#
+# make log2 heat map#
+log2_data <- log2(raw_data + 1)#
+heatmap.2(log2_data, trace="none")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props <- c(0,0)#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions#
+zero_counts <- apply(raw_data, 2, count_zeros)#
+#
+head(zero_counts)
+# insert data set#
+setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
+known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+# subset vector for aaa into virus, healthy & bacteria#
+virus <- known_data[1,5:25]#
+baseline <- known_data[1,26:46]#
+bacteria <- known_data[1,47:56]#
+infection_status <- c(virus, baseline, bacteria)#
+# remove miRDeep2 "norm" data#
+known_data <- known_data[,1:56]#
+# extract raw data into matrix (just #s)#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
+class(raw_data)#
+# make log2 heat map#
+log2_data <- log2(raw_data + 1)#
+heatmap.2(log2_data, trace="none")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions#
+zero_counts <- apply(raw_data, 2, count_zeros)#
+#
+head(zero_counts)
+# insert data set#
+setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
+known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+# subset vector for aaa into virus, healthy & bacteria#
+virus <- known_data[1,5:25]#
+baseline <- known_data[1,26:46]#
+bacteria <- known_data[1,47:56]#
+infection_status <- c(virus, baseline, bacteria)#
+# remove miRDeep2 "norm" data#
+known_data <- known_data[,1:56]#
+# extract raw data into matrix (just #s)#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
+class(raw_data)#
+# make log2 heat map#
+log2_data <- log2(raw_data + 1)#
+heatmap.2(log2_data, trace="none")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions#
+zero_counts <- apply(raw_data, 2, count_zeros)#
+#
+head(zero_counts)
+B = matrix( #
+   c(2, 4, 3, 1, 5, 7), #
+   nrow=3, #
+   ncol=2)
+zero_counts
+hist(zero_counts)
+hist(zero_counts[1,])
+hist(zero_counts[2,])
+hist(zero_counts[1,])
+# insert data set#
+setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
+known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+# subset vector for aaa into virus, healthy & bacteria#
+virus <- known_data[1,5:25]#
+baseline <- known_data[1,26:46]#
+bacteria <- known_data[1,47:56]#
+infection_status <- c(virus, baseline, bacteria)#
+# remove miRDeep2 "norm" data#
+known_data <- known_data[,1:56]#
+# extract raw data into matrix (just #s)#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
+class(raw_data)#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props <- c(0, 0)#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions for each sample#
+zero_counts_sample <- apply(raw_data, 2, count_zeros)#
+head(zero_counts_sample)#
+#
+# find zero proprotions for each miRNA#
+zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
+head(zero_counts_miRNA[,1:50])
+hist(zero_counts_miRNA)
+hist(zero_counts_miRNA[1,])
+hist(zero_counts_miRNA[2,])
+hist(zero_counts_sample[2,])
+hist(zero_counts_sample[1,])
+pca1 = prcomp(raw_data, scale. = TRUE)
+pca1$sdev
+head(pca1$rotation)
+head(pca1$x)
+str(pca1$x)
