@@ -2078,20 +2078,6 @@ load("R_Data/saved_raw_data")#
 # make log2 heat map#
 log2_data <- log2(raw_data + 1)#
 heatmap(log2_data)
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap(log2_data)
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap(log2_data)
 # Load packages#
 library("gplots", lib="R_packages")#
 #
@@ -2103,16 +2089,6 @@ load("R_Data/saved_raw_data")#
 log2_data <- log2(raw_data + 1)#
 heatmap.2(log2_data, trace="none")
 head(raw_data)
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# make log2 heat map#
-log2_data <- log2(processed_data + 1)#
-heatmap.2(log2_data, trace="none")
 # Load packages#
 library("gplots", lib="R_packages")#
 #
@@ -2373,3 +2349,1138 @@ plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
 points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
 points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")#
 points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
+# Retrieve Data#
+# raw_data retreived#
+load("R_Data/saved_raw_data")#
+#
+# function to determine if all zeros#
+all_zeros <- function(v) {#
+    sum <- sum(v)#
+    if (sum == 0) {#
+        return(TRUE)#
+    }#
+    return(FALSE)#
+}#
+# Delete data w/ no info#
+# Mark and delete all miRNAs with only zeros#
+only_zeros <- apply(raw_data, 1, all_zeros)#
+raw_data <- raw_data[!only_zeros,]#
+#
+#transpose data for PCA analysis#
+raw_data_trans <- t(raw_data)#
+dimnames(raw_data_trans) <- c(NULL, NULL)#
+#
+#PCA analysis#
+#source:http://gastonsanchez.com/blog/how-to/2012/06/17/PCA-in-R.html#
+pca1 = prcomp(raw_data_trans, scale. = TRUE)#
+#
+# Graph PCA#
+pca_result <- pca1$x#
+pca_comp_1 <- pca_result[,1]#
+pca_comp_2 <- pca_result[,2]#
+pca_comp_3 <- pca_result[,3]#
+#
+pca_comp_1_viral <- pca_comp_1[1:21]#
+pca_comp_1_baseline <- pca_comp_1[22:42]#
+pca_comp_1_bacteria <- pca_comp_1[43:52]#
+pca_comp_2_viral <- pca_comp_2[1:21]#
+pca_comp_2_baseline <- pca_comp_2[22:42]#
+pca_comp_2_bacteria <- pca_comp_2[43:52]#
+pca_comp_3_viral <- pca_comp_3[1:21]#
+pca_comp_3_baseline <- pca_comp_3[22:42]#
+pca_comp_3_bacteria <- pca_comp_3[43:52]#
+#
+# PC 1 vs PC 2#
+plot(pca_comp_1_viral,pca_comp_2_viral,col="red",#
+		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
+		ylim=c(min(pca_comp_2), max(pca_comp_2)))#
+points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
+points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
+#
+# PC 1 vs PC 3#
+quartz()#
+plot(pca_comp_1_viral,pca_comp_3_viral,col="red",#
+		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
+		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
+points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
+points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
+#
+# PC 2 vs PC 3#
+quartz()#
+plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
+		xlim=c(min(pca_comp_2), max(pca_comp_2)),#
+		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
+points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
+points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")#
+points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
+paste("1st","2nd","3rd")
+paste(1,2,3)
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector("list", n)#
+pcs_viral = vector("list", n)#
+pcs_baseline = vector("list", n)#
+pcs_bacteria = vector("list", n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[j])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector("list", n)#
+pcs_viral = vector("list", n)#
+pcs_baseline = vector("list", n)#
+pcs_bacteria = vector("list", n)#
+for (i in 1:n) {#
+	pcs_all[i] = pca_result[,i]#
+	pcs_viral[i] = pca_result[1:21,i]#
+	pcs_baseline[i] = pca_result[22:42,i]#
+	pcs_bacteria[i] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[i], pcs_viral[j], col="red",#
+				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
+				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
+		points(pcs_baseline[i], pcs_baseline[j], col="green")#
+		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
+		dev.off()#
+	}#
+}
+warnings()
+class(pcs_all)
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+warnings()
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	i#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+pcs_viral[[1]]
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	i#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[i], pcs_viral[j], col="red",#
+				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
+				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
+		points(pcs_baseline[i], pcs_baseline[j], col="green")#
+		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
+		dev.off()#
+	}#
+}
+warnings()
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	i#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[i], pcs_viral[j], col="red",#
+				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
+				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
+		points(pcs_baseline[i], pcs_baseline[j], col="green")#
+		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
+		dev.off()#
+	}#
+}
+warnings()
+str(pcs_viral[1])
+str(pcs_viral[2])
+str(pcs_baseline[1])
+str(pcs_baseline[2])
+str(pcs_bacteria[1])
+str(pcs_bacteria[2])
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	i#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[i], pcs_viral[j], col="red",#
+				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
+				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
+		points(pcs_baseline[i], pcs_baseline[j], col="green")#
+		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	i#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		length(pcs_viral[i])#
+		length(pcs_viral[j])#
+		length(pcs_baseline[i])#
+		length(pcs_baseline[j])#
+		length(pcs_bacteria[i])#
+		length(pcs_bacteria[j])#
+		plot(pcs_viral[i], pcs_viral[j], col="red",#
+				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
+				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
+		points(pcs_baseline[i], pcs_baseline[j], col="green")#
+		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	i#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+		length(pcs_viral[1])#
+		length(pcs_viral[2])#
+		length(pcs_baseline[1])#
+		length(pcs_baseline[2])#
+		length(pcs_bacteria[1])#
+		length(pcs_bacteria[2])#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[i], pcs_viral[j], col="red",#
+				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
+				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
+		points(pcs_baseline[i], pcs_baseline[j], col="green")#
+		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	i#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+		length(pcs_viral[[1]])#
+		length(pcs_viral[[2]])#
+		length(pcs_baseline[[1]])#
+		length(pcs_baseline[[2]])#
+		length(pcs_bacteria[[1]])#
+		length(pcs_bacteria[[2]])#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[i], pcs_viral[j], col="red",#
+				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
+				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
+		points(pcs_baseline[i], pcs_baseline[j], col="green")#
+		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	i#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+for (i in 1:3) {i}
+or (i in 1:3) {print(i)}
+for (i in 1:3) {print(i)}
+warnings()
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+for (i in 1:n-1) {#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		print(length(pcs_viral[[i]]))#
+		print(length(pcs_viral[[j]]))#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+for (i in 1:n-1) {#
+	print(pcs_viral[[i]])#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+for (i in 1:n-1) {#
+	print(pcs_viral[[j]])#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+for (i in 1:n-1) {#
+	print(i)#
+	for (j in i+1:n) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		#plot.new()#
+		#frame()#
+		#plot_name <- paste(i,"vs",j)#
+		#dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
+		#jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		#dev.off()#
+	}#
+}
+quartz()
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse=NULL)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 2#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="", res=500)#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
+		jpeg(dir_name, res=500)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		plot.new()#
+		frame()#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
+		jpng(dir_name, 500, 500)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# transpose data for PCA analysis#
+proc_data_trans <- t(processed_data)#
+#
+# PCA analysis#
+pca_df = prcomp(proc_data_trans, scale. = TRUE)#
+#
+# Set n#
+n = 6#
+#
+# Get first n PCs, store in lists#
+pca_result <- pca_df$x#
+pcs_all = vector(mode="list", length=n)#
+pcs_viral = vector(mode="list", length=n)#
+pcs_baseline = vector(mode="list", length=n)#
+pcs_bacteria = vector(mode="list", length=n)#
+for (i in 1:n) {#
+	pcs_all[[i]] = pca_result[,i]#
+	pcs_viral[[i]] = pca_result[1:21,i]#
+	pcs_baseline[[i]] = pca_result[22:42,i]#
+	pcs_bacteria[[i]] = pca_result[43:52,i]#
+}#
+#
+# Plot all combinations of PCs, store in files#
+# red=viral, green=baseline, blue=bacteria#
+from_i <- 1#
+to_i <- n - 1#
+to_j <- n#
+for (i in from_i:to_i) {#
+	from_j <- i + 1#
+	for (j in from_j:to_j) {#
+		plot_name <- paste(i,"vs",j)#
+		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
+		jpeg(dir_name)#
+		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
+				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
+				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
+		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
+		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
+		dev.off()#
+	}#
+}
