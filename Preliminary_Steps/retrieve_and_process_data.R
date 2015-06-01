@@ -5,6 +5,10 @@ known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", 
 raw_data <- known_data[,5:56]
 raw_data <- data.matrix(raw_data)
 
+# save row names into matrix
+miRNA_names <- known_data[,1]
+rownames(raw_data) <- miRNA_names
+
 # save raw data
 save(raw_data, file="R_Data/saved_raw_data")
 
