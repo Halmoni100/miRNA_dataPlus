@@ -1,15 +1,24 @@
-function(data, n) {
+function(data, num) {
+# Load package
+library(FactoMineR)
 
 # PCA analysis
-pca_df = prcomp(t(data), scale. = TRUE)
+pca_df = PCA(t(data), ncp=num, graph=FALSE)
+
+# Find proportion of variance, etc.
+prop_of_var <- pca_df$eig[1:num,]
+# save proportion of variance numbers
+write.table(prop_of_var, "Preliminary_Steps/PCA/analysis/prop_of_vars.txt", sep="\t",
+		quote=FALSE)
 
 # Get first n PCs, store in lists
-pca_result <- pca_df$x
-pcs_all = vector(mode="list", length=n)
-pcs_viral = vector(mode="list", length=n)
-pcs_baseline = vector(mode="list", length=n)
-pcs_bacteria = vector(mode="list", length=n)
-for (i in 1:n) {
+pca_result <- pca_df$ind$coord
+
+pcs_all = vector(mode="list", length=num)
+pcs_viral = vector(mode="list", length=num)
+pcs_baseline = vector(mode="list", length=num)
+pcs_bacteria = vector(mode="list", length=num)
+for (i in 1:num) {
 	pcs_all[[i]] = pca_result[,i]
 	pcs_viral[[i]] = pca_result[1:21,i]
 	pcs_baseline[[i]] = pca_result[22:42,i]
@@ -19,13 +28,13 @@ for (i in 1:n) {
 # Plot all combinations of PCs, store in files
 # red=viral, green=baseline, blue=bacteria
 from_i <- 1
-to_i <- n - 1
-to_j <- n
+to_i <- num - 1
+to_j <- num
 for (i in from_i:to_i) {
 	from_j <- i + 1
 	for (j in from_j:to_j) {
 		plot_name <- paste(i,"vs",j)
-		dir_name <- paste("Plots/PCA", plot_name, ".jpeg", collapse="")
+		dir_name <- paste("Preliminary_Steps/PCA/plots/", plot_name, ".jpeg", sep="")
 		jpeg(dir_name)
 		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",
 				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),
