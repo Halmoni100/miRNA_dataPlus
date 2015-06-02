@@ -73,6 +73,9 @@ for name in miRNA_seq_dict.keys():
     all_accounted = all_accounted and info.accounted
 if all_accounted:
     print('All miRNA names accounted for')
+    print('# miRNA names: ' + str(num_names))
+    num_keys = len(miRNA_seq_dict.keys())
+    print('# keys in dict: ' + str(num_keys))
 else:
     raise NameError('Not all miRNA names accounted for')
 
