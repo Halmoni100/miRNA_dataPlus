@@ -34,7 +34,11 @@ for (i in from_i:to_i) {
 	from_j <- i + 1
 	for (j in from_j:to_j) {
 		plot_name <- paste(i,"vs",j)
+<<<<<<< HEAD:Preliminary_Steps/analyze_PCs.R
 		dir_name <- paste("Preliminary_Steps/PCA/plots/", plot_name, ".jpeg", sep="")
+=======
+		dir_name <- paste("Plots/PCA/", plot_name, ".jpeg", collapse="")
+>>>>>>> origin/master:Preliminary_Steps/PCA.R
 		jpeg(dir_name)
 		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",
 				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),
