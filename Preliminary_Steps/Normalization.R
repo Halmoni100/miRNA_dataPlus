@@ -13,12 +13,12 @@ UQNorm <- function(v) {
     quartiles <- quantile(nonzero_data)
     uq <- quartiles[4]
     return(uq)
-}
+} 
+
 
 
 # vector of Us needed to normalize data
 Us <- apply(raw_data, 2, UQNorm)
-
 
 
 # finding mean of the of the uq samples
@@ -37,10 +37,24 @@ for (i in 1:ncol(processed_data)) {
 }
 
 
-#load preprocessCore package
-library(preprocessCore)
 
+# all code below here is adapted from http://davetang.org/muse/2014/07/07/quantile-normalisation-in-r/
+# create quantile normalization function
+quantile_normalization <- function(uqnorm) {
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)
+	
+	index_to_mean <- function (my_index, my_mean) {
+		return (my_mean[my_index])
+	}
+	
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)
+	return(uqnorm_final)
+}
 
+# test the function
+quantile_norm_data <- quantile_normalization(uqnorm)
 
-# do quantile normalization on each sample
-normalize.quantiles(uqnorm, copy = TRUE)
+# graph the normalized data on a histogram
+hist(quantile_norm_data)
