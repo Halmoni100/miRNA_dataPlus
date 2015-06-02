@@ -36,9 +36,9 @@ for (i in 1:ncol(processed_data)) {
 	uqnorm[,i] <- colneeded/Us[i]*U
 }
 
-logged <- log2(uqnorm)
+logged <- log2(uqnorm + 1)
 PCA <- dget("Preliminary_Steps/PCA.r")
-PCA(uqnorm, 4)
+PCA(logged, 6)
 
 
 # all code below here is adapted from http://davetang.org/muse/2014/07/07/quantile-normalisation-in-r/
