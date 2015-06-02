@@ -1,15 +1,7 @@
-# Retrieve Data
-# processed_data retreived
-load("R_Data/saved_processed_data")
-
-# transpose data for PCA analysis
-proc_data_trans <- t(processed_data)
+function(data, n) {
 
 # PCA analysis
-pca_df = prcomp(proc_data_trans, scale. = TRUE)
-
-# Set n
-n = 6
+pca_df = prcomp(t(data), scale. = TRUE)
 
 # Get first n PCs, store in lists
 pca_result <- pca_df$x
@@ -42,4 +34,6 @@ for (i in from_i:to_i) {
 		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")
 		dev.off()
 	}
+}
+
 }
