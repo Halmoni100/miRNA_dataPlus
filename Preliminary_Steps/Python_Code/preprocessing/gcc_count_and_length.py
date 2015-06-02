@@ -5,53 +5,86 @@ Created on Jun 1, 2015
 
 # Open miRNA names to list
 with open('../../../misc_data/saved_miRNA_names.txt') as f:
-    miRNA_names = f.readlines()
+    miRNA_names_list = f.read().splitlines()
+    
+# Define miRNA info entry structure as class
+class miRNA_seq_info():
+    def __init__(self):
+        self.indices = []
+        self.sequence = ''
+        self.accounted = False
+        self.length = 0
+        self.gc_num = 0
+        self.gc_prop = 0
+    def print_string(self):
+        string = self.sequence +'\t'+ str(self.length) + \
+            '\t'+ str(self.gc_num) +'\t'+ str(self.gc_prop)
+        return (string)        
+    
+# Create miRNA sequence dictionary
+miRNA_seq_dict = dict()
+# Add indices to miRNA sequence dictionary
+i = 0
+for name in miRNA_names_list:
+    if name not in miRNA_seq_dict.keys():
+        entry = miRNA_seq_info()
+        entry.indices.append(i)
+        miRNA_seq_dict[name] = entry
+    else:
+        entry = miRNA_seq_dict.get(name)
+        entry.indices.append(i)
+    i += 1
+
 # Get number of miRNAs
-num_names = len(miRNA_names)
+num_names = len(miRNA_seq_dict)
+
 # Get .fa file
 f = open('../../../sequence_data/mature_withnovel.fa', 'r')
-# Initialize output array of strings
-out_array = ["" for i in range(num_names)]
-# Initialize boolean array to check if all miRNA names were accounted for
-accounted_array = [False for i in range(num_names)]
-# Open file to write in
-out = open('../../../Preliminary_steps/sequence_content/content_table.txt', 'w')
 
 # analyze every 2 lines in .fa file
 while True:
     line1 = f.readline()
     line2 = f.readline()
-    if (line1 == '>provisional id'):
+    seq = line2.strip()
+    if (line1 == '>provisional id\n'):
         break
     # get rid of '>'
     name = line1[1:]
-    name_found = False
-    name_index = 0
-    for i in range(0,num_names):
-        if name == miRNA_names[i]:
-            name_found = True
-            name_index = i
-            break
-    if name_found:
-        seq_length = len(line2)
+    # get rid of new line char
+    name = name.strip()
+    if name in miRNA_seq_dict.keys():
+        info = miRNA_seq_dict.get(name)
+        info.accounted = True
+        info.sequence = seq
+        info.length = len(seq)
         gc_content = 0
-        for c in line2:
-            if c=='G' | c=='C':
+        for c in seq:
+            if c=='G' or c=='C':
                 gc_content += 1
-        line_out = seq_length + '\t' + gc_content
-        out_array[name_index] = line_out
-        accounted_array[name_index] = True
+        info.gc_num = gc_content
+        info.gc_prop = gc_content / info.length
+
+f.close()
 
 # Check if all accounted for
 all_accounted = True
-for accounted in accounted_array:
-    all_accounted = accounted | bool
+for name in miRNA_seq_dict.keys():
+    info = miRNA_seq_dict.get(name)
+    all_accounted = all_accounted and info.accounted
 if all_accounted:
     print('All miRNA names accounted for')
+else:
+    raise NameError('Not all miRNA names accounted for')
 
-# Write output        
-for string in out_array:
-    print(string, file=out)
+# Open file to write in
+out = open('../../../Preliminary_steps/sequence_content/content_table.txt', 'w')
+
+# Write results to file
+# print header
+print('miRNA\tsequence\tlength\tgc_num\tgc_prop', file=out)
+# print sequence info
+for name in miRNA_names_list:
+    info = miRNA_seq_dict.get(name)
+    print(name +'\t'+ info.print_string(), file=out)
     
-f.close()
 out.close()

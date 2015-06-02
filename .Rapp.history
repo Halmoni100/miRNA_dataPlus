@@ -3635,35 +3635,6 @@ for (i in 1:ncol(processed_data)) {#
 	uqnorm[,i] <- colneeded/Us[i]*U#
 }#
 #
-PCA <- dget("Preliminary_Steps/PCA.r")#
-PCA(uqnorm, 4)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-# get rid of all non-zero counts to create a vector#
-nonzero_data <- subset(v, v > 0)#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
 logged <- log2(uqnorm + 1)#
 PCA <- dget("Preliminary_Steps/PCA.r")#
 PCA(logged, 4)
@@ -3731,15 +3702,7 @@ pca_analysis(logged, 6)
 class(pca_analysis)
 pca_analysis <- dget("Preliminary_Steps/PCA.r")#
 pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
 n
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
 pca_analysis <- dget("Preliminary_Steps/PCA.r")#
 pca_analysis(logged, 6)
 print(n)
@@ -3750,10 +3713,6 @@ pca_analysis <- dget("Preliminary_Steps/PCA.r")
 pca_analysis(logged,5)
 pca_analysis <- dget("Preliminary_Steps/PCA.r")#
 > pca_analysis(logged,5)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
 pca_analysis <- dget("Preliminary_Steps/PCA.r")#
 pca_analysis(logged, 6)
 pca_analysis
@@ -3815,15 +3774,39 @@ for (i in from_i:to_i) {#
 }
 pca_analysis <- dget("Preliminary_Steps/PCA.r")#
 pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
 pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
 pca_analysis(logged, 6)
 pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
 pca_analysis(logged, 10)
 pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
 pca_analysis(uqnorm, 10)
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_raw_data")#
+# get rid of all non-zero counts to create a vector#
+nonzero_data <- subset(v, v > 0)#
+# UQ normalization function#
+UQNorm <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+} #
+# vector of Us needed to normalize data#
+Us <- apply(raw_data, 2, UQNorm)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+# load processed data#
+load("R_Data/saved_processed_data")#
+#
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}#
+#
+logged <- log2(uqnorm + 1)#
+pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
+pca_analysis(logged, 25)
