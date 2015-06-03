@@ -27,17 +27,9 @@ for (i in 1:ncol(processed_data)) {
 	uqnorm[,i] <- colneeded/Us[i]*U
 }
 
-<<<<<<< Updated upstream
-#PCA Analysis on Normalized data by using log function
-logged <- log2(uqnorm + 1)
-pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")
-pca_analysis(logged, 25)
-=======
 # log norm data, save it
 logged_data <- log2(uqnorm + 1)
 save(logged_data, file="R_data/saved_logged_data")
->>>>>>> Stashed changes
-
 
 
 # create quantile normalization function
