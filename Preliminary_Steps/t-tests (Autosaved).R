@@ -38,14 +38,9 @@ sd_viral_asymptomatic <- sd(viral_asymptomatic)
 test1 <- t.test(allviral,bacterial,alternative="two.sided")
 test2 <- t.test(allviral,baseline,alternative="two.sided", paired=TRUE)
 # test2 is a paired t-test 
-test3 <- t.test(viral_symptomatic, viral_asymptomatic, alternative="two.sided")
-# test3 needs to be changed to an anova
 test4 <- t.test(bacterial,baseline,alternative="two.sided")
 test5 <- t.test(bacterial,viral_symptomatic,alternative="two.sided")
 test6 <- t.test(bacterial,viral_asymptomatic,alternative="two.sided")
-test7 <- t.test(baseline,viral_symptomatic,alternative="two.sided")
-test8 <- t.test(baseline,viral_asymptomatic,alternative="two.sided")
-# test7 & test8 need to be changed to anova
 test9 <- t.test(combined_bacterial_baseline,allviral,alternative="two.sided")
 test10 <- t.test(combined_bacterial_allviral,baseline,alternative="two.sided")
 test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
@@ -53,6 +48,12 @@ test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
 
 
 
-# 
+# conducting a multiple linear regression model to compare baseline to viral_symptomatic and viral_asymptomatic
+symptom <- cbind(viral_symptomatic + viral_asymptomatic)
+test7 <- manova(symptom ~ baseline)
+boxplot(baseline ~ viral_symptomatic)
+boxplot(baseline ~ viral_asymptomatic)
+
+
 
 

@@ -35,22 +35,20 @@ save(logged_data, file="R_data/saved_logged_data")
 # create quantile normalization function
 quantile_normalization <- function(uqnorm) {
 	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")
-	uqnorm_sorted <- apply(uqnorm, 2, sort)
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)
 	
-	# Seems like you just made a vector from 1 to 52
-	#create the sampling function to add into the quantiles function
+	#create the sampling vector to add into the quantiles function
 	sampling_vector <- 1:52
-	
-	# Using sapply is wordy
 	makingquantiles <- sampling_vector / 53
 	
-	# You don't need to make a function to create the vector of quantiles, since you will only be doing that once
-	# The default values for qnorm are mean=0 and sd=1, so I don't think you have to specify those
+	# setting quantiles argument
 	quantiles <- qnorm(makingquantiles)
 
 	# The last (and probably most complicated step) you have to do is sort the quantiles by the rank.  idk how to do that yet
-	# I think you return the sorted quantiles
-	#return()
+	sort_ranked_quantiles <- function(quantiles, uqnorm_rank) {
+		return(quantiles[uqnorm_rank])
+	}
+return(sort_ranked_quantiles)
 }
 	
 # test the function
