@@ -3810,3 +3810,17 @@ for (i in 1:ncol(processed_data)) {#
 logged <- log2(uqnorm + 1)#
 pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
 pca_analysis(logged, 25)
+# Retrieve Data#
+# logged_data retrieved#
+load("R_data/saved_logged_data")#
+#
+# Read content table w/ sequence data#
+seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table.txt")#
+head(seq_df)#
+#
+# Create list for gc proportion#
+gc_prop_list <- split(seq_df$miRNA, seq_df$gc_prop)#
+head(gc_prop_list)
+gc_prop_list <- seq_df$gc_prop#
+names(gc_prop_list) <- seq_df$miRNA#
+head(gc_prop_list)

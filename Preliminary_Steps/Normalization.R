@@ -2,11 +2,6 @@
 # processed_data retreived
 load("R_Data/saved_raw_data")
 
-
-# get rid of all non-zero counts to create a vector
-nonzero_data <- subset(v, v > 0)
-
-
 # UQ normalization function
 UQNorm <- function(v) {
     nonzero_data <- subset(v, v > 0)
@@ -15,15 +10,11 @@ UQNorm <- function(v) {
     return(uq)
 } 
 
-
-
 # vector of Us needed to normalize data
 Us <- apply(raw_data, 2, UQNorm)
 
-
 # finding mean of the of the uq samples
 U <- mean(Us)
-
 
 # load processed data
 load("R_Data/saved_processed_data")
@@ -36,10 +27,16 @@ for (i in 1:ncol(processed_data)) {
 	uqnorm[,i] <- colneeded/Us[i]*U
 }
 
+<<<<<<< Updated upstream
 #PCA Analysis on Normalized data by using log function
 logged <- log2(uqnorm + 1)
 pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")
 pca_analysis(logged, 25)
+=======
+# log norm data, save it
+logged_data <- log2(uqnorm + 1)
+save(logged_data, file="R_data/saved_logged_data")
+>>>>>>> Stashed changes
 
 
 
