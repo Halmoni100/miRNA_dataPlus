@@ -4151,3 +4151,256 @@ quantile_normalization <- function(uqnorm) {#
 # test the function#
 quantile_norm_data <- quantile_normalization(uqnorm)#
 str(quantile_norm_data)
+# insert data set#
+known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
+#
+# save row names into matrix#
+miRNA_names <- known_data[,1]#
+rownames(raw_data) <- miRNA_names#
+#
+# save raw data#
+save(raw_data, file="R_Data/saved_raw_data")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props <- c(0, 0)#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions for each sample#
+zero_counts_sample <- apply(raw_data, 2, count_zeros)#
+#
+# find zero proportions for each miRNA#
+zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
+#
+# save zero proportions (zero_count / len)#
+zero_props_miRNA <- zero_counts_miRNA[1,]#
+save(zero_props_miRNA, file="R_Data/saved_zero_props_miRNA")#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_props_miRNA > 0.5#
+processed_data <- raw_data[!over_50,]#
+#
+# save processed data#
+# save as R file#
+save(processed_data, file="R_Data/saved_processed_data")#
+# save as txt file#
+write.table(processed_data, "misc_data/saved_processed_data_text.txt", sep="\t",#
+		quote=FALSE)
+x <- c(1,1,2,4)
+y <- rank(x)
+y
+# insert data set#
+known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)
+str(known_data)
+# insert data set#
+known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
+#
+# save row names into matrix#
+miRNA_names <- known_data[,1]#
+rownames(raw_data) <- miRNA_names#
+#
+# save raw data#
+save(raw_data, file="R_Data/saved_raw_data")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props <- c(0, 0)#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions for each sample#
+zero_counts_sample <- apply(raw_data, 2, count_zeros)#
+#
+# find zero proportions for each miRNA#
+zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
+#
+# save zero proportions (zero_count / len)#
+zero_props_miRNA <- zero_counts_miRNA[1,]#
+save(zero_props_miRNA, file="R_Data/saved_zero_props_miRNA")#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_props_miRNA > 0.5#
+processed_data <- raw_data[!over_50,]#
+#
+# save processed data#
+# save as R file#
+save(processed_data, file="R_Data/saved_processed_data")#
+# save as txt file#
+write.table(processed_data, "misc_data/saved_processed_data_text.txt", sep="\t",#
+		quote=FALSE)#
+#
+# get precursor names#
+precursor_names <- known_data$precursor#
+# get corresponding precursor names for processed_data#
+prec_names_proc <- precursor_names[!over_50]#
+# save precursor names for processed_data#
+save(prec_names_proc, file="R_Data/saved_prec_names_proc")
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# get miRNA names in order#
+miRNA_names <- rownames(processed_data)#
+#
+# save miRNA names to .txt file#
+write.table(miRNA_names, "misc_data/saved_miRNA_names.txt", sep="\t",#
+		quote=FALSE, row.names=FALSE, col.names=FALSE)#
+# get precursor names in processed data#
+load("R_data/saved_prec_names_proc")#
+#
+# save precursor names in processed data in .txt file#
+write.table(miRNA_names, "misc_data/saved_precursor_names.txt", sep="\t",#
+		quote=FALSE, row.names=FALSE, col.names=FALSE)
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_processed_data")#
+#
+# get miRNA names in order#
+miRNA_names <- rownames(processed_data)#
+#
+# save miRNA names to .txt file#
+write.table(miRNA_names, "misc_data/saved_miRNA_names.txt", sep="\t",#
+		quote=FALSE, row.names=FALSE, col.names=FALSE)#
+# get precursor names in processed data#
+# prec_names_proc retrieved#
+load("R_data/saved_prec_names_proc")#
+#
+# save precursor names in processed data in .txt file#
+write.table(prec_names_proc, "misc_data/saved_precursor_names.txt", sep="\t",#
+		quote=FALSE, row.names=FALSE, col.names=FALSE)
+known_data$precursor
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_raw_data")#
+#
+# UQ normalization function#
+UQNorm <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+} #
+#
+# vector of Us needed to normalize data#
+Us <- apply(raw_data, 2, UQNorm)#
+#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# load processed data#
+load("R_Data/saved_processed_data")#
+#
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}#
+#
+#create a function to normalize data#
+#order the data set according to rank#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+output_matrix <- matrix(, nrow=m, ncol=n)#
+# create quantile normalization function for each miRNA#
+quantile_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+head(quantile_norm_data)#
+#
+# save final normalized data#
+save(quantile_norm_data, file="R_Data/saved_quantile_norm_data")
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_raw_data")#
+#
+# UQ normalization function#
+UQNorm <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+} #
+#
+# vector of Us needed to normalize data#
+Us <- apply(raw_data, 2, UQNorm)#
+#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# load processed data#
+load("R_Data/saved_processed_data")#
+#
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}#
+#
+#create a function to normalize data#
+#order the data set according to rank#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+output_matrix <- matrix(, nrow=m, ncol=n)#
+# create quantile normalization function for each miRNA#
+quantile_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+quantile_norm_data <- t(quantile_norm_data)#
+str(quantile_norm_data)#
+#
+# save final normalized data#
+save(quantile_norm_data, file="R_Data/saved_quantile_norm_data")
+# Retrieve Data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA.r")#
+pca_analysis(quantile_norm_data, 10)
+# Retrieve Data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA.r")#
+pca_analysis(quantile_norm_data, 10)
+# Retrieve Data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, 10)
