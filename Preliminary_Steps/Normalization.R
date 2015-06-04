@@ -31,30 +31,27 @@ for (i in 1:ncol(processed_data)) {
 logged_data <- log2(uqnorm + 1)
 save(logged_data, file="R_data/saved_logged_data")
 
-
-# create quantile normalization function
-quantile_normalization <- function(uqnorm) {
-	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")
-
-	#create the sampling vector to add into the quantiles function
-	sampling_vector <- 1:52
-	makingquantiles <- sampling_vector / 51
-	
-	# setting quantiles argument
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)
-	
-	# create for loop to sort every quantile based on rank
-	for (i in quantiles) {
-		sorted_quantiles <- sort(uqnorm_rank[i])
-	}
-	
-	# return sorted_quantiles
-	return(sorted_quantiles)
+#create a function to normalize data
+#order the data set according to rank
+normalize <- function(uqnorm) {
+uqnorm_order <- rank(uqnorm[i],ties.method="average")
+	#set the quantiles based on the order
+	quantiles <- uqnorm_order/53
+	quantile_norm_data <- qnorm(quantiles,mean=0,sd=1)
+	return(quantile_norm_data)	
 }
-	
-# test the function
-quantile_norm_data <- quantile_normalization(uqnorm)
-str(quantile_norm_data)
+
+
+output_matrix <- matrix(, nrow=m, ncol=n)
+#loop through each row
+# create quantile normalization function for each miRNA
+quantile_normalization <- for (i in nrow(uqnorm)) {
+uqnorm_order[i]
+output_matrix = list()
+
+}
+
+
 
 # save final normalized data
 save(quantile_norm_data, file="R_Data/saved_quantile_norm_data")
