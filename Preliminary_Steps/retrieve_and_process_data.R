@@ -44,3 +44,10 @@ save(processed_data, file="R_Data/saved_processed_data")
 # save as txt file
 write.table(processed_data, "misc_data/saved_processed_data_text.txt", sep="\t",
 		quote=FALSE)
+
+# get precursor names
+precursor_names <- known_data$precursor
+# get corresponding precursor names for processed_data
+prec_names_proc <- precursor_names[!over_50]
+# save precursor names for processed_data
+save(prec_names_proc, file="R_Data/saved_prec_names_proc")
