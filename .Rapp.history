@@ -3824,3 +3824,330 @@ head(gc_prop_list)
 gc_prop_list <- seq_df$gc_prop#
 names(gc_prop_list) <- seq_df$miRNA#
 head(gc_prop_list)
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_raw_data")#
+#
+# UQ normalization function#
+UQNorm <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+} #
+#
+# vector of Us needed to normalize data#
+Us <- apply(raw_data, 2, UQNorm)#
+#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# load processed data#
+load("R_Data/saved_processed_data")#
+#
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}#
+#
+# log norm data, save it#
+logged_data <- log2(uqnorm + 1)#
+save(logged_data, file="R_data/saved_logged_data")#
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles)#
+#
+	return(quantiles[uqnorm_rank])#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+head(quantile_norm_data)
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+head(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	print(quantiles)#
+	return(quantiles[uqnorm_rank])#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+head(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	print(head(quantiles[uqnorm_rank])#
+	return(quantiles[uqnorm_rank])#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+head(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	ordered_quantiles <- quantiles[uqnorm_rank]#
+	return(ordered_quantiles)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+head(quantile_norm_data)
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+head(quantile_norm_data)
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+class(quantile_norm_data)
+rm(quantile_norm_data)
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+class(quantile_norm_data)
+head(quantile_norm_data)
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	str(out)#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	head(out)#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	print(str(out))#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+x <- c(1,2,3,4)
+x <- c(2,4,6,8)
+y <- x[3,2,1,4]
+y <- x[c(3,2,1,4)]
+y
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	print(length(quantiles))#
+	print(length(uqnorm_rank))#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	head(uqnorm_rank)#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	print(length(quantiles))#
+	print(length(uqnorm_rank))#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	print(head(uqnorm_rank))#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	print(length(quantiles))#
+	print(length(uqnorm_rank))#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	print(str(uqnorm_rank))#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	print(length(quantiles))#
+	print(length(uqnorm_rank))#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	print(str(uqnorm_rank))#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	print(str(quantiles))#
+	print(str(uqnorm_rank))#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	print(uqnorm_sorted)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	out <- quantiles[uqnorm_rank]#
+	print(str(quantiles))#
+	print(str(uqnorm_rank))#
+	return(out)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_raw_data")#
+#
+# UQ normalization function#
+UQNorm <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+} #
+#
+# vector of Us needed to normalize data#
+Us <- apply(raw_data, 2, UQNorm)#
+#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# load processed data#
+load("R_Data/saved_processed_data")#
+#
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}#
+#
+# log norm data, save it#
+logged_data <- log2(uqnorm + 1)#
+save(logged_data, file="R_data/saved_logged_data")#
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	### I think we should be sorting by sample#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	### Not sure about the divide by number, ask Ashlee to clarify#
+	makingquantiles <- sampling_vector / 51#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	### Initialize quant_norm matrix#
+	quant_norm <- matrix(, nrow(uqnorm), ncol(uqnorm))#
+	# create for loop to sort every quantile based on rank#
+	### So the for loop should go through each sample (column)#
+	### Return sorted quantiles vector for each loop based on rank vectors in uqnorm_rank#
+	for (i in ncol(uqnorm)) {#
+		quant_norm[,i] <- quantiles[uqnorm_rank[,i]]#
+	}#
+	### return quantile normalized matrix#
+	return(quant_norm)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)

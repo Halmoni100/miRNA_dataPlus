@@ -39,4 +39,8 @@ over_50 <- zero_props_miRNA > 0.5
 processed_data <- raw_data[!over_50,]
 
 # save processed data
+# save as R file
 save(processed_data, file="R_Data/saved_processed_data")
+# save as txt file
+write.table(processed_data, "misc_data/saved_processed_data_text.txt", sep="\t",
+		quote=FALSE)
