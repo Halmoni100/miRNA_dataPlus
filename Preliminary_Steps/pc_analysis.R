@@ -12,5 +12,5 @@ load("R_data/saved_logged_data")
 #head(gc_prop_list)
 
 # Do PCA Analysis
-#pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")
+#pca_analysis <- dget("Preliminary_Steps/analyze_PCs_miRNA.r")
 #pca_analysis(logged_data, 25)

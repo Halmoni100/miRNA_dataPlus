@@ -86,7 +86,7 @@ out = open('../../../Preliminary_steps/sequence_content/content_table.txt', 'w')
 # print header
 print('miRNA\tsequence\tlength\tgc_num\tgc_prop', file=out)
 # print sequence info
-for name in miRNA_seq_dict.keys():
+for name in miRNA_names_list:
     info = miRNA_seq_dict.get(name)
     print(name +'\t'+ info.print_string(), file=out)
     
