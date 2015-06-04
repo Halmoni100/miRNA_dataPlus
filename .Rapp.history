@@ -1,1473 +1,3 @@
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# insert data set#
-known_data <- read.delim("Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap.2(log2_data, trace="none")#
-#
-#choosing zero counts#
-zero_data <- length(raw_data[which(raw_data == 0),])#
-View(zero_data)
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# insert data set#
-known_data <- read.delim("Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap(log2_data)#
-#
-#choosing zero counts#
-zero_data <- length(raw_data[which(raw_data == 0),])#
-View(zero_data)
-# insert data set#
-known_data <- read.delim("Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap(log2_data)#
-#
-#choosing zero counts#
-zero_data <- length(raw_data[which(raw_data == 0),])#
-View(zero_data)
-# insert data set#
-known_data <- read.delim("Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    quartiles <- quantile(v)#
-    uq <- quartiles[4]#
-    v <- v / uq#
-    return(v)#
-}#
-#
-# normalize data#
-norm_data <- apply(raw_data, 1, UQNorm)
-norm_data
-head(norm_data)
-str(raw_data)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proprotions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])
-raw_data
-head(raw_data)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#PCA analysis#
-pca1 = prcomp(raw_data, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)
-str(pca1)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)
-str(raw_data)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, function())#
-raw_data <- raw_data[only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21,]#
-pca_comp_1_baseline <- pca_comp_1[22:42,]#
-pca_comp_1_bacteria <- pca_comp_1[43:52,]#
-pca_comp_2_viral <- pca_comp_2[1:21,]#
-pca_comp_2_baseline <- pca_comp_2[22:42,]#
-pca_comp_2_bacteria <- pca_comp_2[43:52,]#
-#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="yellow")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_result <- data.matrix(pca_result)#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21,]#
-pca_comp_1_baseline <- pca_comp_1[22:42,]#
-pca_comp_1_bacteria <- pca_comp_1[43:52,]#
-pca_comp_2_viral <- pca_comp_2[1:21,]#
-pca_comp_2_baseline <- pca_comp_2[22:42,]#
-pca_comp_2_bacteria <- pca_comp_2[43:52,]#
-#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="yellow")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="yellow")
-head(pca_comp_1_viral)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="yellow")#
-#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="yellow")#
-#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red")#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="yellow")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="yellow")#
-#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="yellow")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-quartz()#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red")#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
-#
-quartz()#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red")#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
-pca_comp_3_bacteria
-pca_comp_3_viral
-min(pca_comp_3_bacteria)
-max(pca_comp_3_bacteria)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-pca_comp_3_bacteria#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_2), max(pca_comp_2)))#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-quartz()#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3))))#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
-#
-quartz()#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_2), max(pca_comp_2)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3))))#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <- read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-class(raw_data)#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-head(zero_counts_sample)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-	sum <- sum(v)#
-	if (sum == 0) {#
-		return(TRUE)#
-	}#
-	return(FALSE)#
-}#
-#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-#PCA analysis#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-pca_comp_3_bacteria#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_2), max(pca_comp_2)))#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-quartz()#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
-#
-quartz()#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_2), max(pca_comp_2)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <-read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# remove miRDeep2 "norm" data#
-known_data <- known_data[,1:56]#
-#
-# extract raw data into matrix (just #s)#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-write.matrix(raw_data, file = "raw_data.txt")
-getwd()
-header(raw_data)
-head(raw_data)
-head(known_data)
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <-read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# retrieve miRNA names#
-miRNA_names <- known_data$X.miRNA#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# set row names (miRNAs)#
-row.names(raw_data) <- miRNA_names#
-write.matrix(raw_data, file = "raw_data.txt")
-search()
-library()
-# load package for data i/o#
-library("MASS")#
-#
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <-read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# retrieve miRNA names#
-miRNA_names <- known_data$X.miRNA#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# set row names (miRNAs)#
-row.names(raw_data) <- miRNA_names#
-#
-write.matrix(raw_data, file = "raw_data.txt")
-# load package for data i/o#
-library("MASS")#
-#
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <-read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# retrieve miRNA names#
-miRNA_names <- known_data$X.miRNA#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# set row names (miRNAs)#
-row.names(raw_data) <- miRNA_names#
-#
-write.matrix(raw_data, file = "raw_data.txt")#
-#
-raw_data_test <- scan(file="raw_data.txt", what = matrix(), sep = " ")
-# load package for data i/o#
-library("MASS")#
-#
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <-read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# retrieve miRNA names#
-miRNA_names <- known_data$X.miRNA#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# set row names (miRNAs)#
-row.names(raw_data) <- miRNA_names#
-#
-write.matrix(raw_data, file = "raw_data.txt")#
-#
-raw_data_test <- scan(file="raw_data.txt", what = integer(), sep = " ")
-# load package for data i/o#
-library("MASS")#
-#
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <-read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# retrieve miRNA names#
-miRNA_names <- known_data$X.miRNA#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# retrieve sample names, get rid of sample names in matrix#
-sample_names <- raw_data[1,]#
-raw_data <- raw_data[-1,]#
-#
-# set row and col names#
-row.names(raw_data) <- miRNA_names#
-col.names(raw_data) <- sample_names#
-#
-write.matrix(raw_data, file = "raw_data.txt")#
-#
-raw_data_test <- scan(file="raw_data.txt", what = integer(), sep = " ")
 # load package for data i/o#
 library("MASS")#
 #
@@ -4395,12 +2925,875 @@ pca_analysis(quantile_norm_data, 10)
 load("R_data/saved_quantile_norm_data")#
 #
 # Do PCA Analysis#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA.r")#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_samples.r")#
 pca_analysis(quantile_norm_data, 10)
-# Retrieve Data#
+ggplot2
+ggplot
+library(ggplot1)
+library(ggplot2)
+x <- -4
+abs(x)
+x <- c(1,2,3,4)
+y <- c(4,2,2,1)
+ggplot(data.frame(xval=x,yval=y), aes(x='1',y='2'))
+ggplot(data.frame(xval=x,yval=y), aes(x='1',y='2')) + geom_point()
+ggplot(data.frame(xval=x,yval=y)) + geom_point(aes(x='1',y='2'))
+# Generate some data#
+set.seed(133)#
+df <- data.frame(xval=rnorm(50), yval=rnorm(50))#
+#
+# Make color depend on yval#
+ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point()
+# Generate some data#
+set.seed(133)#
+df <- data.frame(xval=rnorm(50), yval=rnorm(50))#
+#
+# Make color depend on yval#
+ggplot(df, aes(x='1', y='2', colour=yval)) + geom_point()
+# Generate some data#
+set.seed(133)#
+df <- data.frame(xval=rnorm(50), yval=rnorm(50))#
+#
+# Make color depend on yval#
+ggplot(df, aes(x=xal, y=yl, colour=yval)) + geom_point()
+# Read quantile normalized data#
 # quantile_norm_data retrieved#
 load("R_data/saved_quantile_norm_data")#
 #
-# Do PCA Analysis#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, 10)
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNa_gc_prop,#
+		prec_length, prec_gc_prop, 10)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNa_gc_prop,#
+		prec_length, prec_gc_prop, 10)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNa_gc_prop,#
+		prec_length, prec_gc_prop, 10)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 10)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 10)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 10)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 10)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 10)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 2)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+plot_df <- data.frame(xval=pcs_all[[1]], yval=pcs_all[[2]])#
+	ggplot(plot_df, aes(x=pcs_all[[1]],y=pcs_all[[2]], colour=z_data)) +#
+				geom_point() +#
+				scale_colour_gradientn(colours=rainbow(max(abs(z_data))))
+# Load package#
+	library(FactoMineR)#
+	# PCA analysis, miRNAs are data points, samples are features#
+	pca_df = PCA(data, ncp=num, graph=FALSE)#
+	# Find proportion of variance, etc.#
+	prop_of_var <- pca_df$eig[1:num,]#
+	write.table(prop_of_var, "Preliminary_Steps/PCA/analysis/prop_of_vars_miRNA.txt", sep="\t", quote=FALSE)#
+	# Get first n PCs, store in lists#
+	pca_result <- pca_df$ind$coord#
+	pcs_all = vector(mode="list", length=num)#
+	for(i in 1:num) {#
+		pcs_all[[i]] = pca_result[,i]#
+	}#
+	plot_df <- data.frame(xval=pcs_all[[1]], yval=pcs_all[[2]])#
+	ggplot(plot_df, aes(x=pcs_all[[1]],y=pcs_all[[2]], colour=z_data)) +#
+				geom_point() +#
+				scale_colour_gradientn(colours=rainbow(max(abs(z_data))))
+# Load package#
+	library(FactoMineR)#
+	# PCA analysis, miRNAs are data points, samples are features#
+	pca_df = PCA(data, ncp=3, graph=FALSE)#
+	# Find proportion of variance, etc.#
+	prop_of_var <- pca_df$eig[1:num,]#
+	write.table(prop_of_var, "Preliminary_Steps/PCA/analysis/prop_of_vars_miRNA.txt", sep="\t", quote=FALSE)#
+	# Get first n PCs, store in lists#
+	pca_result <- pca_df$ind$coord#
+	pcs_all = vector(mode="list", length=num)#
+	for(i in 1:3) {#
+		pcs_all[[i]] = pca_result[,i]#
+	}#
+	plot_df <- data.frame(xval=pcs_all[[1]], yval=pcs_all[[2]])#
+	ggplot(plot_df, aes(x=pcs_all[[1]],y=pcs_all[[2]], colour=z_data)) +#
+				geom_point() +#
+				scale_colour_gradientn(colours=rainbow(max(abs(z_data))))
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+warnings()
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+warnings
+warnings()
+error()
+errorS()
+errors()
+traceback()
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+len(prec_seq_df$gc_prop)#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+length(prec_seq_df$gc_prop)#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+head(prec_seq_df$gc_prop)
+head(miRNA_gc_prop)
+length(miRNA_gc_prop)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+x <- c(1,2,3,4)
+y <- c(4,3,9,4)
+ggplot(data.frame(xval=x,yval=y), aes(x=xval,y=yval)) + geom_point()
+install.packages("ggplot2")
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+x
+y
+df <- data.frame(xval=x,yval=y)
+ggplot(df, aes(x=xval,y=yval)) + geom_point(size=1)
+print(ggplot(df, aes(x=xval,y=yval)) + geom_point(size=1))
+print(ggplot(df, ase(x=xval,y=yval)) + geom_point())
+print(ggplot(df, aes(x=xval,y=yval)) + geom_point())
+p <- ggplot(df, ase(x=xval,y=yval)) + geom_point()
+p <- ggplot(df, aes(x=xval,y=yval)) + geom_point()
+print(p)
+ggsave("sample.gg",p)
+ggsave("sample",p)
+ggsave("sample.jpeg",p)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
+# Read quantile normalized data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Read content table w/ sequence data for miRNA & precursor#
+miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
+prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
+#
+# Create lists for gc proportion and lengths for miRNA & precursor#
+miRNA_gc_prop <- miRNA_seq_df$gc_prop#
+prec_gc_prop <- prec_seq_df$gc_prop#
+miRNA_length <- miRNA_seq_df$length#
+prec_length <- prec_seq_df$length#
+#
+# Do PCA Analysis for all variables#
+pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
+pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
+		prec_length, prec_gc_prop, 3)
