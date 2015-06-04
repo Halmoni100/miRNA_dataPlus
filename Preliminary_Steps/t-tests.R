@@ -49,7 +49,8 @@ test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
 
 
 # conducting a multiple linear regression model to compare baseline to viral_symptomatic and viral_asymptomatic
-test7 <- lm(baseline ~ viral_symptomatic + viral_asymptomatic)
+symptom <- cbind(viral_symptomatic + viral_asymptomatic)
+test7 <- manova(symptom ~ baseline)
 boxplot(baseline ~ viral_symptomatic)
 boxplot(baseline ~ viral_asymptomatic)
 
