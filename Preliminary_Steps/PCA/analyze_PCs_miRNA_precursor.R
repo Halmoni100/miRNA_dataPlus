@@ -10,6 +10,7 @@ function(data, miRNA_lengths, miRNA_gc_content,
 	# Find proportion of variance, etc.
 	prop_of_var <- pca_df$eig[1:num,]
 	write.table(prop_of_var, "Preliminary_Steps/PCA/analysis/prop_of_vars_miRNA.txt", sep="\t", quote=FALSE)
+	write.table(prop_of_var, "Preliminary_Steps/PCA/PCA_Sequence_Data/prop_of_vars_miRNA.txt", sep="\t", quote=FALSE)
 	
 	# Get first n PCs, store in lists
 	pca_result <- pca_df$ind$coord
@@ -22,16 +23,16 @@ function(data, miRNA_lengths, miRNA_gc_content,
 	plot_pcs <- dget("Preliminary_Steps/PCA/plot_pcs_cont_colors.r")
 	
 	# Do miRNA lengths
-	dir <- "Preliminary_Steps/PCA/plots_miRNA/length/"
+	dir <- "Preliminary_Steps/PCA/plots_miRNA/PCA_Sequence_Data/length/"
 	plot_pcs(pcs_all, miRNA_lengths, num, dir)
 	# Do miRNA gc content
-	dir <- "Preliminary_Steps/PCA/plots_miRNA/gc_content/"
+	dir <- "Preliminary_Steps/PCA/plots_miRNA/PCA_Sequence_Data/gc_content/"
 	plot_pcs(pcs_all, miRNA_gc_content, num, dir)
 	# Do precursor lengths
-	dir <- "Preliminary_Steps/PCA/plots_precursor/length/"
+	dir <- "Preliminary_Steps/PCA/plots_precursor/PCA_Sequence_Data/length/"
 	plot_pcs(pcs_all, miRNA_lengths, num, dir)
 	# Do precursor gc content
-	dir <- "Preliminary_Steps/PCA/plots_precursor/gc_content/"
+	dir <- "Preliminary_Steps/PCA/plots_precursor/PCA_Sequence_Data/gc_content/"
 	plot_pcs(pcs_all, miRNA_gc_content, num, dir)
 	
 }
