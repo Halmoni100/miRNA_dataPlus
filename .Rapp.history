@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # load package for data i/o#
 library("MASS")#
 #
@@ -587,1330 +588,210 @@ processed_data <- raw_data[!over_50,]#
 # save processed data#
 save(processed_data, file="R_Data/saved_processed_data")
 head(processed_data)
-# Retrieve Data#
-# processed_data retreived#
+=======
+# load processed data#
 load("R_Data/saved_processed_data")#
 #
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}#
+#
+# do quantile normalization on each sample#
+normalize.quantiles(uqnorm, copy = TRUE)
+install.packge("preprocessCore")
+install.package("preprocessCore")
+install.packages("preprocessCore")
+?toupper
+# setting up ranks to do quantile normalization#
+uqnorm_rank <- apply(uqnorm, 2, rank, ties.method = "min")#
+# sort matrix from lowest ot highest#
+uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+# calculate the mean of each column#
+uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+#
+# substitute means into ranked matrix#
+index_to_mean <- function(my_index, my_mean) {#
+	return(my_mean[my_index])#
+}#
+#
+uqnorm_final <- apply(uq_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+rownames(uqnorm_final) <- toupper(letters[1:4])#
+uqnorm_final#
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(df, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	rownames(uqnorm_final) <- rownames(uqnorm)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+quantile_normalization(uqnorm)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(df, 1, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	rownames(uqnorm_final) <- rownames(uqnorm)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+rownames(uqnorm) <- toupper(letters[1:4])#
+quantile_normalization(uqnorm)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(df, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+quantile_normalization(uqnorm)
+# all code below here is adapted from http://davetang.org/muse/2014/07/07/quantile-normalisation-in-r/#
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- (apply(df, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+quantile_normalization(uqnorm)
+# all code below here is adapted from http://davetang.org/muse/2014/07/07/quantile-normalisation-in-r/#
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
+	uqnorm_sorted <- apply(df, 1, sort)#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+quantile_normalization(uqnorm)
+# all code below here is adapted from http://davetang.org/muse/2014/07/07/quantile-normalisation-in-r/#
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
+	uqnorm_sorted <- data.fram(apply(df, 1, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+quantile_normalization(uqnorm)
+# all code below here is adapted from http://davetang.org/muse/2014/07/07/quantile-normalisation-in-r/#
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(df, 1, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+quantile_normalization(uqnorm)
+>>>>>>> Stashed changes
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_raw_data")#
+# get rid of all non-zero counts to create a vector#
+nonzero_data <- subset(v, v > 0)#
 # UQ normalization function#
 UQNorm <- function(v) {#
-    quartiles <- quantile(v)#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
     uq <- quartiles[4]#
-    v <- v / uq#
-    return(v)#
+    return(uq)#
+} #
+# vector of Us needed to normalize data#
+Us <- apply(raw_data, 2, UQNorm)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+# load processed data#
+load("R_Data/saved_processed_data")#
+#
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}
+uqnorm
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
 }#
 #
-# normalize data#
-norm_data <- apply(processed_data, 1, UQNorm)
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap(log2_data)
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap.2(log2_data, trace="none")
-head(raw_data)
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# make log2 heat map#
-log2_data <- log2(processed_data + 1)#
-heatmap.2(log2_data, trace="none")
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# log2 data#
-log2_data <- log2(processed_data + 1)#
-#
-# make log2 heat map (R heatmap function)#
-heatmap(log2_data)#
-#
-# make log2 heat map (gplots heatmap function)#
-heatmap.2(log2_data, trace="none")
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# log2 data#
-log2_data <- log2(processed_data + 1)#
-#
-# make log2 heat map (R heatmap function)#
-heatmap(log2_data)#
-#
-# make log2 heat map (gplots heatmap function)#
-quartz()#
-heatmap.2(log2_data, trace="none")
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-# log2 data#
-log2_data_raw <- log2(raw_data + 1)#
-log2_data_proc <- log2(processed_data + 1)#
-#
-# make processed log2 heat map (R heatmap function)#
-heatmap(log2_data_raw)#
-quartz()#
-heatmap(log2_data_proc)#
-#
-# make log2 heat map (gplots heatmap function)#
-quartz()#
-heatmap.2(log2_data, trace="none")
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-#
-#PCA analysis#
-#source:http://gastonsanchez.com/blog/how-to/2012/06/17/PCA-in-R.html#
-pca1 = prcomp(raw_data, scale. = TRUE)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-# PC 1 vs PC 2#
-pca_comp_3_bacteria#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_2), max(pca_comp_2)))#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-# PC 1 vs PC 3#
-quartz()#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
-#
-# PC 2 vs PC 3#
-quartz()#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_2), max(pca_comp_2)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
-head(raw_data)
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-#
-#PCA analysis#
-#source:http://gastonsanchez.com/blog/how-to/2012/06/17/PCA-in-R.html#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-#
-#PCA analysis#
-#source:http://gastonsanchez.com/blog/how-to/2012/06/17/PCA-in-R.html#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-# PC 1 vs PC 2#
-pca_comp_3_bacteria#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_2), max(pca_comp_2)))#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-# PC 1 vs PC 3#
-quartz()#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
-#
-# PC 2 vs PC 3#
-quartz()#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_2), max(pca_comp_2)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
-str(raw_data)
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# function to determine if all zeros#
-all_zeros <- function(v) {#
-    sum <- sum(v)#
-    if (sum == 0) {#
-        return(TRUE)#
-    }#
-    return(FALSE)#
+# test the function#
+quantile_normalization(uqnorm)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
 }#
-# Delete data w/ no info#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
 #
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
+# test the function#
+quantile_normalization(uqnorm)
+# graph the normalized data on a histogram#
+hist(quantile_norm_data)
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
 #
-#PCA analysis#
-#source:http://gastonsanchez.com/blog/how-to/2012/06/17/PCA-in-R.html#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-# PC 1 vs PC 2#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_2), max(pca_comp_2)))#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-# PC 1 vs PC 3#
-quartz()#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
-#
-# PC 2 vs PC 3#
-quartz()#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_2), max(pca_comp_2)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
-paste("1st","2nd","3rd")
-paste(1,2,3)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
+# graph the normalized data on a histogram#
+hist(quantile_norm_data)
+?hist
 # transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector("list", n)#
-pcs_viral = vector("list", n)#
-pcs_baseline = vector("list", n)#
-pcs_bacteria = vector("list", n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[j])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector("list", n)#
-pcs_viral = vector("list", n)#
-pcs_baseline = vector("list", n)#
-pcs_bacteria = vector("list", n)#
-for (i in 1:n) {#
-	pcs_all[i] = pca_result[,i]#
-	pcs_viral[i] = pca_result[1:21,i]#
-	pcs_baseline[i] = pca_result[22:42,i]#
-	pcs_bacteria[i] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[i], pcs_viral[j], col="red",#
-				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
-				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
-		points(pcs_baseline[i], pcs_baseline[j], col="green")#
-		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
-		dev.off()#
-	}#
-}
-warnings()
-class(pcs_all)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-warnings()
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	i#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-pcs_viral[[1]]
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	i#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[i], pcs_viral[j], col="red",#
-				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
-				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
-		points(pcs_baseline[i], pcs_baseline[j], col="green")#
-		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
-		dev.off()#
-	}#
-}
-warnings()
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	i#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[i], pcs_viral[j], col="red",#
-				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
-				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
-		points(pcs_baseline[i], pcs_baseline[j], col="green")#
-		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
-		dev.off()#
-	}#
-}
-warnings()
-str(pcs_viral[1])
-str(pcs_viral[2])
-str(pcs_baseline[1])
-str(pcs_baseline[2])
-str(pcs_bacteria[1])
-str(pcs_bacteria[2])
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	i#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[i], pcs_viral[j], col="red",#
-				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
-				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
-		points(pcs_baseline[i], pcs_baseline[j], col="green")#
-		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	i#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		length(pcs_viral[i])#
-		length(pcs_viral[j])#
-		length(pcs_baseline[i])#
-		length(pcs_baseline[j])#
-		length(pcs_bacteria[i])#
-		length(pcs_bacteria[j])#
-		plot(pcs_viral[i], pcs_viral[j], col="red",#
-				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
-				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
-		points(pcs_baseline[i], pcs_baseline[j], col="green")#
-		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	i#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-		length(pcs_viral[1])#
-		length(pcs_viral[2])#
-		length(pcs_baseline[1])#
-		length(pcs_baseline[2])#
-		length(pcs_bacteria[1])#
-		length(pcs_bacteria[2])#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[i], pcs_viral[j], col="red",#
-				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
-				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
-		points(pcs_baseline[i], pcs_baseline[j], col="green")#
-		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	i#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-		length(pcs_viral[[1]])#
-		length(pcs_viral[[2]])#
-		length(pcs_baseline[[1]])#
-		length(pcs_baseline[[2]])#
-		length(pcs_bacteria[[1]])#
-		length(pcs_bacteria[[2]])#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[i], pcs_viral[j], col="red",#
-				xlim=c(min(pcs_all[i]), max(pcs_all[i])),#
-				ylim=c(min(pcs_all[j]), max(pcs_all[j])))#
-		points(pcs_baseline[i], pcs_baseline[j], col="green")#
-		points(pcs_bacteria[i], pcs_bacteria[j], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	i#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-for (i in 1:3) {i}
-or (i in 1:3) {print(i)}
-for (i in 1:3) {print(i)}
-warnings()
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-for (i in 1:n-1) {#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		print(length(pcs_viral[[i]]))#
-		print(length(pcs_viral[[j]]))#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-for (i in 1:n-1) {#
-	print(pcs_viral[[i]])#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-for (i in 1:n-1) {#
-	print(pcs_viral[[j]])#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-for (i in 1:n-1) {#
-	print(i)#
-	for (j in i+1:n) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- n - 1#
-to_j <- n#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- n - 1#
-to_j <- n#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		#plot.new()#
-		#frame()#
-		#plot_name <- paste(i,"vs",j)#
-		#dir_name <- paste("Plots/PCA/processed_data/", plot_name, collapse=NULL)#
-		#jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		#dev.off()#
-	}#
-}
-quartz()
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- n - 1#
-to_j <- n#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse=NULL)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 2#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- n - 1#
-to_j <- n#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- n - 1#
-to_j <- n#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="", res=500)#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- n - 1#
-to_j <- n#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
-		jpeg(dir_name, res=500)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- n - 1#
-to_j <- n#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
-#
-# PCA analysis#
-pca_df = prcomp(proc_data_trans, scale. = TRUE)#
-#
-# Set n#
-n = 6#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$x#
-pcs_all = vector(mode="list", length=n)#
-pcs_viral = vector(mode="list", length=n)#
-pcs_baseline = vector(mode="list", length=n)#
-pcs_bacteria = vector(mode="list", length=n)#
-for (i in 1:n) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- n - 1#
-to_j <- n#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		plot.new()#
-		frame()#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
-		jpng(dir_name, 500, 500)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
-	}#
-}
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# transpose data for PCA analysis#
-proc_data_trans <- t(processed_data)#
+proc_data_trans <- t(quantile_norm_data)#
 #
 # PCA analysis#
 pca_df = prcomp(proc_data_trans, scale. = TRUE)#
@@ -1940,7 +821,7 @@ for (i in from_i:to_i) {#
 	from_j <- i + 1#
 	for (j in from_j:to_j) {#
 		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA/processed_data/", plot_name, ".jpeg", collapse="")#
+		dir_name <- paste("Plots/PCA/quantile_norm_data/", plot_name, ".jpeg", collapse="")#
 		jpeg(dir_name)#
 		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
 				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
@@ -1950,6 +831,7 @@ for (i in from_i:to_i) {#
 		dev.off()#
 	}#
 }
+hist(quantile_norm_data)
 # Retrieve Data#
 # processed_data retreived#
 load("R_Data/saved_raw_data")#
@@ -2019,9 +901,25 @@ uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
 for (i in 1:ncol(processed_data)) {#
 	colneeded <- processed_data[,i]#
 	uqnorm[,i] <- colneeded/Us[i]*U#
+}
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
 }#
 #
-PCA(uqnorm, 4)
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+#
+# graph the normalized data on a histogram#
+hist(quantile_norm_data)
+setwd("~/Desktop/Data+/miRNA_dataPlus")
 # Retrieve Data#
 # processed_data retreived#
 load("R_Data/saved_raw_data")#
@@ -2047,127 +945,24 @@ uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
 for (i in 1:ncol(processed_data)) {#
 	colneeded <- processed_data[,i]#
 	uqnorm[,i] <- colneeded/Us[i]*U#
+}
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
 }#
 #
-PCA <- dget("PCA.R")#
-PCA(uqnorm, 4)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-# get rid of all non-zero counts to create a vector#
-nonzero_data <- subset(v, v > 0)#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-# load processed data#
-load("R_Data/saved_processed_data")#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
 #
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
-PCA <- dget("PCA")#
-PCA(uqnorm, 4)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-# get rid of all non-zero counts to create a vector#
-nonzero_data <- subset(v, v > 0)#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
-PCA <- dget("PCA.r")#
-PCA(uqnorm, 4)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-# get rid of all non-zero counts to create a vector#
-nonzero_data <- subset(v, v > 0)#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
-PCA <- dget("Preliminary_Steps/PCA.r")#
-PCA(uqnorm, 4)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-# get rid of all non-zero counts to create a vector#
-nonzero_data <- subset(v, v > 0)#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
-logged <- log2(uqnorm + 1)#
-PCA <- dget("Preliminary_Steps/PCA.r")#
-PCA(logged, 4)
+# graph the normalized data on a histogram#
+hist(quantile_norm_data)
 # Retrieve Data#
 # processed_data retreived#
 load("R_Data/saved_raw_data")#
@@ -2198,7 +993,176 @@ for (i in 1:ncol(processed_data)) {#
 logged <- log2(uqnorm + 1)#
 PCA <- dget("Preliminary_Steps/PCA.r")#
 PCA(logged, 6)
+PCA
+head(uqnorm)
+PCA <- dget("Preliminary_Steps/PCA.r")
+PCA(uqnorm,4)
+PCA <- dget("Preliminary_Steps/PCA.r")
+PCA(uqnorm,4)
+PCA(uqnorm,3)
+PCA <- dget("Preliminary_Steps/PCA.r")
+PCA(uqnorm,3)
+logged <- log2(uqnorm + 1)#
+PCA <- dget("Preliminary_Steps/PCA.r")#
+PCA(logged, 6)
+install.package("FactoMineR")
 install.packages("FactoMineR")
+# save final normalized data#
+save(normalized_data, file="R_Data/saved_normalized_data")
+head(uqnorm)
+allvirus <- uqnorm(,1:21)#
+bacterial <- uqnorm(,43:52)#
+baseline <- uqnorm(,22:42)
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_raw_data")#
+# get rid of all non-zero counts to create a vector#
+nonzero_data <- subset(v, v > 0)#
+# UQ normalization function#
+UQNorm <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+} #
+# vector of Us needed to normalize data#
+Us <- apply(raw_data, 2, UQNorm)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+# load processed data#
+load("R_Data/saved_processed_data")#
+#
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}
+allvirus <- uqnorm[,1:21]#
+bacterial <- uqnorm[,43:52]#
+baseline <- uqnorm[,22:42]
+allvirus
+viralsymptomatic <- subset(uqnorm == 1, uqnorm[,1:21])#
+viralasymptomatic <- subset(uqnorm == 0, uqnorm[,1:21])
+allvirus <- uqnorm[,1:21]#
+bacterial <- uqnorm[,43:52]#
+baseline <- uqnorm[,22:42]#
+viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
+viral_symptomatic <- allvirus[viral_symptomatic_vector]#
+viral_asymptomatic <- allvirus[viral_asymptomatic_vector]
+viral_symptomatic
+allvirus
+viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
+viral_symptomatic <- allvirus[,viral_symptomatic_vector]#
+viral_asymptomatic <- allvirus[,viral_asymptomatic_vector]
+viral_symptomatic
+mean_allvirus <- mean(allvirus)
+mean_allvirus
+?mean
+mean_allvirus <- mean(as.matrix(allvirus))
+mean_allvirus
+mean_allvirus <- mean(allvirus)#
+mean_bacterial <- mean(bacterial)#
+mean_baseline <- mean(baseline)#
+mean_viral_symptomatic <- mean(viral_symptomatic)#
+mean_viral_asymptomatic <- mean(viral_asymptomatic)
+mean_viral_asymptomatic
+t.test(allvirus,bacterial,alternative="notequal")
+t.test(allvirus,bacterial,alternative="two.sided")
+sd_allvirus
+# standard deviation for each variable#
+sd_allvirus <- sd(allvirus)#
+sd_bacterial <- sd(bacterial)#
+sd_baseline <- sd(baseline)#
+sd_viral_symptomatic <- sd(viral_symptomatic)#
+sd_viral_asymptomatic <- sd(viral_asymptomatic)
+sd_allvirus
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation)#
+test1 <- t.test(allviral,bacterial,alternative="two.sided")#
+test2 <- t.test(allviral,baseline,alternative="two.sided", paired=TRUE) #
+test3 <- t.test(viral_symptomatic, viral_asymptomatic, alternative="two.sided", paired=TRUE)#
+#test2 & test3 are paired t-tests#
+test4 <- t.test(bacterial,baseline,alternative="two.sided")#
+test5 <- t.test(bacterial,viral_symptomatic,alternative="two.sided")#
+test6 <- t.test(bacterial,viral_asymptomatic,alternative="two.sided")#
+test7 <- t.test(baseline,viral_symptomatic,alternative="two.sided", paired=TRUE)#
+test8 <- t.test(baseline,viral_asymptomatic,alternative="two.sided", paired = TRUE)#
+# test7 & test8 are paired t-tests#
+test9 <- t.test(combined_bacterial_baseline,allviral,alternative="two.sided")#
+test10 <- t.test(combined_bacterial_allviral,baseline,alternative="two.sided")#
+test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
+allviral <- uqnorm[,1:21]#
+baseline <- uqnorm[,22:42]#
+bacterial <- uqnorm[,43:52]#
+viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
+viral_symptomatic <- allviral[,viral_symptomatic_vector]#
+viral_asymptomatic <- allviral[,viral_asymptomatic_vector]#
+combined_bacterial_baseline <- bacterial + baseline#
+combined_bacterial_allviral <- bacterial + allviral#
+combined_baseline_allviral <- baseline + allviral
+allviral <- uqnorm[,1:21]#
+baseline <- uqnorm[,22:42]#
+bacterial <- uqnorm[,43:52]#
+viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
+viral_symptomatic <- allviral[,viral_symptomatic_vector]#
+viral_asymptomatic <- allviral[,viral_asymptomatic_vector]#
+combined_bacterial_baseline <- uqnorm[,22:52]
+test1 <- t.test(allviral,bacterial,alternative="two.sided")
+test1
+test2 <- t.test(allviral,baseline,alternative="two.sided", paired=TRUE)
+test2
+test2 <- t.test(allviral,baseline,alternative="two.sided")
+test2
+test3 <- t.test(viral_symptomatic, viral_asymptomatic, alternative="two.sided", paired=TRUE)
+test3 <- t.test(viral_asymptomatic, viral_symptomatic, alternative="two.sided", paired=TRUE)
+test3 <- t.test(viral_asymptomatic, viral_symptomatic, alternative="two.sided")
+test3 <- t.test(viral_symptomatic, viral_asymptomatic, alternative="two.sided")
+test3
+test3 <- t.test(viral_symptomatic, viral_asymptomatic, alternative="two.sided", paired=TRUE)
+test4 <- t.test(bacterial,baseline,alternative="two.sided")
+test4
+test4 <- t.test(bacterial,baseline,alternative="less")
+test4
+test4 <- t.test(bacterial,baseline,alternative="greater")
+test4
+test5 <- t.test(bacterial,viral_symptomatic,alternative="two.sided")
+test5
+test6 <- t.test(bacterial,viral_asymptomatic,alternative="two.sided")
+test6
+test7 <- t.test(baseline,viral_symptomatic,alternative="two.sided", paired=TRUE)
+test7 <- t.test(baseline,viral_symptomatic,alternative="two.sided")
+test7
+test9 <- t.test(combined_bacterial_baseline,allviral,alternative="two.sided")
+test9
+combined_bacterial_allviral <- uqnorm[,1:21] + uqnorm[,43:52]
+combined_bacterial_baseline <- uqnorm[,22:52]#
+combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
+combined_bacterial_allviral <- uqnorm[,combined_bacterial_allviral_vector]
+test10 <- t.test(combined_bacterial_allviral,baseline,alternative="two.sided")#
+test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
+test10
+test11
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean) #mean of each column#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)
+quantile_norm_data
+hist(quantile_norm_data)
+setwd("~/Desktop/Data+/miRNA_dataPlus")
 # Retrieve Data#
 # processed_data retreived#
 load("R_Data/saved_raw_data")#
@@ -2226,166 +1190,336 @@ for (i in 1:ncol(processed_data)) {#
 	uqnorm[,i] <- colneeded/Us[i]*U#
 }#
 #
+#PCA Analysis on Normalized data by using log function#
 logged <- log2(uqnorm + 1)#
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-class(pca_analysis)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-n
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-print(n)
-pca_analysis(logged,5)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")
-pca_analysis(logged,5)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")
-pca_analysis(logged,5)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-> pca_analysis(logged,5)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-pca_analysis
-pca_analysis <- dget("Preliminary_Steps/PCA.r")
-pca_analysis
-pca_analysis(logged, 6)
-pca_analysis
-head(logged)
-pca_df = PCA(logged)
-pca_df = PCA(t(logged))
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-class(PCA)
-PCA
-rm(PCA)
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-function(data, num) {#
-# Load package#
-library(FactoMineR)#
-#
-# PCA analysis#
-pca_df = PCA(t(data))#
-#
-# Get first n PCs, store in lists#
-pca_result <- pca_df$ind$coord#
-#
-pcs_all = vector(mode="list", length=num)#
-pcs_viral = vector(mode="list", length=num)#
-pcs_baseline = vector(mode="list", length=num)#
-pcs_bacteria = vector(mode="list", length=num)#
-for (i in 1:num) {#
-	pcs_all[[i]] = pca_result[,i]#
-	pcs_viral[[i]] = pca_result[1:21,i]#
-	pcs_baseline[[i]] = pca_result[22:42,i]#
-	pcs_bacteria[[i]] = pca_result[43:52,i]#
-}#
-#
-# Plot all combinations of PCs, store in files#
-# red=viral, green=baseline, blue=bacteria#
-from_i <- 1#
-to_i <- num - 1#
-to_j <- num#
-for (i in from_i:to_i) {#
-	from_j <- i + 1#
-	for (j in from_j:to_j) {#
-		plot_name <- paste(i,"vs",j)#
-		dir_name <- paste("Plots/PCA", plot_name, ".jpeg", collapse="")#
-		jpeg(dir_name)#
-		plot(pcs_viral[[i]], pcs_viral[[j]], col="red",#
-				xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),#
-				ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))#
-		points(pcs_baseline[[i]], pcs_baseline[[j]], col="green")#
-		points(pcs_bacteria[[i]], pcs_bacteria[[j]], col="blue")#
-		dev.off()#
+PCA <- dget("Preliminary_Steps/PCA.r")#
+PCA(logged, 6)#
+# all code below here is adapted from http://davetang.org/muse/2014/07/07/quantile-normalisation-in-r/#
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean) #mean of each column#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
 	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
 }#
+#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)
+hist(quantile_norm_data)
+hist(quantile_norm_data)
+hist(quantile_norm_data)
+test3 <- t.test(viral_symptomatic, viral_asymptomatic, alternative="two.sided", paired=TRUE)
+allviral <- uqnorm[,1:21]#
+baseline <- uqnorm[,22:42]#
+bacterial <- uqnorm[,43:52]#
+viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
+viral_symptomatic <- allviral[,viral_symptomatic_vector]#
+viral_asymptomatic <- allviral[,viral_asymptomatic_vector]#
+combined_bacterial_baseline <- uqnorm[,22:52]#
+combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
+combined_bacterial_allviral <- uqnorm[,combined_bacterial_allviral_vector]#
+combined_baseline_allviral <- uqnorm[,1:42]
+# Retrieve Data#
+# processed_data retreived#
+load("R_Data/saved_raw_data")#
+# get rid of all non-zero counts to create a vector#
+nonzero_data <- subset(v, v > 0)#
+# UQ normalization function#
+UQNorm <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+} #
+# vector of Us needed to normalize data#
+Us <- apply(raw_data, 2, UQNorm)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+# load processed data#
+load("R_Data/saved_processed_data")#
+#
+uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
+#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(processed_data)) {#
+	colneeded <- processed_data[,i]#
+	uqnorm[,i] <- colneeded/Us[i]*U#
+}
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	uqnorm_mean <- apply(uqnorm_sorted, 1, mean) #mean of each column#
+	index_to_mean <- function (my_index, my_mean) {#
+		return (my_mean[my_index])#
+	}#
+	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
+	return(uqnorm_final)#
+}#
+#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)
+allviral <- uqnorm[,1:21]#
+baseline <- uqnorm[,22:42]#
+bacterial <- uqnorm[,43:52]#
+viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
+viral_symptomatic <- allviral[,viral_symptomatic_vector]#
+viral_asymptomatic <- allviral[,viral_asymptomatic_vector]#
+combined_bacterial_baseline <- uqnorm[,22:52]#
+combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
+combined_bacterial_allviral <- uqnorm[,combined_bacterial_allviral_vector]#
+combined_baseline_allviral <- uqnorm[,1:42]
+test3 <- t.test(viral_symptomatic, viral_asymptomatic, alternative="two.sided", paired=TRUE)
+viral_symptomatic
+hist(quantile_norm_data)
+uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")
+uqnorm_rank
+ncol
+n <- length(ncol)
+n
+n <- length(1:ncol)
+n <- length(uqnorm[,ncol])
+length(uqnorm(ncol))
+quantile_function <- function(uqnorm_sorted) {#
+		qnorm(makingquantiles, mean=0, sd=1)#
+	} #
+#
+	makingquantiles <- apply((1:52)/53, 2, qnorm)
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	makingquantiles <- apply((uqnorm_sorted, 2, (1:52)/53)	#
+	uqnorm_final <- function(uqnorm_sorted) {#
+		qnorm(makingquantiles, mean=0, sd=1)#
+	} #
+	return(uqnorm_final)#
+	}
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	makingquantiles <- apply((uqnorm_sorted, 2, (1:52)/53)	#
+	uqnorm_final <- function(uqnorm_sorted) {#
+		qnorm(makingquantiles, mean=0, sd=1)#
+		return(uqnorm_final)#
+	} #
+#
+	}
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
+	makingquantiles <- apply((uqnorm_sorted, (1:52)/53)	#
+	uqnorm_final <- function(uqnorm_sorted) {#
+		qnorm(makingquantiles, mean=0, sd=1)#
+		return(uqnorm_final)#
+	}
+uqnorm_sorted
+uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))
+uqnorm_sorted
+uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm, 2, sort)
+uqnorm_sorted
+sampling <- (1:52)/53
+sampling
+makingquantiles <- apply((uqnorm_sorted,2,sampling)
+makingquantiles <- apply(uqnorm_sorted,2,sampling)
+uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm, 2, sort)#
+	sampling <- function(uqnorm_sorted) {#
+		1:52/53#
+	}#
+	makingquantiles <- apply(uqnorm_sorted,2,sampling)
+makingquantiles
+sampling <- function {#
+		1:52/53#
+	}
+makingquantiles <- apply(uqnorm_sorted,2,1:52/53)
+sampling <- function(sampling_vector) {#
+		1:52/53#
+	}
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(sampling_vector) {#
+		1:52/53#
+	}
+sampling
+makingquantiles <- apply(uqnorm_sorted,2,sampling)
+mkaingquantiles
+makingquantiles
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(sampling_vector) {#
+		/53#
+	}
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(sampling_vector) {#
+		n/53#
+	}
+makingquantiles <- apply(uqnorm_sorted,2,sampling)
+makingquantiles
+1/53
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(sampling_vector) {#
+		n/53#
+	}#
+	makingquantiles <- lapply(uqnorm_sorted,2,sampling)
+sampling <- function(sampling_vector) {#
+		n/53#
+	}#
+	makingquantiles <- lapply(uqnorm_sorted,sampling)
+makingquantiles
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(sampling_vector) {#
+		n/53#
+	}#
+	makingquantiles <- lapply(sampling_vector,sampling)
+makingquantiles
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(sampling_vector) {#
+		n/53#
+	}#
+	makingquantiles <- sapply(sampling_vector,sampling)
+makingquantiles
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(sampling_vector) {#
+		n:52/53#
+	}#
+	makingquantiles <- sapply(sampling_vector,sampling)
+makingquantiles
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(sampling_vector) {#
+		1:n/53#
+	}#
+	makingquantiles <- sapply(sampling_vector,sampling)
+makingquantiles
+n <- 1:52
+n
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	n <- 1:52#
+	sampling <- function(sampling_vector) {#
+		n/53#
+	}#
+	makingquantiles <- sapply(sampling_vector,sampling)
+makingquantiles
+sampling <- function() {#
+		n/53
+makingquantiles <- sapply(sampling_vector,sampling)
+making quantiles
+n <- 1:52#
+	sampling <- function() {#
+		n/53#
+	}#
+	makingquantiles <- sapply(sampling_vector,sampling)
+sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	n <- 1:52#
+	sampling <- function(sampling_vector[[i]]) {#
+		i/53#
+	}
+sampling <- function(x) {#
+		divide <- x/53#
+		return(divide)#
+	}
+makingquantiles <- sapply(sampling_vector,sampling)
+makingquantiles
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm, 2, sort)#
+	#create the sampling function to add into the quantiles function#
+	sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(x) {#
+		divide <- x/53#
+		return(divide)#
+	}#
+	makingquantiles <- sapply(sampling_vector,sampling)	#
+	uqnorm_final <- function(uqnorm_sorted) {#
+		qnorm(makingquantiles, mean=0, sd=1)#
+		return(uqnorm_final)#
+	}
+quantile_norm_data <- quantile_normalization(uqnorm)
+quantile_norm_data
+}
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm, 2, sort)#
+	#create the sampling function to add into the quantiles function#
+	sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(x) {#
+		divide <- x/53#
+		return(divide)#
+	}#
+	makingquantiles <- sapply(sampling_vector,sampling)	#
+	uqnorm_final <- function(uqnorm_sorted) {#
+		qnorm(makingquantiles, mean=0, sd=1)#
+		return(uqnorm_final)#
+#
+	}#
+	}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)
+quantile_norm_data
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm, 2, sort)#
+	#create the sampling function to add into the quantiles function#
+	sampling_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52)#
+	sampling <- function(x) {#
+		divide <- x/53#
+		return(divide)#
+	}#
+	makingquantiles <- sapply(sampling_vector,sampling)	#
+	uqnorm_final <- function(uqnorm_sorted) {#
+		qnorm(makingquantiles, mean=0, sd=1)#
+		return(uqnorm_final)#
+#
+	}#
+	return(quantile_normalization)#
+	}
+quantile_normalization
+# conducting a two-way anova test for test3, test7, & test8#
+test7 <- aov(baseline ~ viral_symptomatic + viral_asymptomatic)
+test7
+test7 <- aov(viral_symptomatic + viral_asymptomatic ~ baseline)
+test7 <- aov(baseline ~ viral_symptomatic + viral_asymptomatic)#
+boxplot(baseline ~ viral_symptomatic)#
+boxplot(baseline ~ viral_asymptomatic)
+test7 <- cor.test(viral_symptomatic, viral_asymptomatic, method="spearman")
+# conducting a spearman rank correlation test#
+test7 <- cor.test(viral_symptomatic, viral_asymptomatic, method="pearson")
+# conducting a multiple linear regression model#
+test7 <- lm(baseline ~ viral_symptomatic + viral_asymptomatic)
+test7
+symptom <- cbind(viral_symptomatic + viral_asymptomatic)#
+test7 <- manova(symptom ~ baseline)
+uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles)
+quantiles
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
+	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles)#
+#
+	# The last (and probably most complicated step) you have to do is sort the quantiles by the rank.  idk how to do that yet#
+	sort_ranked_quantiles <- function(quantiles, uqnorm_rank) {#
+		return(quantiles[uqnorm_rank])#
+	}#
 #
 }
-pca_analysis <- dget("Preliminary_Steps/PCA.r")#
-pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
-pca_analysis(logged, 6)
-pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
-pca_analysis(logged, 10)
-pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
-pca_analysis(uqnorm, 10)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-# get rid of all non-zero counts to create a vector#
-nonzero_data <- subset(v, v > 0)#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
-logged <- log2(uqnorm + 1)#
-pca_analysis <- dget("Preliminary_Steps/analyze_PCs.r")#
-pca_analysis(logged, 25)
-# Retrieve Data#
-# logged_data retrieved#
-load("R_data/saved_logged_data")#
-#
-# Read content table w/ sequence data#
-seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table.txt")#
-head(seq_df)#
-#
-# Create list for gc proportion#
-gc_prop_list <- split(seq_df$miRNA, seq_df$gc_prop)#
-head(gc_prop_list)
-gc_prop_list <- seq_df$gc_prop#
-names(gc_prop_list) <- seq_df$miRNA#
-head(gc_prop_list)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-#
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
-# log norm data, save it#
-logged_data <- log2(uqnorm + 1)#
-save(logged_data, file="R_data/saved_logged_data")#
+quantile_norm_data <- quantile_normalization(uqnorm)
+quantile_norm_data
 # create quantile normalization function#
 quantile_normalization <- function(uqnorm) {#
 	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
@@ -2396,291 +1530,215 @@ quantile_normalization <- function(uqnorm) {#
 	# setting quantiles argument#
 	quantiles <- qnorm(makingquantiles)#
 #
-	return(quantiles[uqnorm_rank])#
-}#
+	# The last (and probably most complicated step) you have to do is sort the quantiles by the rank.  idk how to do that yet#
+	sort_ranked_quantiles <- function(quantiles, uqnorm_rank) {#
+		return(quantiles[uqnorm_rank])#
+	}#
+return(sort_ranked_quantiles)#
+}
 # test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-head(quantile_norm_data)
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-head(quantile_norm_data)
+quantile_norm_data <- quantile_normalization(uqnorm)
+quantile_norm_data
+uqnorm_rank <- apply(uqnorm, 2, rank)
+uqnorm_ran
+uqnorm_rank
 # create quantile normalization function#
 quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	print(quantiles)#
-	return(quantiles[uqnorm_rank])#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-head(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	print(head(quantiles[uqnorm_rank])#
-	return(quantiles[uqnorm_rank])#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-head(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	ordered_quantiles <- quantiles[uqnorm_rank]#
-	return(ordered_quantiles)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-head(quantile_norm_data)
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-head(quantile_norm_data)
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-class(quantile_norm_data)
-rm(quantile_norm_data)
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-class(quantile_norm_data)
-head(quantile_norm_data)
-str(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	str(out)#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	head(out)#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	print(str(out))#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-x <- c(1,2,3,4)
-x <- c(2,4,6,8)
-y <- x[3,2,1,4]
-y <- x[c(3,2,1,4)]
-y
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	print(length(quantiles))#
-	print(length(uqnorm_rank))#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	head(uqnorm_rank)#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	print(length(quantiles))#
-	print(length(uqnorm_rank))#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	print(head(uqnorm_rank))#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	print(length(quantiles))#
-	print(length(uqnorm_rank))#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	print(str(uqnorm_rank))#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	print(length(quantiles))#
-	print(length(uqnorm_rank))#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	print(str(uqnorm_rank))#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	print(str(quantiles))#
-	print(str(uqnorm_rank))#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- apply(uqnorm_rank, 2, sort)#
-	print(uqnorm_sorted)#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	makingquantiles <- sampling_vector / 53#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	out <- quantiles[uqnorm_rank]#
-	print(str(quantiles))#
-	print(str(uqnorm_rank))#
-	return(out)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-str(quantile_norm_data)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
 #
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 53#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	# return something#
+	return()#
+}
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
+#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 51#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	# create for loop to sort every quantile based on rank#
+	for (i in 1:quantiles) {#
+		sorted_quantiles <- sort(uqnorm_rank[i])#
+	}#
+	# return sorted_quantiles#
+	return(sorted_quantiles)#
+}
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
+#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 51#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	# create for loop to sort every quantile based on rank#
+	for (i in quantiles) {#
+		sorted_quantiles <- sort(uqnorm_rank[i])#
+	}
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
+#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 51#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	# create for loop to sort every quantile based on rank#
+	for (i in quantiles) {#
+		sorted_quantiles <- sort(uqnorm_rank[i])#
+	}#
+	# return sorted_quantiles#
+	return(sorted_quantiles)#
+}
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
+#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 51#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	# create for loop to sort every quantile based on rank#
+	for (i in quantiles) {#
+		sorted_quantiles <- sort(uqnorm_rank[i])#
+	}#
+	# return sorted_quantiles#
+	return(sorted_quantiles)#
+}
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+}
+# create quantile normalization function#
+quantile_normalization <- function(uqnorm) {#
+	uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")#
+#
+	#create the sampling vector to add into the quantiles function#
+	sampling_vector <- 1:52#
+	makingquantiles <- sampling_vector / 51#
+	# setting quantiles argument#
+	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
+	# create for loop to sort every quantile based on rank#
+	for (i in quantiles) {#
+		sorted_quantiles <- sort(uqnorm_rank[i])#
+	}#
+	# return sorted_quantiles#
+	return(sorted_quantiles)#
+}#
+# test the function#
+quantile_norm_data <- quantile_normalization(uqnorm)#
+str(quantile_norm_data)
+?qnorm
+uqnorm_rank <- apply(uqnorm, 1, rank, ties.method="min")
+uqnorm_rank
+?rank
+v <- c(10,15,12,8,7)
+v <- array(10,15,12,8,7)
+v <- c(10,15,12,8,7)
+arrayused <- array(data = v)
+arrayused
+v <- c(10,15,10,8,7)
+arrayused <- array(data = v)
+arrayused
+uqnorm_rank <- apply(arrayused, 1, rank, ties.method="average")
+uqnorm_rank
+uqnorm_rank <- apply(arrayused, 2, rank, ties.method="average")
+arrayused
+rank(arrayused,ties.method="average")
+quantile_normalization <- for (i in nrow(uqnorm)) {#
+	#order the data set according to rank#
+	uqnorm_order <- rank(uqnorm[i,:],ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- uqnorm_order/53#
+	uqnorm[i,:] <- qnorm(quantiles,mean=0,sd=1)	#
+}
+quantile_normalization <- for (i in nrow(uqnorm)) {#
+	#order the data set according to rank#
+	uqnorm_order <- rank(uqnorm[i],ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- uqnorm_order/53#
+	quantile_norm_data <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_data)#
+}
+quantile_normalization <- for (i in nrow(uqnorm)) {#
+	#order the data set according to rank#
+	uqnorm_order <- rank(uqnorm[i],ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- uqnorm_order/53#
+	quantile_norm_data <- qnorm(quantiles,mean=0,sd=1)#
+}
+quantile_norm_data <- quantile_normalization(uqnorm)
+quantile_normalization
+quantile_normalization <- for (i in nrow(uqnorm)) {#
+	#order the data set according to rank#
+	uqnorm_order <- rank(uqnorm[i],ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- uqnorm_order/53#
+	quantile_norm_data <- qnorm(quantiles,mean=0,sd=1)#
+}
+quantile_norm_data
+normalize <- function(uqnorm) {#
+uqnorm_order <- rank(uqnorm[i],ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- uqnorm_order/53#
+	quantile_norm_data <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_data)	#
+}
+output_matrix <- matrix(, nrow=m, ncol=n)#
+#loop through each row#
+# create quantile normalization function for each miRNA#
+quantile_normalization <- for (i in nrow(uqnorm)) {#
+uqnorm_order[i]#
+output_matrix = list()#
+#
+}
+str(uqnorm)
+B = matrix (c(1,2,3,3,5,8,9,3,2,5,1,2), nrow=3, ncol=4)
+B
 # UQ normalization function#
 UQNorm <- function(v) {#
     nonzero_data <- subset(v, v > 0)#
     quartiles <- quantile(nonzero_data)#
     uq <- quartiles[4]#
     return(uq)#
-} #
-#
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-#
+}
+Us <- apply(raw_data, 2, UQNorm)
+Us <- apply(B, 2, UQNorm)
 # finding mean of the of the uq samples#
-U <- mean(Us)#
-#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
+U <- mean(Us)
 # doing a for loop to normalize on each sample#
 for (i in 1:ncol(processed_data)) {#
 	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
-# log norm data, save it#
-logged_data <- log2(uqnorm + 1)#
-save(logged_data, file="R_data/saved_logged_data")#
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	### I think we should be sorting by sample#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-#
-	#create the sampling vector to add into the quantiles function#
-	sampling_vector <- 1:52#
-	### Not sure about the divide by number, ask Ashlee to clarify#
-	makingquantiles <- sampling_vector / 51#
-	# setting quantiles argument#
-	quantiles <- qnorm(makingquantiles, mean=0, sd=1)#
-	### Initialize quant_norm matrix#
-	quant_norm <- matrix(, nrow(uqnorm), ncol(uqnorm))#
-	# create for loop to sort every quantile based on rank#
-	### So the for loop should go through each sample (column)#
-	### Return sorted quantiles vector for each loop based on rank vectors in uqnorm_rank#
-	for (i in ncol(uqnorm)) {#
-		quant_norm[,i] <- quantiles[uqnorm_rank[,i]]#
-	}#
-	### return quantile normalized matrix#
-	return(quant_norm)#
-}#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
+	B[,i] <- colneeded/Us[i]*U#
+}
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}
+output_matrix <- matrix(, nrow=m, ncol=n)#
+# create quantile normalization function for each miRNA#
+quantile_norm_data <- apply(B, 1, quantile_normalize)#
+quantile_norm_data <- t(quantile_norm_data)#
 str(quantile_norm_data)
+<<<<<<< Updated upstream
 # insert data set#
 known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
 #
@@ -3797,3 +2855,7 @@ prec_length <- prec_seq_df$length#
 pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
 pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
 		prec_length, prec_gc_prop, 3)
+=======
+head(quantile_norm_data)
+quantile_norm_data
+>>>>>>> Stashed changes
