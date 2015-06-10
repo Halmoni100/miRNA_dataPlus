@@ -32,7 +32,7 @@ function(data, num) {
 	for (i in from_i:to_i) {
 		from_j <- i + 1
 		for (j in from_j:to_j) {
-			plot_name <- paste(i,"vs",j, sep="")
+			plot_name <- paste(i,"vs",j, sep="_")
 			dir_name <- paste("Preliminary_Steps/PCA/plots_samples/",
 					plot_name, ".jpeg", sep="")
 			jpeg(dir_name)
