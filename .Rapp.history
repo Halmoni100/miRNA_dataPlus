@@ -2048,114 +2048,6 @@ prec_length <- prec_seq_df$length#
 #
 # Do PCA Analysis for all variables#
 pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNa_gc_prop,#
-		prec_length, prec_gc_prop, 10)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNa_gc_prop,#
-		prec_length, prec_gc_prop, 10)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 10)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 10)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 10)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 10)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
 pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
 		prec_length, prec_gc_prop, 10)
 # Read quantile normalized data#
@@ -2176,78 +2068,6 @@ prec_length <- prec_seq_df$length#
 pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
 pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
 		prec_length, prec_gc_prop, 2)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
 # Read quantile normalized data#
 # quantile_norm_data retrieved#
 load("R_data/saved_quantile_norm_data")#
@@ -2323,24 +2143,6 @@ pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
 pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
 		prec_length, prec_gc_prop, 3)
 warnings()
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
 # Read quantile normalized data#
 # quantile_norm_data retrieved#
 load("R_data/saved_quantile_norm_data")#
@@ -2442,132 +2244,6 @@ prec_length <- prec_seq_df$length#
 pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
 pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
 		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
-# Read quantile normalized data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Read content table w/ sequence data for miRNA & precursor#
-miRNA_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_miRNA.txt")#
-prec_seq_df <- read.delim("Preliminary_Steps/sequence_content/content_table_precursor.txt")#
-#
-# Create lists for gc proportion and lengths for miRNA & precursor#
-miRNA_gc_prop <- miRNA_seq_df$gc_prop#
-prec_gc_prop <- prec_seq_df$gc_prop#
-miRNA_length <- miRNA_seq_df$length#
-prec_length <- prec_seq_df$length#
-#
-# Do PCA Analysis for all variables#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
-pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
-		prec_length, prec_gc_prop, 3)
 x <- c(1,2,3,4)
 y <- c(4,3,9,4)
 ggplot(data.frame(xval=x,yval=y), aes(x=xval,y=yval)) + geom_point()
@@ -2621,6 +2297,7 @@ prec_length <- prec_seq_df$length#
 pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_miRNA_precursor.r")#
 pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
 		prec_length, prec_gc_prop, 3)
+<<<<<<< Updated upstream
 # Read quantile normalized data#
 # quantile_norm_data retrieved#
 load("R_data/saved_quantile_norm_data")#
@@ -2858,4 +2535,23 @@ pca_analysis(quantile_norm_data, miRNA_length, miRNA_gc_prop,#
 =======
 head(quantile_norm_data)
 quantile_norm_data
+>>>>>>> Stashed changes
+=======
+x <- 1:100
+x <- x / 100
+x <- 1:100
+x <- (x - 1) / 100
+pbinom(q, 100, 1/6)
+pbinom(x, 100, 1/6)
+x <- 1:100
+pbinom(x,100,1/6)
+prob_dist <- pbinom(x,100,1/6)
+expected <- 12/38 * 100
+(expected - x) ^2
+y <- (expected - x) ^2
+prob_dist * y
+var <- prob_dist[1:38] * y[1:38]
+var <- sum(var)
+se <- var ^ (1/2)
+se
 >>>>>>> Stashed changes
