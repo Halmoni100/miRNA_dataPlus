@@ -1,388 +1,5 @@
 # Retrieve Data#
 # raw_data retreived#
-load("saved_raw_data")#
-#
-# Delete data w/ no info#
-# Mark and delete all miRNAs with only zeros#
-only_zeros <- apply(raw_data, 1, all_zeros)#
-raw_data <- raw_data[!only_zeros,]#
-# Double check: find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-pca1$sdev#
-head(pca1$rotation)#
-head(pca1$x)#
-str(pca1$x)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-pca_comp_3_bacteria#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_2), max(pca_comp_2)))#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-quartz()#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
-#
-quartz()#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_2), max(pca_comp_2)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/Data")#
-known_data <-read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# retrieve miRNA names#
-miRNA_names <- known_data$X.miRNA#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# set row names (miRNAs)#
-row.names(raw_data) <- miRNA_names#
-#
-save(raw_data, file="saved_raw_data")
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus/miRDeep2_Data")#
-known_data <-read.delim("known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# retrieve miRNA names#
-miRNA_names <- known_data$X.miRNA#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# set row names (miRNAs)#
-row.names(raw_data) <- miRNA_names#
-#
-save(raw_data, file="R_Data/saved_raw_data")
-getwd()
-# insert data set#
-setwd("~/Desktop/Data+/miRNA_dataPlus")#
-known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# subset vector for aaa into virus, healthy & bacteria#
-virus <- known_data[1,5:25]#
-baseline <- known_data[1,26:46]#
-bacteria <- known_data[1,47:56]#
-infection_status <- c(virus, baseline, bacteria)#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-save(raw_data, file="R_Data/saved_raw_data")
-#Retrieve Data#
-# raw_data retrieved#
-load("R_Data/saved_raw_data")#
-# zero_props_miRNA retrieved#
-load("R_Data/saved_zero_props_miRNA")#
-#
-# delete miRNAs that have >50% zeros#
-over_50 <- zero_props_miRNA > 0.5#
-processed_data <- raw_data[!over_50,]#
-head(processed_data)#
-#
-save(processed_data, file="R_Data/saved_processed_data")
-# Retrieve Data#
-# raw_data retrieved#
-load("R_Data/saved_raw_data")#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# save zero proportions (zero_count / len)#
-zero_props_miRNA <- zero_counts_miRNA[1,]#
-save(zero_props_miRNA, file="R_Data/saved_zero_props_miRNA")
-# insert data set#
-known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# save raw data#
-save(raw_data, file="R_Data/saved_raw_data")#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-head(zero_counts_miRNA[,1:50])#
-hist(zero_counts_miRNA[1,])#
-#
-# save zero proportions (zero_count / len)#
-zero_props_miRNA <- zero_counts_miRNA[1,]#
-save(zero_props_miRNA, file="R_Data/saved_zero_props_miRNA")#
-#
-# delete miRNAs that have >50% zeros#
-over_50 <- zero_props_miRNA > 0.5#
-processed_data <- raw_data[!over_50,]#
-head(processed_data)#
-#
-# save processed data#
-save(processed_data, file="R_Data/saved_processed_data")
-# insert data set#
-known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-raw_data <- known_data[,5:56]#
-raw_data <- data.matrix(raw_data)#
-#
-# save raw data#
-save(raw_data, file="R_Data/saved_raw_data")#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	nonzero_count <- len - zero_count#
-	props <- c(0, 0)#
-	props[1] <- zero_count / len#
-	props[2] <- nonzero_count / len#
-	return(props)#
-}#
-#
-# find zero proportions for each sample#
-zero_counts_sample <- apply(raw_data, 2, count_zeros)#
-#
-# find zero proportions for each miRNA#
-zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
-#
-# save zero proportions (zero_count / len)#
-zero_props_miRNA <- zero_counts_miRNA[1,]#
-save(zero_props_miRNA, file="R_Data/saved_zero_props_miRNA")#
-#
-# delete miRNAs that have >50% zeros#
-over_50 <- zero_props_miRNA > 0.5#
-processed_data <- raw_data[!over_50,]#
-#
-# save processed data#
-save(processed_data, file="R_Data/saved_processed_data")
-head(processed_data)
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    quartiles <- quantile(v)#
-    uq <- quartiles[4]#
-    v <- v / uq#
-    return(v)#
-}#
-#
-# normalize data#
-norm_data <- apply(processed_data, 1, UQNorm)
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap(log2_data)
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# make log2 heat map#
-log2_data <- log2(raw_data + 1)#
-heatmap.2(log2_data, trace="none")
-head(raw_data)
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# make log2 heat map#
-log2_data <- log2(processed_data + 1)#
-heatmap.2(log2_data, trace="none")
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# log2 data#
-log2_data <- log2(processed_data + 1)#
-#
-# make log2 heat map (R heatmap function)#
-heatmap(log2_data)#
-#
-# make log2 heat map (gplots heatmap function)#
-heatmap.2(log2_data, trace="none")
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-#
-# log2 data#
-log2_data <- log2(processed_data + 1)#
-#
-# make log2 heat map (R heatmap function)#
-heatmap(log2_data)#
-#
-# make log2 heat map (gplots heatmap function)#
-quartz()#
-heatmap.2(log2_data, trace="none")
-# Load packages#
-library("gplots", lib="R_packages")#
-#
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-# processed_data retreived#
-load("R_Data/saved_processed_data")#
-# log2 data#
-log2_data_raw <- log2(raw_data + 1)#
-log2_data_proc <- log2(processed_data + 1)#
-#
-# make processed log2 heat map (R heatmap function)#
-heatmap(log2_data_raw)#
-quartz()#
-heatmap(log2_data_proc)#
-#
-# make log2 heat map (gplots heatmap function)#
-quartz()#
-heatmap.2(log2_data, trace="none")
-# Retrieve Data#
-# raw_data retreived#
-load("R_Data/saved_raw_data")#
-#
-#transpose data for PCA analysis#
-raw_data_trans <- t(raw_data)#
-dimnames(raw_data_trans) <- c(NULL, NULL)#
-str(raw_data_trans)#
-pca1 = prcomp(raw_data_trans, scale. = TRUE)#
-#
-#PCA analysis#
-#source:http://gastonsanchez.com/blog/how-to/2012/06/17/PCA-in-R.html#
-pca1 = prcomp(raw_data, scale. = TRUE)#
-#
-# Graph PCA#
-pca_result <- pca1$x#
-pca_comp_1 <- pca_result[,1]#
-pca_comp_2 <- pca_result[,2]#
-pca_comp_3 <- pca_result[,3]#
-#
-pca_comp_1_viral <- pca_comp_1[1:21]#
-pca_comp_1_baseline <- pca_comp_1[22:42]#
-pca_comp_1_bacteria <- pca_comp_1[43:52]#
-pca_comp_2_viral <- pca_comp_2[1:21]#
-pca_comp_2_baseline <- pca_comp_2[22:42]#
-pca_comp_2_bacteria <- pca_comp_2[43:52]#
-pca_comp_3_viral <- pca_comp_3[1:21]#
-pca_comp_3_baseline <- pca_comp_3[22:42]#
-pca_comp_3_bacteria <- pca_comp_3[43:52]#
-#
-# PC 1 vs PC 2#
-pca_comp_3_bacteria#
-plot(pca_comp_1_viral,pca_comp_2_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_2), max(pca_comp_2)))#
-points(pca_comp_1_baseline,pca_comp_2_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_2_bacteria,col="blue")#
-#
-# PC 1 vs PC 3#
-quartz()#
-plot(pca_comp_1_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_1), max(pca_comp_1)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_1_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_1_bacteria,pca_comp_3_bacteria,col="blue")#
-#
-# PC 2 vs PC 3#
-quartz()#
-plot(pca_comp_2_viral,pca_comp_3_viral,col="red",#
-		xlim=c(min(pca_comp_2), max(pca_comp_2)),#
-		ylim=c(min(pca_comp_3), max(pca_comp_3)))#
-points(pca_comp_2_baseline,pca_comp_3_baseline,col="green")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")#
-points(pca_comp_2_bacteria,pca_comp_3_bacteria,col="blue")
-head(raw_data)
-# Retrieve Data#
-# raw_data retreived#
 load("R_Data/saved_raw_data")#
 #
 #transpose data for PCA analysis#
@@ -3335,24 +2952,6 @@ for (k in 1:nrow(quantile_norm_data)) {#
 	output_vector[11] <- do_t_test(combined_baseline_allviral[,k], bacterial[,k], FALSE)#
 	P[k,] <- output_vector#
 }
-# make an output matrix for the pvalues of all the tests#
-P <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-	output_vector <- vector(length=11)#
-	output_vector[1] <- do_t_test(allviral[,k], bacterial[,k], FALSE)#
-	output_vector[2] <- do_t_test(allviral[,k], baseline[,k], TRUE)#
-	output_vector[3] <- do_t_test(viral_symptomatic[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[4] <- do_t_test(bacterial[,k], baseline[,k], FALSE)#
-	output_vector[5] <- do_t_test(bacterial[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[6] <- do_t_test(bacterial[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[7] <- do_t_test(baseline[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[8] <- do_t_test(baseline[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[,k], allviral[,k], FALSE)#
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[,k], baseline[,k], FALSE)#
-	output_vector[11] <- do_t_test(combined_baseline_allviral[,k], bacterial[,k], FALSE)#
-	P[k,] <- output_vector#
-}
 # load normalized data#
 # loading quantile_norm_data#
 load("R_Data/saved_quantile_norm_data")#
@@ -3444,17 +3043,249 @@ load("R_data/saved_quantile_norm_data")#
 # Do PCA Analysis#
 pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_samples.r")#
 pca_analysis(quantile_norm_data, 10)
-# Retrieve Data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
+# load normalized data#
+# loading quantile_norm_data#
+load("R_Data/saved_quantile_norm_data")#
 #
-# Do PCA Analysis#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, 10)
-# Retrieve Data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+allviral <- quantile_norm_data[,1:21]#
+baseline <- quantile_norm_data[,22:42]#
+bacterial <- quantile_norm_data[,43:52]#
+viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
+viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
+combined_bacterial_baseline <- quantile_norm_data[,22:52]#
+combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
+combined_baseline_allviral <- quantile_norm_data[,1:42]#
 #
-# Do PCA Analysis#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, 10)
+# Make sure you compartmentalize repeated code in a function.  Helps to make code more concise, easier to read, and debug#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	return(result$p.value)#
+}#
+#
+# I didn't make it clear that the matrix should be initialized outside the for loop, or else the for loop will create a new matrix every iteration.  I'll call it P for simplicity#
+# make an output matrix for the pvalues of all the tests#
+P <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	output_vector <- vector(length=11)#
+	output_vector[1] <- do_t_test(allviral[,k], bacterial[,k], FALSE)#
+	output_vector[2] <- do_t_test(allviral[,k], baseline[,k], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[,k], viral_asymptomatic[,k], FALSE)#
+	output_vector[4] <- do_t_test(bacterial[,k], baseline[,k], FALSE)#
+	output_vector[5] <- do_t_test(bacterial[,k], viral_symptomatic[,k], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[,k], viral_asymptomatic[,k], FALSE)#
+	output_vector[7] <- do_t_test(baseline[,k], viral_symptomatic[,k], FALSE)#
+	output_vector[8] <- do_t_test(baseline[,k], viral_asymptomatic[,k], FALSE)#
+	output_vector[9] <- do_t_test(combined_bacterial_baseline[,k], allviral[,k], FALSE)#
+	output_vector[10] <- do_t_test(combined_bacterial_allviral[,k], baseline[,k], FALSE)#
+	output_vector[11] <- do_t_test(combined_baseline_allviral[,k], bacterial[,k], FALSE)#
+	P[k,] <- output_vector#
+}#
+#
+P[1:20,]
+errors()
+warnings()
+quantile_norm_data[1:20,]
+# load normalized data#
+# loading quantile_norm_data#
+load("R_Data/saved_quantile_norm_data")#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+allviral <- quantile_norm_data[,1:21]#
+baseline <- quantile_norm_data[,22:42]#
+bacterial <- quantile_norm_data[,43:52]#
+viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
+viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
+combined_bacterial_baseline <- quantile_norm_data[,22:52]#
+combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
+combined_baseline_allviral <- quantile_norm_data[,1:42]#
+#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	return(result$p.value)#
+}#
+#
+# make an output matrix for the pvalues of all the tests#
+P <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	output_vector <- vector(length=11)#
+	output_vector[1] <- do_t_test(allviral[,k], bacterial[,k], FALSE)#
+	output_vector[2] <- do_t_test(allviral[,k], baseline[,k], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[,k], viral_asymptomatic[,k], FALSE)#
+	output_vector[4] <- do_t_test(bacterial[,k], baseline[,k], FALSE)#
+	output_vector[5] <- do_t_test(bacterial[,k], viral_symptomatic[,k], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[,k], viral_asymptomatic[,k], FALSE)#
+	output_vector[7] <- do_t_test(baseline[,k], viral_symptomatic[,k], FALSE)#
+	output_vector[8] <- do_t_test(baseline[,k], viral_asymptomatic[,k], FALSE)#
+	output_vector[9] <- do_t_test(combined_bacterial_baseline[,k], allviral[,k], FALSE)#
+	output_vector[10] <- do_t_test(combined_bacterial_allviral[,k], baseline[,k], FALSE)#
+	output_vector[11] <- do_t_test(combined_baseline_allviral[,k], bacterial[,k], FALSE)#
+	if (k <= 20) {print(output_vector)}#
+	P[k,] <- output_vector#
+}#
+#
+quantile_norm_data[1:20,]#
+P[1:20,]
+# load normalized data#
+# loading quantile_norm_data#
+load("R_Data/saved_quantile_norm_data")#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+allviral <- quantile_norm_data[,1:21]#
+baseline <- quantile_norm_data[,22:42]#
+bacterial <- quantile_norm_data[,43:52]#
+viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
+viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
+combined_bacterial_baseline <- quantile_norm_data[,22:52]#
+combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
+combined_baseline_allviral <- quantile_norm_data[,1:42]#
+#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	return(result$p.value)#
+}#
+#
+# make an output matrix for the pvalues of all the tests#
+P <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	output_vector <- vector(length=11)#
+	output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
+	output_vector[2] <- do_t_test(allviral[k,], baseline[k,], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[4] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	output_vector[5] <- do_t_test(bacterial[k,], viral_symptomatic[k,], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[7] <- do_t_test(baseline[k,], viral_symptomatic[k,], FALSE)#
+	output_vector[8] <- do_t_test(baseline[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)#
+	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)#
+	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)#
+	if (k <= 20) {print(output_vector)}#
+	P[k,] <- output_vector#
+}#
+#
+quantile_norm_data[1:20,]#
+P[1:20,]
+# load normalized data#
+# loading quantile_norm_data#
+load("R_Data/saved_quantile_norm_data")#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+allviral <- quantile_norm_data[,1:21]#
+baseline <- quantile_norm_data[,22:42]#
+bacterial <- quantile_norm_data[,43:52]#
+viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
+viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
+combined_bacterial_baseline <- quantile_norm_data[,22:52]#
+combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
+combined_baseline_allviral <- quantile_norm_data[,1:42]#
+#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	return(result$p.value)#
+}#
+#
+# make an output matrix for the pvalues of all the tests#
+p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	output_vector <- vector(length=11)#
+	output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
+	output_vector[2] <- do_t_test(allviral[k,], baseline[k,], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[4] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	output_vector[5] <- do_t_test(bacterial[k,], viral_symptomatic[k,], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[7] <- do_t_test(baseline[k,], viral_symptomatic[k,], FALSE)#
+	output_vector[8] <- do_t_test(baseline[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)#
+	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)#
+	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)#
+	p_vals[k,] <- output_vector#
+}#
+#
+# save p_vals matrix#
+save(p_vals, file="R_Data/saved_p_vals")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_raw_data.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_processed_data.r")
+x <- rep.int(1,3)
+x
+x <- rep_len("Marty",3)
+x
+# Factors are:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline - bl#
+# Bacteria - bc#
+#
+# Write factors for viral symptomatic & asymptomatic#
+viral_symp_indices <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymp_indices <- c(3,4,6,7,8,10,12,14)#
+viral <- vector(length=21)#
+for (i in viral_symp_indices) {#
+	viral[i] <- "v_s"#
+}#
+for (i in viral_asymp_indices) {#
+	viral[i] <- "v_as"#
+}#
+#
+# Write factors for baseline#
+baseline <- rep_len("bl", 21)#
+#
+# Write factors for bacteria#
+bacteria <- rep_len("bc", 10)#
+#
+# Get one big factor vector#
+category_vector <- c(viral, baseline, bacteria)#
+sample_factors <- factor(category_vector)#
+sample_factors#
+#
+# Save factor vector#
+save(sample_factors, "R_Data_temp/saved_sample_factors.r")
+getwd()
+# Factors are:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline - bl#
+# Bacteria - bc#
+#
+# Write factors for viral symptomatic & asymptomatic#
+viral_symp_indices <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymp_indices <- c(3,4,6,7,8,10,12,14)#
+viral <- vector(length=21)#
+for (i in viral_symp_indices) {#
+	viral[i] <- "v_s"#
+}#
+for (i in viral_asymp_indices) {#
+	viral[i] <- "v_as"#
+}#
+#
+# Write factors for baseline#
+baseline <- rep_len("bl", 21)#
+#
+# Write factors for bacteria#
+bacteria <- rep_len("bc", 10)#
+#
+# Get one big factor vector#
+category_vector <- c(viral, baseline, bacteria)#
+sample_factors <- factor(category_vector)#
+sample_factors#
+#
+# Save factor vector#
+save(sample_factors, file="R_Data_temp/saved_sample_factors.r")
+length(sample_factors)
+choose <- c(FALSE, TRUE, FALSE)
+el <- c(1,2,3,4,5,6,7,8,9)
+X <- matrix(el, nrow=3, ncol=3)
+X
+X_sub <- X[choose,]
+X_sub
