@@ -19,7 +19,7 @@ do_t_test <- function(s1, s2, is_paired) {
 }
 
 # make an output matrix for the pvalues of all the tests
-P <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)
+p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)
 
 # conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop
 for (k in 1:nrow(quantile_norm_data)) {
@@ -35,8 +35,8 @@ for (k in 1:nrow(quantile_norm_data)) {
 	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)
 	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)
 	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)
-	P[k,] <- output_vector
+	p_vals[k,] <- output_vector
 }
 
-quantile_norm_data[1:20,]
-P[1:20,]
+# save p_vals matrix
+save(p_vals, file="R_Data/saved_p_vals")
