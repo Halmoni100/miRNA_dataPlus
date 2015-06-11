@@ -8,7 +8,6 @@ b_matrix <- matrix(b_adjustment, nrow=333, ncol=11)
 # MY CODE FOR BONFERRONI
 # new threshold (Ask about)
 b_null <- .05/11
-
 # assign all signifiant p-values as TRUE
 significant_p_vals <- p_vals <= b_null
 
@@ -21,7 +20,7 @@ fdr_adjustment <- p.adjust(p_vals, method = "fdr")
 fdr_matrix <- matrix(fdr_adjustment, nrow=333, ncol=11)
 
 
-#another method
+#another method for FDR
 compute.FDR(p_vals, q)
 
 

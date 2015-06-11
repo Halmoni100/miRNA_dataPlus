@@ -42,5 +42,4 @@ quantile_norm_data <- t(quantile_norm_data)
 row_nums <- 1:nrow(processed_data)
 col_nums <- 1:ncol
 
-# save final normalized data
 save(quantile_norm_data, file="R_Data_temp/saved_quantile_norm_data")
