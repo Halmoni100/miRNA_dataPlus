@@ -1,6 +1,6 @@
-# Retrieve Data
-# processed_data retreived
-load("R_Data/saved_raw_data")
+# Load the following...
+# raw_data
+# processed_data
 
 # UQ normalization function
 UQNorm <- function(v) {
@@ -15,9 +15,6 @@ Us <- apply(raw_data, 2, UQNorm)
 
 # finding mean of the of the uq samples
 U <- mean(Us)
-
-# load processed data
-load("R_Data/saved_processed_data")
 
 uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))
 
@@ -37,11 +34,13 @@ quantile_normalize <- function(v) {
 	return(quantile_norm_vec)	
 }
 
-output_matrix <- matrix(, nrow=m, ncol=n)
+output_matrix <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))
 # create quantile normalization function for each miRNA
 quantile_norm_data <- apply(uqnorm, 1, quantile_normalize)
 quantile_norm_data <- t(quantile_norm_data)
-str(quantile_norm_data)
+# create row and column names for reference later (ex. in permtest)
+row_nums <- 1:nrow(processed_data)
+col_nums <- 1:ncol
 
 # save final normalized data
-save(quantile_norm_data, file="R_Data/saved_quantile_norm_data")
+save(quantile_norm_data, file="R_Data_temp/saved_quantile_norm_data")
