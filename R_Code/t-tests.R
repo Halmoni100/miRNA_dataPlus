@@ -39,4 +39,4 @@ for (k in 1:nrow(quantile_norm_data)) {
 }
 
 # save p_vals matrix
-save(p_vals, file="R_Data/saved_p_vals")
+save(p_vals, file="R_Data_temp/saved_p_vals")
