@@ -85,11 +85,13 @@ perform_permtest <- function(class_list_1, class_list_2) {
 bc_vs_v_result <- perform_permtest("bc", c("v_s", "v_as"))
 bc_vs_bl_result <- perform_permtest("bc", "bl")
 v_vs_all_result <- perform_permtest(c("v_s", "v_as"), c("bc", "bl"))
+v_vs_bl_result <- perform_permtest(c("v_s", "v_as"), c("bl"))
 
 # Write out summaries to txt files
 write.table(bc_vs_v_result, "R_Data_temp/permtest_summary/bacterial_vs_viral.txt", sep="\t", quote=FALSE)
 write.table(bc_vs_bl_result, "R_Data_temp/permtest_summary/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)
 write.table(v_vs_all_result, "R_Data_temp/permtest_summary/viral_vs_all.txt", sep="\t", quote=FALSE)
+write.table(v_vs_bl_result, "R_Data_temp/permtest_summary/viral_vs_healthy.txt", sep="\t", quote=FALSE)
 
 
 

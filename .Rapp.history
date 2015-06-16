@@ -1,13 +1,3 @@
-plot(test1)
-plot(test1, smoothness= 1000)
-test1
-test11 <- t.test(combined_baseline_allviral~bacterial,alternative="two.sided")
-t2.ex <- t.test(allviral~baseline,data=quantile_norm_data)
-?t.test
-require(graphics)
-plot(test1)
-hist(test1)
-t.test(1:10, y = c(7:20))
 test1 <- t.test(allviral,y=bacterial,alternative="two.sided")
 test1
 plot(test1)
@@ -1847,6 +1837,24 @@ v_vs_all_result <- perform_permtest(c("v_s", "v_as"), c("bc", "bl"))#
 write.table(bc_vs_v_result, "R_Data_temp/permtest_summary/bacterial_vs_viral.txt", sep="\t", quote=FALSE)#
 write.table(bc_vs_bl_result, "R_Data_temp/permtest_summary/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)#
 write.table(v_vs_all_result, "R_Data_temp/permtest_summary/viral_vs_all.txt", sep="\t", quote=FALSE)
+# Retrieve Data#
+# quantile_norm_data retrieved#
+load("R_data/saved_quantile_norm_data")#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, 10)
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_quantile_norm_data.r")
+# Load the following...#
+# quantile_norm_data#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, 10)
+load("/Users/mrincredible/Dropbox/Duke/Data+/miRNA_dataPlus/R_Data_temp/saved_corr_samples.r")
+head(corr)
+head(corr[,3])
+max(abs(corr[,2]))
 # Load the following...#
 # sample_factors#
 # quantile_norm_data#
@@ -1924,6 +1932,7 @@ perform_permtest <- function(class_list_1, class_list_2) {#
 	data_matrix <- quantile_norm_data[,samples_used]#
 	# create designmatrix#
 	dm <- cbind(out_two_grps[[2]], out_two_grps[[1]])#
+	# do permtest#
 	result <- permtest(data_matrix, dm, distance="euclid", nperms=100000, designtype="random")#
 	return(result)#
 }#
@@ -1932,28 +1941,79 @@ perform_permtest <- function(class_list_1, class_list_2) {#
 bc_vs_v_result <- perform_permtest("bc", c("v_s", "v_as"))#
 bc_vs_bl_result <- perform_permtest("bc", "bl")#
 v_vs_all_result <- perform_permtest(c("v_s", "v_as"), c("bc", "bl"))#
+v_vs_bl_result <- perform_permtest(c("v_s", "v_as"), c("bl"))#
 #
 # Write out summaries to txt files#
 write.table(bc_vs_v_result, "R_Data_temp/permtest_summary/bacterial_vs_viral.txt", sep="\t", quote=FALSE)#
 write.table(bc_vs_bl_result, "R_Data_temp/permtest_summary/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)#
-write.table(v_vs_all_result, "R_Data_temp/permtest_summary/viral_vs_all.txt", sep="\t", quote=FALSE)
-# Retrieve Data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
+write.table(v_vs_all_result, "R_Data_temp/permtest_summary/viral_vs_all.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_bl_result, "R_Data_temp/permtest_summary/viral_vs_all.txt", sep="\t", quote=FALSE)
+write.table(bc_vs_v_result, "R_Data_temp/permtest_summary/bacterial_vs_viral.txt", sep="\t", quote=FALSE)#
+write.table(bc_vs_bl_result, "R_Data_temp/permtest_summary/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_all_result, "R_Data_temp/permtest_summary/viral_vs_all.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_bl_result, "R_Data_temp/permtest_summary/viral_vs_all.txt", sep="\t", quote=FALSE)
+write.table(bc_vs_v_result, "R_Data_temp/permtest_summary/bacterial_vs_viral.txt", sep="\t", quote=FALSE)#
+write.table(bc_vs_bl_result, "R_Data_temp/permtest_summary/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_all_result, "R_Data_temp/permtest_summary/viral_vs_all.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_bl_result, "R_Data_temp/permtest_summary/viral_vs_healthy.txt", sep="\t", quote=FALSE)
+# insert data set#
+known_data <-read.delim("R_Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
 #
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, 10)
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_quantile_norm_data.r")
-# Load the following...#
-# quantile_norm_data#
+# extract raw data into matrix (just #s), exclude "norm" data#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
 #
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, 10)
-# Load the following...#
-# quantile_norm_data#
+# save row names into matrix#
+miRNA_names <- known_data[,1]#
+rownames(raw_data) <- miRNA_names#
 #
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, 10)
+# save raw data#
+save(raw_data, file="R_Data_out/saved_raw_data")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props <- c(0, 0)#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions for each sample#
+zero_counts_sample <- apply(raw_data, 2, count_zeros)#
+#
+# find zero proportions for each miRNA#
+zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
+#
+# save zero proportions (zero_count / len)#
+zero_props_miRNA <- zero_counts_miRNA[1,]#
+save(zero_props_miRNA, file="R_Data_out/saved_zero_props_miRNA")#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_props_miRNA > 0.5#
+processed_data <- raw_data[!over_50,]#
+#
+# save processed data#
+# save as R file#
+save(processed_data, file="R_Data_out/saved_processed_data")#
+# save as txt file#
+write.table(processed_data, "R_Data_out/saved_processed_data_text.txt", sep="\t",#
+		quote=FALSE)#
+#
+# get precursor names#
+precursor_names <- known_data$precursor#
+# get corresponding precursor names for processed_data#
+prec_names_proc <- precursor_names[!over_50]#
+# save precursor names for processed_data#
+save(prec_names_proc, file="R_Data_out/saved_prec_names_proc")
+# save precursor & miRNA names of processed data as txt files#
+write.table(rownames(processed_data), "R_Data_out/miRNA_names_proc.txt", sep="\t", quote=FALSE)
+write.table(prec_names_proc, "R_Data_out/prec_names_proc.txt", sep="\t", quote=FALSE)
+save(miRNA_names_proc, file="R_Data_out/saved_miRNA_names_proc")
+# get miRNA names for processed_data#
+miRNA_names_proc <- rownames(processed_data)#
+# save miRNA names for processed_data#
+save(miRNA_names_proc, file="R_Data_out/saved_miRNA_names_proc")

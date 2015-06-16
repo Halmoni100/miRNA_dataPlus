@@ -13,6 +13,7 @@ function(data, num) {
 	
 	# Get correlations b/w variables and PCs
 	corr <- pca_df$var$coord
+	save(corr, file="R_Data_Temp/saved_corr_samples.r")
 	write.table(corr, "R_Data_temp/PCA/correlation_samples.txt", sep="\t", quote=FALSE)
 
 	# Get first n PCs, store in lists
