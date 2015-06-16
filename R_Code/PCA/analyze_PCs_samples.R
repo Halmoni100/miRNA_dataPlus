@@ -4,11 +4,17 @@ function(data, num) {
 	library(FactoMineR)
 
 	# PCA analysis, samples are data points, miRNAs are features
+	# transpose (features are columns)
 	pca_df = PCA(t(data), ncp=num, graph=FALSE)
 
 	# Find proportion of variance, etc.
 	prop_of_var <- pca_df$eig[1:num,]
-	write.table(prop_of_var, "Preliminary_Steps/PCA/analysis/prop_of_vars_samples.txt", sep="\t", quote=FALSE)
+	write.table(prop_of_var, "R_Data_temp/PCA/prop_of_vars_samples.txt", sep="\t", quote=FALSE)
+	
+	# Get correlations b/w variables and PCs
+	corr <- pca_df$var$coord
+	save(corr, file="R_Data_Temp/saved_corr_samples.r")
+	write.table(corr, "R_Data_temp/PCA/correlation_samples.txt", sep="\t", quote=FALSE)
 
 	# Get first n PCs, store in lists
 	pca_result <- pca_df$ind$coord
@@ -33,7 +39,7 @@ function(data, num) {
 		from_j <- i + 1
 		for (j in from_j:to_j) {
 			plot_name <- paste(i,"vs",j, sep="_")
-			dir_name <- paste("Preliminary_Steps/PCA/plots_samples/",
+			dir_name <- paste("R_Data_temp/PCA/plots_samples/",
 					plot_name, ".jpeg", sep="")
 			jpeg(dir_name)
 			plot(pcs_viral[[i]], pcs_viral[[j]], col="red",

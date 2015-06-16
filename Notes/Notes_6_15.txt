@@ -1,0 +1,14 @@
+Here’s a quick summary of the sample_factors vector:
+1. It’s in the R_Data directory of our Box folder as “saved_sample_factors.r”, just open it.
+2. The number of elements in the vector is the number of columns in our data (number of samples)
+3. Each element in the vector is a character string that corresponds to the category.  For reference…
+	v_s - viral symptomatic
+	v_as - viral asymptomatic
+	bl - baseline
+	bc - bacterial
+4. This is useful for subsetting our data matrix.  For example, say we want to subset our data matrix X to a new matrix X_sub_bc to extract just the bacterial samples.  Again, the vector with the factors is called sample_vectors.  You would write the following code:
+
+	X_sub_bc <- X[ , sample_vectors == “bc”]
+
+One line, very simple.  This will probably help a lot for subsetting categories in the future.
+	
