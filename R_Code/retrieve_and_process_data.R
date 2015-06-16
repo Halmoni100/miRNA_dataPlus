@@ -1,5 +1,5 @@
 # insert data set
-known_data <-read.delim("R_Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)
 
 # extract raw data into matrix (just #s), exclude "norm" data
 raw_data <- known_data[,5:56]
@@ -32,7 +32,7 @@ zero_counts_miRNA <- apply(raw_data, 1, count_zeros)
 
 # save zero proportions (zero_count / len)
 zero_props_miRNA <- zero_counts_miRNA[1,]
-save(zero_props_miRNA, file="R_Data_out/saved_zero_props_miRNA")
+save(zero_props_miRNA, file="Data_out/saved_zero_props_miRNA")
 
 # delete miRNAs that have >50% zeros
 over_50 <- zero_props_miRNA > 0.5
@@ -40,20 +40,20 @@ processed_data <- raw_data[!over_50,]
 
 # save processed data
 # save as R file
-save(processed_data, file="R_Data_out/saved_processed_data")
+save(processed_data, file="Data_out/saved_processed_data")
 
 # get miRNA names for processed_data
 miRNA_names_proc <- rownames(processed_data)
 # save miRNA names for processed_data
-save(miRNA_names_proc, file="R_Data_out/saved_miRNA_names_proc")
-write.table(, "R_Data_out/miRNA_names_proc.txt", sep="\t", quote=FALSE)
+save(miRNA_names_proc, file="Data_out/saved_miRNA_names_proc")
+write.table(miRNA_names_proc, "Data_out/miRNA_names_proc.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
 
 # get precursor names
 precursor_names <- known_data$precursor
 # get corresponding precursor names for processed_data
 prec_names_proc <- precursor_names[!over_50]
 # save precursor names for processed_data
-save(prec_names_proc, file="R_Data_out/saved_prec_names_proc")
-write.table(prec_names_proc, "R_Data_out/prec_names_proc.txt", sep="\t", quote=FALSE)
+save(prec_names_proc, file="Data_out/saved_prec_names_proc")
+write.table(prec_names_proc, "Data_out/prec_names_proc.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
 
 

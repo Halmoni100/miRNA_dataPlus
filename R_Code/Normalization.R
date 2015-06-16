@@ -40,4 +40,5 @@ quantile_norm_data <- apply(uqnorm, 1, quantile_normalize)
 quantile_norm_data <- t(quantile_norm_data)
 
 # save final normalized data
-save(quantile_norm_data, file="R_Data_temp/saved_quantile_norm_data")
+save(quantile_norm_data, file="Data_out/saved_quantile_norm_data")
+write.table(quantile_norm_data, "Data_out/quantile_norm_data.csv", row.names=FALSE, col.names=FALSE, sep=",", quote=FALSE)
