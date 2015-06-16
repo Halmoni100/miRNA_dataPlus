@@ -1,834 +1,4 @@
-test9
-test10 <- t.test(combined_bacterial_allviral,baseline,alternative="two.sided")
-test10
-test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
-test11
-symptom <- data.frame(viral_symptomatic, viral_asymptomatic)
-symptom
-?stack
-symptom <- stack(viral_symptomatic, viral_asymptomatic)
-test1 <- t.test(allviral,bacterial,alternative="two.sided")#
-test2 <- t.test(allviral,baseline,alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test4 <- t.test(bacterial,baseline,alternative="two.sided")#
-test5 <- t.test(bacterial,viral_symptomatic,alternative="two.sided")#
-test6 <- t.test(bacterial,viral_asymptomatic,alternative="two.sided")#
-test7 <- t.test(baseline, viral_symptomatic, alternative="two.sided")#
-test8 <- t.test(baseline, viral_asymptomatic, alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline,allviral,alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral,baseline,alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
-test1
-test2
-test3
-test4
-jtest5
-test5
-test6
-test7
-test8
-testj9
-test9
-test10
-test1
-test11
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")
-test3
-plot(test1)
-plot(test1, smoothness= 1000)
-test1
-test11 <- t.test(combined_baseline_allviral~bacterial,alternative="two.sided")
-t2.ex <- t.test(allviral~baseline,data=quantile_norm_data)
-?t.test
-require(graphics)
-plot(test1)
-hist(test1)
-t.test(1:10, y = c(7:20))
-test1 <- t.test(allviral,y=bacterial,alternative="two.sided")
-test1
-plot(test1)
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[1,1:21]#
-baseline <- quantile_norm_data[1,22:42]#
-bacterial <- quantile_norm_data[1,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- allviral[,viral_symptomatic_vector]#
-viral_asymptomatic <- allviral[,viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[1,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[1,combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[1,1:42]
-allviral <- quantile_norm_data[1,1:21]#
-baseline <- quantile_norm_data[1,22:42]#
-bacterial <- quantile_norm_data[1,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- allviral[viral_symptomatic_vector]#
-viral_asymptomatic <- allviral[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[1,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[1,combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[1,1:42]
-combined_baseline_allviral
-viral_symptomatic
-viral_asymptomatic
-test1 <- t.test(allviral,bacterial,alternative="two.sided")#
-test2 <- t.test(allviral,baseline,alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial,baseline,alternative="two.sided")#
-test5 <- t.test(bacterial,viral_symptomatic,alternative="two.sided")#
-test6 <- t.test(bacterial,viral_asymptomatic,alternative="two.sided")#
-test7 <- t.test(baseline, viral_symptomatic, alternative="two.sided")#
-test8 <- t.test(baseline, viral_asymptomatic, alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline,allviral,alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral,baseline,alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
-test1
-test2
-test3
-test4
-test5
-test6
-test7
-test8
-test9
-test19
-test10
-test11
-test4
-test3
-test2
-plot(test2)
-k <- 1:nrow
-1:nrow
-nrow
-k <- 1:333
-k
-subsetting <- function(quantile_norm_data){#
-	k <- 1:333#
-	allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- allviral[viral_symptomatic_vector]#
-viral_asymptomatic <- allviral[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[1,combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-}
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- allviral[viral_symptomatic_vector]#
-viral_asymptomatic <- allviral[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[1,combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-allviral
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral <- rowneeded[1:21]#
-baseline <- rowneeded[22:42]#
-bacterial <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- rowneeded[1:42]#
-}
-allviral
-quantile_norm_data
-rowneeded <- quantile_norm_data[k,ncol]
-rowneeded <- quantile_norm_data[k,1:52]
-rowneeded
-rowneeded <- quantile_norm_data[k,]
-rowneeded
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral[k,] <- rowneeded[1:21]#
-baseline[k,] <- rowneeded[22:42]#
-bacterial[k,] <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k,] <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic[k,] <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k,] <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k,] <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k,] <- rowneeded[1:42]#
-}
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral[k] <- rowneeded[1:21]#
-baseline[k] <- rowneeded[22:42]#
-bacterial[k] <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k] <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic[k] <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k] <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k] <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k] <- rowneeded[1:42]#
-}
-for (k in 1:ncol(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral[k,] <- rowneeded[1:21]#
-baseline[k,] <- rowneeded[22:42]#
-bacterial[k,] <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k,] <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic[k,] <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k,] <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k,] <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k,] <- rowneeded[1:42]#
-}
-for (k in 1:ncol(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral <- rowneeded[1:21]#
-baseline <- rowneeded[22:42]#
-bacterial <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- rowneeded[1:42]#
-}
-rowneeded
-for (k in 1:ncol(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[,k]#
-	allviral <- rowneeded[1:21]#
-baseline <- rowneeded[22:42]#
-bacterial <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- rowneeded[1:42]#
-}
-rowneeded
-for (k in 1:ncol(quantile_norm_data)){#
-	colneeded <- quantile_norm_data[,k]#
-	allviral <- colneeded[1:21]#
-baseline <- colneeded[22:42]#
-bacterial <- colneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- colneeded[viral_symptomatic_vector]#
-viral_asymptomatic <- colneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- colneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- colneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- colneeded[1:42]#
-}
-str(quantile_norm_data)
-head(quantile_norm_data)
-allviral
-for (k in 1:ncol(quantile_norm_data)){#
-	colneeded <- quantile_norm_data[,k]#
-	allviral[,k] <- quantile_norm_data[1:21]#
-baseline[,k] <- quantile_norm_data[22:42]#
-bacterial[,k] <- quantile_norm_data[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k,] <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic[k,] <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k,] <- quantile_norm_data[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k,] <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k,] <- quantile_norm_data[1:42]#
-}
-k
-for (k in 1:333){#
-	colneeded <- quantile_norm_data[,k]#
-	allviral[,k] <- quantile_norm_data[1:21]#
-baseline[,k] <- quantile_norm_data[22:42]#
-bacterial[,k] <- quantile_norm_data[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k,] <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic[k,] <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k,] <- quantile_norm_data[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k,] <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k,] <- quantile_norm_data[1:42]#
-}
-for (k in 1:333){#
-	colneeded <- quantile_norm_data[,k]#
-	allviral <- colneeded[1:21]#
-baseline <- quantile_norm_data[22:42]#
-bacterial <- quantile_norm_data[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[1:42]#
-}
-for (k in 1:333){#
-	colneeded <- quantile_norm_data[k]#
-	allviral <- colneeded[1:21]#
-baseline <- quantile_norm_data[22:42]#
-bacterial <- quantile_norm_data[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[1:42]#
-}
-k
-allviral
-baseline
-allviral <- quantile_norm_data[k,1:21]
-allviral
-allviral <- quantile_norm_data[1:21,k]
-# load normalized data set#
-# doing a for loop to go throuhg each row (miRNA) and subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]
-bacterial
-for k in 1:nrow(quantile_norm_data) {#
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-for (k in 1:nrow(quantile_norm_data)) {#
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-for (k in 1:nrow(quantile_norm_data)) {#
-print(k)#
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-all viral
-allviral
-# load normalized data set using "Normalization" R script#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic[k,], viral_asymptomatic[k,],alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-ttestmatrix[k,]#
-print(ttestmatrix)#
-}
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-#make an output vector for pvalues of all tests#
-output_vector <- vector()#
-#assign a test vector#
-test_vector <- c(test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-output_vector[k] <- (test_vector)#
-print(ttestmatrix[output_vector])#
-}
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-#make an output vector for pvalues of all tests#
-output_vector <- vector()#
-#assign a test vector#
-test_vector <- c(test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-output_vector[k] <- (test_vector)#
-print(ttestmatrix[output_vector])#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-print(ttestmatrix)#
-}
-?paste0
-?cat
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-output_vector[k] <- (test_vector)#
-ttestmatrix[k,] <- output_vector#
-}
-# load normalized data set using "Normalization" R script#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-#assign a test vector#
-test_vector <- c(test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}#
-print(ttestmatrix)
-# load normalized data set using "Normalization" R script#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=j, nrow=i)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}#
-print(ttestmatrix)
-# load normalized data set using "Normalization" R script#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=j, nrow=i)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=i)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=j, nrow=i)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-print(ttestmatrix)
-output_vector[9]
-library(igraph)
-?infomap
-?infomap.community
-setwd("~/Desktop/edgelists")
-# old network#
-cdata = read.csv("e_cermi.csv", header = F)#
- cdata=as.matrix(cdata)#
- g=graph.edgelist(cdata[,1:2],directed=TRUE)#
- E(g)$weight=as.numeric(cdata[,3])#
-cdata_matrix <- get.adjacency(g,attr='weight',sparse=FALSE)
-cdata
-#infomap#
-infomap.community(g, e.weights=cdata[,3], nb.trials = 10, modularity = TRUE)
-print(communities)
-print(g)
-length(g)
-print(g)
-length(communities)
-create.communities(membership)
-create.communities(g)
-info <- infomap.community(g, e.weights=cdata[,3], nb.trials = 10, modularity = TRUE)
-create.communities(info)
-print(info)
-print(length)
-modularity(info)
-is.hierarchial(info)
-is.hierarchical(info)
-plot(info)
-create.communities(info)
-ebc <- edge.betweenness.community(g, directed=F)#
- mods <- sapply(0:ecount(g), function(i){#
-   g2 <- delete.edges(g, ebc$removed.edges[seq(length=i)])#
-   cl <- clusters(g2)$membership#
- modularity(g,cl)#
- })
-modularity(g,cl)
-mods <- sapply(0:ecount(g)
-}
-g2 <- delete.edges(g, ebc$removed.edges[seq(length=i)])  cl <- clusters(g2)$membership
-g2 <- delete.edges(g, ebc$removed.edges[seq(length=i)])
-cl <- clusters(g2)$membership
-modularity(g, cl)
 setwd("~/Desktop/Data+/miRNA_dataPlus")
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-# get rid of all non-zero counts to create a vector#
-nonzero_data <- subset(v, v > 0)#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-# all code below here is adapted from http://davetang.org/muse/2014/07/07/quantile-normalisation-in-r/#
-# create quantile normalization function#
-quantile_normalization <- function(uqnorm) {#
-	uqnorm_rank <- apply(uqnorm, 2, rank, ties.method="min")#
-	uqnorm_sorted <- data.frame(apply(uqnorm, 2, sort))#
-	uqnorm_mean <- apply(uqnorm_sorted, 1, mean)#
-	index_to_mean <- function (my_index, my_mean) {#
-		return (my_mean[my_index])#
-	}#
-	uqnorm_final <- apply(uqnorm_rank, 2, index_to_mean, my_mean = uqnorm_mean)#
-	return(uqnorm_final)#
-}#
-#
-# test the function#
-quantile_norm_data <- quantile_normalization(uqnorm)#
-#
-# graph the normalized data on a histogram#
-hist(quantile_norm_data)
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=j, nrow=k)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=k)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=k)#
-output_vector[1] <- t.test(allviral,bacterial,alternative="two.sided")#
-output_vector[2] <- t.test(allviral,baseline,alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial,baseline,alternative="two.sided")#
-output_vector[5] <- t.test(bacterial,viral_symptomatic,alternative="two.sided")#
-output_vector[6] <- t.test(bacterial,viral_asymptomatic,alternative="two.sided")#
-output_vector[7] <- t.test(baseline, viral_symptomatic, alternative="two.sided")#
-output_vector[8] <- t.test(baseline, viral_asymptomatic, alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline,allviral,alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral,baseline,alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-<<<<<<< Updated upstream
 # load normalized data#
 # loading quantile_norm_data#
 load("R_Data/saved_quantile_norm_data")#
@@ -843,164 +13,36 @@ combined_bacterial_baseline <- quantile_norm_data[,22:52]#
 combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
 combined_baseline_allviral <- quantile_norm_data[,1:42]#
 #
+# t-test function#
 do_t_test <- function(s1, s2, is_paired) {#
 	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
-	return(result[[p.value]])#
+	return(result$p.value)#
 }#
 #
-# I didn't make it clear that the matrix should be initialized outside the for loop, or else the for loop will create a new matrix every iteration.  I'll call it P for simplicity#
-=======
-warnings()
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
->>>>>>> Stashed changes
 # make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=k)#
-output_vector[1] <- t.test(allviral[k],bacterial[k],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k],baseline[k],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic[k], viral_asymptomatic[k],alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k],baseline[k],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k],viral_symptomatic[k],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k],viral_asymptomatic[k],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k], viral_symptomatic[k], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k], viral_asymptomatic[k], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k],allviral[k],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k],baseline[k],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k],bacterial[k],alternative="two.sided")#
+p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
 #
-ttestmatrix[k,] <- output_vector#
-}
 # conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
 for (k in 1:nrow(quantile_norm_data)) {#
-<<<<<<< Updated upstream
-output_vector <- vector(length=11)#
-	output_vector[1] <- do_t_test(allviral[,k], bacterial[,k], FALSE)#
-	output_vector[2] <- do_t_test(allviral[,k], baseline[,k], TRUE)#
-	output_vector[3] <- do_t_test(viral_symptomatic[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[4] <- do_t_test(bacterial[,k], baseline[,k], FALSE)#
-	output_vector[5] <- do_t_test(bacterial[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[6] <- do_t_test(bacterial[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[7] <- do_t_test(baseline[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[8] <- do_t_test(baseline[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[,k], allviral[,k], FALSE)#
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[,k], baseline[,k], FALSE)#
-	output_vector[11] <- do_t_test(combined_baseline_allviral[,k], bacterial[,k], FALSE)#
-	P[k,] <- output_vector#
+	output_vector <- vector(length=11)#
+	output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
+	output_vector[2] <- do_t_test(allviral[k,], baseline[k,], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[4] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	output_vector[5] <- do_t_test(bacterial[k,], viral_symptomatic[k,], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[7] <- do_t_test(baseline[k,], viral_symptomatic[k,], FALSE)#
+	output_vector[8] <- do_t_test(baseline[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)#
+	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)#
+	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)#
+	p_vals[k,] <- output_vector#
 }#
 #
-head(P)
-=======
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=k)#
-output_vector[1] <- t.test(allviral[,k],bacterial[,k],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[,k],baseline[,k],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic[,k], viral_asymptomatic[,k],alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[,k],baseline[,k],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[,k],viral_symptomatic[,k],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[,k],viral_asymptomatic[,k],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[,k], viral_symptomatic[,k], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[,k], viral_asymptomatic[,k], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[,k],allviral[,k],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[,k],baseline[,k],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[,k],bacterial[,k],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-setwd("~/Desktop/edgelists")
-Code for making a network with weighted edges:#
-library(igraph)#
-setwd("~/Desktop/edgelists")#
- cdata[,1]=as.character(cdata[,1])#
- cdata[,2]=as.character(cdata[,2])#
- cdata=as.matrix(cdata)#
- g=graph.edgelist(cdata[,1:2],directed=FALSE)#
- E(g)$weight=as.numeric(cdata[,3])#
- plot(g,layout=layout.fruchterman.reingold,edge.width=E(g)$weight/2)#
-#
-Then run this to get the matrix data for the relationships between edges:#
-adj=get.adjacency(g,attr='weight',sparse=FALSE) #
- adj#
-#
-Code for calculating modularity using the Girvan-Newman algorithm:#
- ebc <- edge.betweenness.community(g, directed=F)#
- mods <- sapply(0:ecount(g), function(i){#
-   g2 <- delete.edges(g, ebc$removed.edges[seq(length=i)])#
-   cl <- clusters(g2)$membership#
- modularity(g,cl)#
- })#
- plot(mods, pch=20)#
- g2<-delete.edges(g, ebc$removed.edges[seq(length=which.max(mods)-1)])#
- V(g)$color=clusters(g2)$membership#
- g$layout <- layout.fruchterman.reingold#
- plot(g, vertex.label=NA)
-Code for simulating disease spread on a network:#
-size = [INSERT NUMBER OF SAMPLE SIZE]#
-seeds_num = 1#
- set.seed(2014); diffusers = sample(V(g),seeds_num) ; diffusers#
-infected =list()#
- infected[[1]]= diffusers#
- p = 0.750#
- coins = c(rep(1, p*1000), rep(0,(1-p)*1000))#
- n = length(coins)#
- sample(coins, 1, replace=TRUE, prob=rep(1/n, n))#
-update_diffusers = function(diffusers){#
-   nearest_neighbors = neighborhood(g, 1, diffusers)#
-   nearest_neighbors = data.frame(table(unlist(nearest_neighbors)))#
-   nearest_neighbors = subset(nearest_neighbors, !(nearest_neighbors[,1]%in%diffusers))#
- toss = function(freq) {#
-     tossing = NULL#
-     for (i in 1:freq ) tossing[i] = sample(coins, 1, replace=TRUE, prob=rep(1/n, times=n))#
-     tossing = sum(tossing)#
-     return (tossing)#
-   }#
-   keep = unlist(lapply(nearest_neighbors[,2], toss))#
-   new_infected = as.numeric(as.character(nearest_neighbors[,1][keep >= 1]))#
-   diffusers = unique(c(diffusers, new_infected))#
-   return(diffusers)#
-   }#
- i = 1#
-while(length(infected[[i]]) < size){ #
-   infected[[i+1]] = sort(update_diffusers(infected[[i]]))#
-   cat(length(infected[[i+1]]), "\n")#
-   i = i + 1#
- }
-size = 16
-Code for simulating disease spread on a network:#
-size = [INSERT NUMBER OF SAMPLE SIZE]#
-seeds_num = 1#
- set.seed(2014); diffusers = sample(V(g),seeds_num) ; diffusers#
-infected =list()#
- infected[[1]]= diffusers#
- p = 0.750#
- coins = c(rep(1, p*1000), rep(0,(1-p)*1000))#
- n = length(coins)#
- sample(coins, 1, replace=TRUE, prob=rep(1/n, n))#
-update_diffusers = function(diffusers){#
-   nearest_neighbors = neighborhood(g, 1, diffusers)#
-   nearest_neighbors = data.frame(table(unlist(nearest_neighbors)))#
-   nearest_neighbors = subset(nearest_neighbors, !(nearest_neighbors[,1]%in%diffusers))#
- toss = function(freq) {#
-     tossing = NULL#
-     for (i in 1:freq ) tossing[i] = sample(coins, 1, replace=TRUE, prob=rep(1/n, times=n))#
-     tossing = sum(tossing)#
-     return (tossing)#
-   }#
-   keep = unlist(lapply(nearest_neighbors[,2], toss))#
-   new_infected = as.numeric(as.character(nearest_neighbors[,1][keep >= 1]))#
-   diffusers = unique(c(diffusers, new_infected))#
-   return(diffusers)#
-   }#
- i = 1#
-while(length(infected[[i]]) < size){ #
-   infected[[i+1]] = sort(update_diffusers(infected[[i]]))#
-   cat(length(infected[[i+1]]), "\n")#
-   i = i + 1#
- }
-setwd("~/Desktop/Data+/miRNA_dataPlus")
+# save p_vals matrix#
+save(p_vals, file="R_Data/saved_p_vals")
+# loading quantile_norm_data#
+load("R_Data/saved_quantile_norm_data.R")
 # Retrieve Data#
 # processed_data retreived#
 load("R_Data/saved_raw_data")#
@@ -1048,7 +90,7 @@ str(quantile_norm_data)#
 #
 # save final normalized data#
 save(quantile_norm_data, file="R_Data/saved_quantile_norm_data")
->>>>>>> Stashed changes
+load("/Users/kelseysumner/Desktop/Data+/miRNA_dataPlus/Data/R_Data-selected/saved_processed_data.r")
 # load normalized data#
 # loading quantile_norm_data#
 load("R_Data/saved_quantile_norm_data")#
@@ -1063,67 +105,7 @@ combined_bacterial_baseline <- quantile_norm_data[,22:52]#
 combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
 combined_baseline_allviral <- quantile_norm_data[,1:42]#
 #
-# Make sure you compartmentalize repeated code in a function.  Helps to make code more concise, easier to read, and debug#
-do_t_test <- function(s1, s2, is_paired) {#
-	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
-	return(result$p.value)#
-}#
-#
-# I didn't make it clear that the matrix should be initialized outside the for loop, or else the for loop will create a new matrix every iteration.  I'll call it P for simplicity#
-# make an output matrix for the pvalues of all the tests#
-P <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-	output_vector <- vector(length=11)#
-	output_vector[1] <- do_t_test(allviral[,k], bacterial[,k], FALSE)#
-	output_vector[2] <- do_t_test(allviral[,k], baseline[,k], TRUE)#
-	output_vector[3] <- do_t_test(viral_symptomatic[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[4] <- do_t_test(bacterial[,k], baseline[,k], FALSE)#
-	output_vector[5] <- do_t_test(bacterial[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[6] <- do_t_test(bacterial[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[7] <- do_t_test(baseline[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[8] <- do_t_test(baseline[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[,k], allviral[,k], FALSE)#
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[,k], baseline[,k], FALSE)#
-	output_vector[11] <- do_t_test(combined_baseline_allviral[,k], bacterial[,k], FALSE)#
-	P[k,] <- output_vector#
-}#
-#
-head(P)
-<<<<<<< Updated upstream
-known_data <-read.delim("miRDeep2_Data/known_miRNAs_expressed_all_samples.txt", header=TRUE)
-known_data
-head(known_data)
-known_data[nrow(known_data),]
-# Retrieve Data#
-# quantile_norm_data retrieved#
-load("R_data/saved_quantile_norm_data")#
-#
-# Do PCA Analysis#
-pca_analysis <- dget("Preliminary_Steps/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, 10)
-=======
-P
->>>>>>> Stashed changes
-# load normalized data#
-# loading quantile_norm_data#
-load("R_Data/saved_quantile_norm_data")#
-#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-<<<<<<< Updated upstream
-# Make sure you compartmentalize repeated code in a function.  Helps to make code more concise, easier to read, and debug#
-=======
 # t-test function#
->>>>>>> Stashed changes
 do_t_test <- function(s1, s2, is_paired) {#
 	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
 	return(result$p.value)#
@@ -1131,94 +113,6 @@ do_t_test <- function(s1, s2, is_paired) {#
 #
 # make an output matrix for the pvalues of all the tests#
 p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
-#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-	output_vector <- vector(length=11)#
-<<<<<<< Updated upstream
-output_vector[1] <- do_t_test(allviral[,k], bacterial[,k], FALSE)#
-	output_vector[2] <- do_t_test(allviral[,k], baseline[,k], TRUE)#
-	output_vector[3] <- do_t_test(viral_symptomatic[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[4] <- do_t_test(bacterial[,k], baseline[,k], FALSE)#
-	output_vector[5] <- do_t_test(bacterial[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[6] <- do_t_test(bacterial[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[7] <- do_t_test(baseline[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[8] <- do_t_test(baseline[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[,k], allviral[,k], FALSE)#
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[,k], baseline[,k], FALSE)#
-	output_vector[11] <- do_t_test(combined_baseline_allviral[,k], bacterial[,k], FALSE)#
-	P[k,] <- output_vector#
-}#
-#
-P[1:20,]
-errors()
-warnings()
-quantile_norm_data[1:20,]
-# load normalized data#
-# loading quantile_norm_data#
-load("R_Data/saved_quantile_norm_data")#
-#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# t-test function#
-do_t_test <- function(s1, s2, is_paired) {#
-	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
-	return(result$p.value)#
-}#
-#
-# make an output matrix for the pvalues of all the tests#
-P <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
-#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-	output_vector <- vector(length=11)#
-	output_vector[1] <- do_t_test(allviral[,k], bacterial[,k], FALSE)#
-	output_vector[2] <- do_t_test(allviral[,k], baseline[,k], TRUE)#
-	output_vector[3] <- do_t_test(viral_symptomatic[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[4] <- do_t_test(bacterial[,k], baseline[,k], FALSE)#
-	output_vector[5] <- do_t_test(bacterial[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[6] <- do_t_test(bacterial[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[7] <- do_t_test(baseline[,k], viral_symptomatic[,k], FALSE)#
-	output_vector[8] <- do_t_test(baseline[,k], viral_asymptomatic[,k], FALSE)#
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[,k], allviral[,k], FALSE)#
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[,k], baseline[,k], FALSE)#
-	output_vector[11] <- do_t_test(combined_baseline_allviral[,k], bacterial[,k], FALSE)#
-	if (k <= 20) {print(output_vector)}#
-	P[k,] <- output_vector#
-}#
-#
-quantile_norm_data[1:20,]#
-P[1:20,]
-# load normalized data#
-# loading quantile_norm_data#
-load("R_Data/saved_quantile_norm_data")#
-#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# t-test function#
-do_t_test <- function(s1, s2, is_paired) {#
-	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
-	return(result$p.value)#
-}#
-#
-# make an output matrix for the pvalues of all the tests#
-P <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
 #
 # conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
 for (k in 1:nrow(quantile_norm_data)) {#
@@ -1234,15 +128,14 @@ for (k in 1:nrow(quantile_norm_data)) {#
 	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)#
 	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)#
 	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)#
-	if (k <= 20) {print(output_vector)}#
-	P[k,] <- output_vector#
+	p_vals[k,] <- output_vector#
 }#
 #
-quantile_norm_data[1:20,]#
-P[1:20,]
+# save p_vals matrix#
+save(p_vals, file="R_Data/saved_p_vals")
 # load normalized data#
 # loading quantile_norm_data#
-load("R_Data/saved_quantile_norm_data")#
+load("Data/saved_quantile_norm_data")#
 #
 # subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
 allviral <- quantile_norm_data[,1:21]#
@@ -1266,9 +159,7 @@ p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
 # conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
 for (k in 1:nrow(quantile_norm_data)) {#
 	output_vector <- vector(length=11)#
-=======
->>>>>>> Stashed changes
-output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
+	output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
 	output_vector[2] <- do_t_test(allviral[k,], baseline[k,], TRUE)#
 	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
 	output_vector[4] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
@@ -1283,227 +174,123 @@ output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
 }#
 #
 # save p_vals matrix#
-save(p_vals, file="R_Data/saved_p_vals")
-<<<<<<< Updated upstream
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_raw_data.r")
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_processed_data.r")
-x <- rep.int(1,3)
-x
-x <- rep_len("Marty",3)
-x
-# Factors are:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline - bl#
-# Bacteria - bc#
-#
-# Write factors for viral symptomatic & asymptomatic#
-viral_symp_indices <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymp_indices <- c(3,4,6,7,8,10,12,14)#
-viral <- vector(length=21)#
-for (i in viral_symp_indices) {#
-	viral[i] <- "v_s"#
-}#
-for (i in viral_asymp_indices) {#
-	viral[i] <- "v_as"#
-}#
-#
-# Write factors for baseline#
-baseline <- rep_len("bl", 21)#
-#
-# Write factors for bacteria#
-bacteria <- rep_len("bc", 10)#
-#
-# Get one big factor vector#
-category_vector <- c(viral, baseline, bacteria)#
-sample_factors <- factor(category_vector)#
-sample_factors#
-#
-# Save factor vector#
-save(sample_factors, "R_Data_temp/saved_sample_factors.r")
-getwd()
-# Factors are:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline - bl#
-# Bacteria - bc#
-#
-# Write factors for viral symptomatic & asymptomatic#
-viral_symp_indices <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymp_indices <- c(3,4,6,7,8,10,12,14)#
-viral <- vector(length=21)#
-for (i in viral_symp_indices) {#
-	viral[i] <- "v_s"#
-}#
-for (i in viral_asymp_indices) {#
-	viral[i] <- "v_as"#
-}#
-#
-# Write factors for baseline#
-baseline <- rep_len("bl", 21)#
-#
-# Write factors for bacteria#
-bacteria <- rep_len("bc", 10)#
-#
-# Get one big factor vector#
-category_vector <- c(viral, baseline, bacteria)#
-sample_factors <- factor(category_vector)#
-sample_factors#
-#
-# Save factor vector#
-save(sample_factors, file="R_Data_temp/saved_sample_factors.r")
-length(sample_factors)
-choose <- c(FALSE, TRUE, FALSE)
-el <- c(1,2,3,4,5,6,7,8,9)
-X <- matrix(el, nrow=3, ncol=3)
-X
-X_sub <- X[choose,]
-X_sub
-=======
-?p.adjust
-badjustment <- p.adjust(p_vals, method = "bonferroni")
-badjustment
-p_vals_vector <- vector(p_vals)
-?vector
-p_vals_vector <- vector(p_vals, mode="any")
-new_null <- .05/11
-new_null
-significant_p_vals <- p_vals < new_null
-significant_p_vals
-fdradjustment <- p.adjust(p_vals, method = "fdr")
-fdradjustment
-fdr_matrix <- as.matrix(fdradjustment, row=333, col=11)
+save(p_vals, file="Data/saved_p_vals")
+# Retrieve Data#
+# processed_data retreived#
+load("Data/saved_raw_data")
+pvals
+setwd(~/Box Sync/Sharing/Data_Plus/R_Data)
+setwd(~Box Sync/Sharing/Data_Plus/R_Data)
+setwd(~/Box Sync/Sharing/Data_Plus)
+setwd(~/Box Sync/Sharing/Data_Plus)
+load("/Users/kelseysumner/Box Sync/Sharing/Data_Plus/R_Data/saved_raw_data.r")
+load("/Users/kelseysumner/Box Sync/Sharing/Data_Plus/R_Data/saved_p_vals.r")
+p_vals
+fdr_vector_test1 <- c(p_vals[,1])#
+fdr_vector_test2 <- c(p_vals[,2])#
+fdr_vector_test3 <- c(p_vals[,3])#
+fdr_vector_test4 <- c(p_vals[,4])#
+fdr_vector_test5 <- c(p_vals[,5])#
+fdr_vector_test6 <- c(p_vals[,6])#
+fdr_vector_test7 <- c(p_vals[,7])#
+fdr_vector_test8 <- c(p_vals[,8])#
+fdr_vector_test9 <- c(p_vals[,9])#
+fdr_vector_test10 <- c(p_vals[,10])#
+fdr_vector_test11 <- c(p_vals[,11])
+fdr_adjustment1 <- p.adjust(fdr_vector_test1, method = "fdr")#
+fdr_adjustment2 <- p.adjust(fdr_vector_test2, method = "fdr")#
+fdr_adjustment3 <- p.adjust(fdr_vector_test3, method = "fdr")#
+fdr_adjustment4 <- p.adjust(fdr_vector_test4, method = "fdr")#
+fdr_adjustment5 <- p.adjust(fdr_vector_test5, method = "fdr")#
+fdr_adjustment6 <- p.adjust(fdr_vector_test6, method = "fdr")#
+fdr_adjustment7 <- p.adjust(fdr_vector_test7, method = "fdr")#
+fdr_adjustment8 <- p.adjust(fdr_vector_test8, method = "fdr")#
+fdr_adjustment9 <- p.adjust(fdr_vector_test9, method = "fdr")#
+fdr_adjustment10 <- p.adjust(fdr_vector_test10, method = "fdr")#
+fdr_adjustment11 <- p.adjust(fdr_vector_test11, method = "fdr")#
+fdr_combined <- c(fdr_adjustment1, fdr_adjustment2, fdr_adjustment3, fdr_adjustment4, fdr_adjustment5, fdr_adjustment6, fdr_adjustment7, fdr_adjustment8, fdr_adjustment9, fdr_adjustment10, fdr_adjustment11)#
+fdr_matrix <- matrix(fdr_combined, nrow=333, ncol=11)
 fdr_matrix
-fdr_vector <- c(p_vals)
-head(fdr_vector)
-dim(fdr_vector)
-fdradjustment <- p.adjust(p_vals, method = "fdr")
-head(fdradustment)
-head(fdradjustment)
-fdr_matrix <- matrix(fdr_adjustment, nrow=333, ncol=11)
-fdr_vector <- c(p_vals)#
-fdr_adjustment <- p.adjust(p_vals, method = "fdr")#
-fdr_matrix <- matrix(fdr_adjustment, nrow=333, ncol=11)
-fdr_matrix
-b_vector <- c(p_vals)#
-b_adjustment <- p.adjust(p_vals, method = "bonferroni")#
-b_matrix <- matrix(b_adjustment, nrow=333, ncol=11)
+b_vector_test1 <- c(p_vals[,1])#
+b_vector_test2 <- c(p_vals[,2])#
+b_vector_test3 <- c(p_vals[,3])#
+b_vector_test4 <- c(p_vals[,4])#
+b_vector_test5 <- c(p_vals[,5])#
+b_vector_test6 <- c(p_vals[,6])#
+b_vector_test7 <- c(p_vals[,7])#
+b_vector_test8 <- c(p_vals[,8])#
+b_vector_test9 <- c(p_vals[,9])#
+b_vector_test10 <- c(p_vals[,10])#
+b_vector_test11 <- c(p_vals[,11])#
+b_adjustment1 <- p.adjust(b_vector_test1, method = "bonferroni")#
+b_adjustment2 <- p.adjust(b_vector_test2, method = "bonferroni")#
+b_adjustment3 <- p.adjust(b_vector_test3, method = "bonferroni")#
+b_adjustment4 <- p.adjust(b_vector_test4, method = "bonferroni")#
+b_adjustment5 <- p.adjust(b_vector_test5, method = "bonferroni")#
+b_adjustment6 <- p.adjust(b_vector_test6, method = "bonferroni")#
+b_adjustment7 <- p.adjust(b_vector_test7, method = "bonferroni")#
+b_adjustment8 <- p.adjust(b_vector_test8, method = "bonferroni")#
+b_adjustment9 <- p.adjust(b_vector_test9, method = "bonferroni")#
+b_adjustment10 <- p.adjust(b_vector_test10, method = "bonferroni")#
+b_adjustment11 <- p.adjust(b_vector_test11, method = "bonferroni")#
+b_combined <- c(b_adjustment1, b_adjustment2, b_adjustment3, b_adjustment4, b_adjustment5, b_adjustment6, b_adjustment7, b_adjustment8, b_adjustment9, b_adjustment10, b_adjustment11)#
+b_matrix <- matrix(b_combined, nrow=333, ncol=11)
 b_matrix
->>>>>>> Stashed changes
-# Load the following...#
-# sample_factors#
-# quantile_norm_data#
+significant_b_p_vals <- b_matrix <= .05
+significant_b_p_vals
+significant_fdr_p_vals <- fdr_matrix <= .05
+signifiant_fdr_p_vals
+significant_fdr_p_vals
+b_matrix
+significant_b_p_vals <- b_matrix <= .05
+significant_b_p_vals
+subset(significant_b_p_vals, subset=TRUE)
+significant_b_p_vals[TRUE]
+significant_b_p_vals(FALSE, drop = TRUE)
+significant_b_p_vals <- b_matrix <= .05
+significant_b_p_vals(FALSE, drop = TRUE)
+?subset
+subset(significant_b_p_vals, FALSE, drop = TRUE)
+subset(significant_b_p_vals, TRUE, drop = TRUE)
+apply(significant_b_p_vals, 2, subset(significant_b_p_vals, FALSE, drop = TRUE))
+?which
+apply(significant_b_p_vals, 2, significant_b_p_vals[TRUE])
+significant_b_p_vals[TRUE]
+takeout <- x==TRUE
+takeout <- significant_b_p_vals==TRUE
+takeout
+takingout <- function(significant_b_p_vals) {#
+	takeout <- significant_b_p_vals==TRUE#
+	return(takeout)#
+}
+apply(significant_b_p_vals, 2, takingout)
+takeout <- c(significant_b_p_vals==FALSE)
+takeout
+takingout <- function(significant_b_p_vals) {#
 #
-# For reference, factors are#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline - bl#
-# Bacteria - bc#
-#
-# Load permtest package#
-library(permtest)#
-#
-create_truth_vec <- function(class) {#
-	# Assume that group 1 is class in consideration, group 2 is everything else#
-	truth_vec <- rep.int(2, ncol(quantile_norm_data))#
-	truth_table <- sample_factors == class#
-	for (i in 1:length(truth_vec)) {#
-		if (truth_table[i]) {#
-			truth_vec[i] <- 1#
-		}#
-	}#
-	return(truth_vec)#
-}#
-#
-# Assign 1s and 2s based on group#
-v_s_vec <- create_truth_vec("v_s")#
-v_as_vec <- create_truth_vec("v_as")#
-bl_vec <- create_truth_vec("bl")#
-bc_vec <- create_truth_vec("bc")#
-#
-# Assign names for data matrix for input into permtest#
-column_names <- 1:ncol(quantile_norm_data)#
-colnames(quantile_norm_data) <- column_names#
-#
-# Create designmatrices#
-v_s_dm <- cbind(column_names, v_s_vec)#
-v_as_dm <- cbind(column_names, v_as_vec)#
-bl_dm <- cbind(column_names, bl_vec)#
-bc_dm <- cbind(column_names, bc_vec)#
-#
-# Do permutation tests#
-v_s_result <- permtest(quantile_norm_data, v_s_dm, distance="euclid", nperms=1000, designtype="random")#
-v_as_result <- permtest(quantile_norm_data, v_as_dm, distance="euclid", nperms=1000, designtype="random")#
-bl_result <- permtest(quantile_norm_data, bl_dm, distance="euclid", nperms=1000, designtype="random")#
-bc_result <- permtest(quantile_norm_data, bc_dm, distance="euclid", nperms=1000, designtype="random")#
-#
-# Write out summaries to txt files#
-write.table(v_s_result, "R_Data_temp/permutation_test_summary/viral_symptomatic.txt", sep="\t", quote=FALSE)#
-write.table(v_as_result, "R_Data_temp/permutation_test_summary/viral_asymptomatic.txt", sep="\t", quote=FALSE)#
-write.table(bl_result, "R_Data_temp/permutation_test_summary/baseline.txt", sep="\t", quote=FALSE)#
-write.table(bc_result, "R_Data_temp/permutation_test_summary/bacteria.txt", sep="\t", quote=FALSE)
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_quantile_norm_data.r")
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
-# Load the following...#
-# sample_factors#
-# quantile_norm_data#
-#
-# For reference, factors are#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline - bl#
-# Bacteria - bc#
-#
-# Load permtest package#
-library(permtest)#
-#
-create_truth_vec <- function(class) {#
-	# Assume that group 1 is class in consideration, group 2 is everything else#
-	truth_vec <- rep.int(2, ncol(quantile_norm_data))#
-	truth_table <- sample_factors == class#
-	for (i in 1:length(truth_vec)) {#
-		if (truth_table[i]) {#
-			truth_vec[i] <- 1#
-		}#
-	}#
-	return(truth_vec)#
-}#
-#
-# Assign 1s and 2s based on group#
-v_s_vec <- create_truth_vec("v_s")#
-v_as_vec <- create_truth_vec("v_as")#
-bl_vec <- create_truth_vec("bl")#
-bc_vec <- create_truth_vec("bc")#
-#
-# Assign names for data matrix for input into permtest#
-column_names <- 1:ncol(quantile_norm_data)#
-colnames(quantile_norm_data) <- column_names#
-#
-# Create designmatrices#
-v_s_dm <- cbind(column_names, v_s_vec)#
-v_as_dm <- cbind(column_names, v_as_vec)#
-bl_dm <- cbind(column_names, bl_vec)#
-bc_dm <- cbind(column_names, bc_vec)#
-#
-# Do permutation tests#
-v_s_result <- permtest(quantile_norm_data, v_s_dm, distance="euclid", nperms=1000, designtype="random")#
-v_as_result <- permtest(quantile_norm_data, v_as_dm, distance="euclid", nperms=1000, designtype="random")#
-bl_result <- permtest(quantile_norm_data, bl_dm, distance="euclid", nperms=1000, designtype="random")#
-bc_result <- permtest(quantile_norm_data, bc_dm, distance="euclid", nperms=1000, designtype="random")#
-#
-# Write out summaries to txt files#
-write.table(v_s_result, "R_Data_temp/permutation_test_summary/viral_symptomatic.txt", sep="\t", quote=FALSE)#
-write.table(v_as_result, "R_Data_temp/permutation_test_summary/viral_asymptomatic.txt", sep="\t", quote=FALSE)#
-write.table(bl_result, "R_Data_temp/permutation_test_summary/baseline.txt", sep="\t", quote=FALSE)#
-write.table(bc_result, "R_Data_temp/permutation_test_summary/bacteria.txt", sep="\t", quote=FALSE)
-# Do permutation tests#
-v_s_result <- permtest(quantile_norm_data, v_s_dm, distance="euclid", nperms=100000, designtype="random")#
-v_as_result <- permtest(quantile_norm_data, v_as_dm, distance="euclid", nperms=100000, designtype="random")#
-bl_result <- permtest(quantile_norm_data, bl_dm, distance="euclid", nperms=100000, designtype="random")#
-bc_result <- permtest(quantile_norm_data, bc_dm, distance="euclid", nperms=100000, designtype="random")#
-#
-# Write out summaries to txt files#
-write.table(v_s_result, "R_Data_temp/permutation_test_summary/viral_symptomatic.txt", sep="\t", quote=FALSE)#
-write.table(v_as_result, "R_Data_temp/permutation_test_summary/viral_asymptomatic.txt", sep="\t", quote=FALSE)#
-write.table(bl_result, "R_Data_temp/permutation_test_summary/baseline.txt", sep="\t", quote=FALSE)#
-write.table(bc_result, "R_Data_temp/permutation_test_summary/bacteria.txt", sep="\t", quote=FALSE)
+	takeout <- which(significant_b_p_vals == TRUE)#
+	return(takeout)#
+}
+apply(significant_b_p_vals, 2, takingout)
+takingout <- function(significant_b_p_vals) {#
+	takeout <- which(significant_b_p_vals == TRUE)#
+	return(takeout)#
+}
+apply(significant_b_p_vals, 2, takingout)
+?hclust
+clustergram <- hclust(dist(b_matrix))
+clustergram
+plot(clustergram)
+clustergram <- hclust(dist(b_matrix), "ave")
+plot(clustergram)
+clustergram <- hclust(dist(b_matrix), "complete")
+plot(clustergram)
+clustergram <- hclust(dist(b_matrix), "complete")#
+plot(clustergram)
+load("/Users/kelseysumner/Box Sync/Sharing/Data_Plus/R_Data/saved_raw_data.r")
+saved_raw_data
+raw_data
+processed_data
+head(processed_data)
+str(processed_data)
+?wilcoxin

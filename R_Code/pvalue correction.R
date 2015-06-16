@@ -37,11 +37,35 @@ significant_b_p_vals <- b_matrix <= .05
 # create a function to choose only the TRUE values (significant pvalues)
 takingout <- function(significant_b_p_vals) {
 	takeout <- which(significant_b_p_vals == TRUE)
-	return(takeout)
+	ranked_vals <- rank(takeout, ties.method="min")
+	return(ranked_vals)
 }
 
 # use the apply function to create a list of significant miRNAs
 list_significant_miRNA <- apply(significant_b_p_vals, 2, takingout)
+
+
+
+
+
+
+
+
+
+
+
+#EXTRA
+# pulling out significant miRNAs expressed
+# create a function to choose only the TRUE values (significant pvalues)
+takingout <- function(b_matrix) {
+	takeout <- which(b_matrix <= .05)
+	takeout_p_vals <- b_matrix[takeout]
+	sorted_vals <- sort(takeout_p_vals, decreasing=FALSE)
+	return(sorted_vals)
+}
+# use the apply function to create a list of significant miRNAs
+list_significant_miRNA <- apply(b_matrix, 2, takingout)
+
 
 
 
