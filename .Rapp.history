@@ -1,226 +1,3 @@
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-test1 <- t.test(allviral,y=bacterial,alternative="two.sided")
-test1
-=======
->>>>>>> Stashed changes
-plot(test1)
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[1,1:21]#
-baseline <- quantile_norm_data[1,22:42]#
-bacterial <- quantile_norm_data[1,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- allviral[,viral_symptomatic_vector]#
-viral_asymptomatic <- allviral[,viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[1,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[1,combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[1,1:42]
-allviral <- quantile_norm_data[1,1:21]#
-baseline <- quantile_norm_data[1,22:42]#
-bacterial <- quantile_norm_data[1,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- allviral[viral_symptomatic_vector]#
-viral_asymptomatic <- allviral[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[1,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[1,combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[1,1:42]
-combined_baseline_allviral
-viral_symptomatic
-viral_asymptomatic
-test1 <- t.test(allviral,bacterial,alternative="two.sided")#
-test2 <- t.test(allviral,baseline,alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial,baseline,alternative="two.sided")#
-test5 <- t.test(bacterial,viral_symptomatic,alternative="two.sided")#
-test6 <- t.test(bacterial,viral_asymptomatic,alternative="two.sided")#
-test7 <- t.test(baseline, viral_symptomatic, alternative="two.sided")#
-test8 <- t.test(baseline, viral_asymptomatic, alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline,allviral,alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral,baseline,alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral,bacterial,alternative="two.sided")
-test1
-test2
-test3
-test4
-test5
-test6
-test7
-test8
-test9
-test19
-test10
-test11
-test4
-test3
-test2
-plot(test2)
-k <- 1:nrow
-1:nrow
-nrow
-k <- 1:333
-k
-subsetting <- function(quantile_norm_data){#
-	k <- 1:333#
-	allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- allviral[viral_symptomatic_vector]#
-viral_asymptomatic <- allviral[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[1,combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-}
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- allviral[viral_symptomatic_vector]#
-viral_asymptomatic <- allviral[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[1,combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-allviral
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral <- rowneeded[1:21]#
-baseline <- rowneeded[22:42]#
-bacterial <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- rowneeded[1:42]#
-}
-allviral
-quantile_norm_data
-rowneeded <- quantile_norm_data[k,ncol]
-rowneeded <- quantile_norm_data[k,1:52]
-rowneeded
-rowneeded <- quantile_norm_data[k,]
-rowneeded
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral[k,] <- rowneeded[1:21]#
-baseline[k,] <- rowneeded[22:42]#
-bacterial[k,] <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k,] <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic[k,] <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k,] <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k,] <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k,] <- rowneeded[1:42]#
-}
-for (k in 1:nrow(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral[k] <- rowneeded[1:21]#
-baseline[k] <- rowneeded[22:42]#
-bacterial[k] <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k] <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic[k] <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k] <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k] <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k] <- rowneeded[1:42]#
-}
-for (k in 1:ncol(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral[k,] <- rowneeded[1:21]#
-baseline[k,] <- rowneeded[22:42]#
-bacterial[k,] <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k,] <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic[k,] <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k,] <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k,] <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k,] <- rowneeded[1:42]#
-}
-for (k in 1:ncol(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[k,]#
-	allviral <- rowneeded[1:21]#
-baseline <- rowneeded[22:42]#
-bacterial <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- rowneeded[1:42]#
-}
-rowneeded
-for (k in 1:ncol(quantile_norm_data)){#
-	rowneeded <- quantile_norm_data[,k]#
-	allviral <- rowneeded[1:21]#
-baseline <- rowneeded[22:42]#
-bacterial <- rowneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- rowneeded[viral_symptomatic_vector]#
-viral_asymptomatic <- rowneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- rowneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- rowneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- rowneeded[1:42]#
-}
-rowneeded
-for (k in 1:ncol(quantile_norm_data)){#
-	colneeded <- quantile_norm_data[,k]#
-	allviral <- colneeded[1:21]#
-baseline <- colneeded[22:42]#
-bacterial <- colneeded[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- colneeded[viral_symptomatic_vector]#
-viral_asymptomatic <- colneeded[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- colneeded[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- colneeded[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- colneeded[1:42]#
-}
-str(quantile_norm_data)
-head(quantile_norm_data)
-allviral
-for (k in 1:ncol(quantile_norm_data)){#
-	colneeded <- quantile_norm_data[,k]#
-	allviral[,k] <- quantile_norm_data[1:21]#
-baseline[,k] <- quantile_norm_data[22:42]#
-bacterial[,k] <- quantile_norm_data[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k,] <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic[k,] <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k,] <- quantile_norm_data[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k,] <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k,] <- quantile_norm_data[1:42]#
-}
 k
 for (k in 1:333){#
 	colneeded <- quantile_norm_data[,k]#
@@ -1725,3 +1502,2706 @@ for (k in 1:nrow(processed_data)) {#
 	wp_vals[k,] <- woutput_vector#
 }
 warnings()
+# insert data set#
+known_data <-read.delim("R_Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
+#
+# save row names into matrix#
+miRNA_names <- known_data[,1]#
+rownames(raw_data) <- miRNA_names#
+#
+# save raw data#
+save(raw_data, file="R_Data_out/saved_raw_data")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props <- c(0, 0)#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions for each sample#
+zero_counts_sample <- apply(raw_data, 2, count_zeros)#
+#
+# find zero proportions for each miRNA#
+zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
+#
+# save zero proportions (zero_count / len)#
+zero_props_miRNA <- zero_counts_miRNA[1,]#
+save(zero_props_miRNA, file="R_Data_out/saved_zero_props_miRNA")#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_props_miRNA > 0.5#
+processed_data <- raw_data[!over_50,]#
+#
+# save processed data#
+# save as R file#
+save(processed_data, file="R_Data_out/saved_processed_data")#
+#
+# get miRNA names for processed_data#
+miRNA_names_proc <- rownames(processed_data)#
+# save miRNA names for processed_data#
+save(miRNA_names_proc, file="R_Data_out/saved_miRNA_names_proc")#
+write.table(, "R_Data_out/miRNA_names_proc.txt", sep="\t", quote=FALSE)#
+#
+# get precursor names#
+precursor_names <- known_data$precursor#
+# get corresponding precursor names for processed_data#
+prec_names_proc <- precursor_names[!over_50]#
+# save precursor names for processed_data#
+save(prec_names_proc, file="R_Data_out/saved_prec_names_proc")#
+write.table(prec_names_proc, "R_Data_out/prec_names_proc.txt", sep="\t", quote=FALSE)
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+raw_data <- known_data[,5:56]#
+raw_data <- data.matrix(raw_data)#
+#
+# save row names into matrix#
+miRNA_names <- known_data[,1]#
+rownames(raw_data) <- miRNA_names#
+#
+# save raw data#
+save(raw_data, file="R_Data_out/saved_raw_data")#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	nonzero_count <- len - zero_count#
+	props <- c(0, 0)#
+	props[1] <- zero_count / len#
+	props[2] <- nonzero_count / len#
+	return(props)#
+}#
+#
+# find zero proportions for each sample#
+zero_counts_sample <- apply(raw_data, 2, count_zeros)#
+#
+# find zero proportions for each miRNA#
+zero_counts_miRNA <- apply(raw_data, 1, count_zeros)#
+#
+# save zero proportions (zero_count / len)#
+zero_props_miRNA <- zero_counts_miRNA[1,]#
+save(zero_props_miRNA, file="Data_out/saved_zero_props_miRNA")#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_props_miRNA > 0.5#
+processed_data <- raw_data[!over_50,]#
+#
+# save processed data#
+# save as R file#
+save(processed_data, file="Data_out/saved_processed_data")#
+#
+# get miRNA names for processed_data#
+miRNA_names_proc <- rownames(processed_data)#
+# save miRNA names for processed_data#
+save(miRNA_names_proc, file="Data_out/saved_miRNA_names_proc")#
+write.table(, "Data_out/miRNA_names_proc.txt", sep="\t", quote=FALSE)#
+#
+# get precursor names#
+precursor_names <- known_data$precursor#
+# get corresponding precursor names for processed_data#
+prec_names_proc <- precursor_names[!over_50]#
+# save precursor names for processed_data#
+save(prec_names_proc, file="Data_out/saved_prec_names_proc")#
+write.table(prec_names_proc, "Data_out/prec_names_proc.txt", sep="\t", quote=FALSE)
+write.table(miRNA_names_proc, "Data_out/miRNA_names_proc.txt", sep="\t", quote=FALSE)
+write.table(miRNA_names_proc, "Data_out/miRNA_names_proc.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
+write.table(prec_names_proc, "Data_out/prec_names_proc.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
+# Save factor vector#
+save(sample_factors, file="Data_out/saved_sample_factors.r")#
+write.table(sample_factors, "Data_out/sample_factors.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
+# Factors are:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline - bl#
+# Bacteria - bc#
+#
+# Write factors for viral symptomatic & asymptomatic#
+viral_symp_indices <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymp_indices <- c(3,4,6,7,8,10,12,14)#
+viral <- vector(length=21)#
+for (i in viral_symp_indices) {#
+	viral[i] <- "v_s"#
+}#
+for (i in viral_asymp_indices) {#
+	viral[i] <- "v_as"#
+}#
+#
+# Write factors for baseline#
+baseline <- rep_len("bl", 21)#
+#
+# Write factors for bacteria#
+bacteria <- rep_len("bc", 10)#
+#
+# Get one big factor vector#
+category_vector <- c(viral, baseline, bacteria)#
+sample_factors <- factor(category_vector)#
+sample_factors#
+#
+# Save factor vector#
+save(sample_factors, file="Data_out/saved_sample_factors.r")#
+write.table(sample_factors, "Data_out/sample_factors.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
+X <- matrix(c(1,2,3,4,5,6), nrow=3, ncol=2)
+X
+ext <- X[-2,]
+X
+ext
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_miRNA_names_proc.r")
+miRNA_names_proc[86]
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		print(df_elem)#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = coef(classifier_outs[[i]])#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(classifier_outs[[i]])#
+		coef_mat[i,] = coef(classifier_outs[[i]])#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(str(classifier_outs[[i]]))#
+		coef_mat[i,] = coef(classifier_outs[[i]])#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = coef(classifier_outs[[i]])$coefficients#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n+1)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n+1)#
+	print(dim(coef_mat))#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n+1)#
+	print(dim(coef_mat))#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(summary(classifier_outs[[i]])$coefficients)#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n+1)#
+	print(dim(coef_mat))#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(summary(classifier_outs[[i]])$coefficients)#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients$Estimate#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n+1)#
+	print(dim(coef_mat))#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(str(summary(classifier_outs[[i]])$coefficients)#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients$Estimate#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n+1)#
+	print(dim(coef_mat))#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(str(summary(classifier_outs[[i]])$coefficients))#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients$Estimate#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n+1)#
+	print(dim(coef_mat))#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(str(summary(classifier_outs[[i]])$coefficients))#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+coef_mat <- matrix( , nrow=m, ncol=n)
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	print(dim(coef_mat))#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(str(summary(classifier_outs[[i]])$coefficients))#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	print(dim(coef_mat))#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	print(length(classifier_outs))#
+	for (i in 1:m) {#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		print(str(summary(classifier_outs[[i]])$coefficients))#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		print(i)#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		if (i == 29) {#
+			print(classifier_outs[[i]])#
+		}#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		if (i == 29) {#
+			print(classifier_outs[[i]]$coefficients)#
+		}#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		if (i == 29) {#
+			print(classifier_outs[[i]]$coefficients[,1])#
+		}#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		if (i == 28) {#
+			print(classifier_outs[[i]]$coefficients[,1])#
+		}#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=m, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:m) {#
+		print(i)#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+warnings()
+# Perform logistic regression#
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+factor_names <- c("viral", "bacterial")#
+factors <- list(c("v_s", "v_as"), "bc")#
+#
+m <- nrow(quantile_norm_data)#
+row_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	row_names[i] <- paste("s", i, sep="")#
+}#
+rownames(quantile_norm_data) <- row_names#
+#
+data <- quantile_norm_data[c(19, 20, 32, 86, 93, 111, 141, 165, 191, 199, 200, 201, 209, 211, 329), ]#
+output <- do_log_reg(data, factors, factor_names, sample_factors)#
+#
+do_log_reg <- function(data, factors, factor_names, factor_vec) {#
+# perform logistic regression w/ all but one sample as training set#
+# data is mxn matrix with m descrbing miRNAs, n describing samples#
+# Make sure data rows are labeled with names#
+	create_X_and_y <- dget("R_Code/Classifiers/create_X_and_y.R")#
+	X_and_y <- create_X_and_y(data, factors, factor_names, factor_vec)#
+	X <- X_and_y[[1]]#
+	y <- X_and_y[[2]]#
+	# X is mxn where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+#
+	classify_one_out <- dget("R_Code/Classifiers/classify_one_out.R")#
+	classifier_outs <- classify_one_out(X, y, logistic_regression)#
+#
+	out <- analyze_log_reg_output(X, y, classifier_outs, factor_names)#
+	return(out)#
+}#
+#
+logistic_regression <- function(X, y) {#
+# Perform logistic regression on matrix X with categories specified in y#
+# X is mxn where m is the # of samples, n is the # of miRNAs#
+# X must have column names to specify which miRNAs are in the data#
+# y must only have two categories#
+# output is output of glm function (logistic regression)#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	# format data frame for input into glm#
+	df <- as.data.frame(X)#
+	feature_names <- colnames(df)#
+	df <- cbind(df,y)#
+	# create formula#
+	formula_str <- "y~"#
+	f1 <- feature_names[1]#
+	formula_str <- paste(formula_str, f1, sep="")#
+	for (i in 2:n) {#
+		f_name <- feature_names[i]#
+		formula_str <- paste(formula_str, "+", f_name, sep="")#
+	}#
+	formula <- as.formula(formula_str)#
+	# perform glm#
+	logreg_fit <- glm(formula, family=binomial, data=df)#
+	return(logreg_fit)#
+}#
+#
+analyze_log_reg_output <- function(X, y, classifier_outs, factor_names) {#
+# X is mxn matrix where m describes samples and n describes miRNAs#
+	m <- nrow(X)#
+	n <- ncol(X)#
+	if (m != length(classifier_outs)) {#
+		stop("# of classifier outputs not equal to # of samples")#
+	}#
+	# convert y to vector of positives (true) and negatives (false)#
+	y_positive <- y == factor_names[1]#
+	coef_mat <- matrix( , nrow=28, ncol=n)#
+	# vector of output result compared to actual label#
+	# key:#
+	# tp - true positive#
+	# fp - false positive#
+	# tn - true negative#
+	# fn - false negative#
+	out <- vector(mode="character", length=m)#
+	for (i in 1:28) {#
+		print(i)#
+		data_vec <- X[i, ]#
+		df_elem <- data.frame(t(data_vec))#
+		glm.prob <- predict(classifier_outs[[i]], newdata=df_elem, type="response")#
+		coef_mat[i,] = summary(classifier_outs[[i]])$coefficients[,1]#
+		positive <- TRUE#
+		if (glm.prob > .5) {#
+			positive <- FALSE#
+		}#
+		if (positive) {#
+			if (y_positive[i]) {#
+				out[i] <- "tp"#
+			} else {#
+				out[i] <- "fp"#
+			}#
+		} else {#
+			if (y_positive[i]) {#
+				out[i] <- "fn"#
+			} else {#
+				out[i] <- "tn"#
+			}#
+		}#
+	}#
+	coef_avg <- apply(coef_mat, 2, mean)#
+	return(list(out, coef_avg))#
+}
+output[[1]]
+# Load the following...#
+# sample_factors#
+# quantile_norm_data#
+#
+# For reference, factors are#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline - bl#
+# Bacteria - bc#
+#
+# Load permtest package#
+library(permtest)#
+#
+# Assign names for data matrix for input into permtest#
+column_names <- 1:ncol(quantile_norm_data)#
+colnames(quantile_norm_data) <- column_names#
+#
+assign_truth_table <- function(class_list, num_samples) {#
+	# initialize truth_table to all false#
+	truth_table <- vector(mode="logical", length=num_samples)#
+	# do logical or to make all considered samples true#
+	for (class in class_list) {#
+		truth_vals <- sample_factors == class#
+		truth_table <- truth_table | truth_vals#
+	}#
+	return(truth_table)#
+}#
+#
+create_two_grps <- function(class_list_1, class_list_2) {#
+# The output is a list... #
+# 1. list of 1s and 2s for grp assignment#
+# 2. column numbers used#
+# 3. truth table for samples used#
+	num_samples <- ncol(quantile_norm_data)#
+	truth_table_1 <- assign_truth_table(class_list_1, num_samples)#
+	truth_table_2 <- assign_truth_table(class_list_2, num_samples)#
+	# get truth table for samples used in classes 1 & 2#
+	samples_used <- truth_table_1 | truth_table_2#
+	# find number of samples for both classes#
+	num_true_1 <- length(which(truth_table_1))#
+	num_true_2 <- length(which(truth_table_2))#
+	num_true <- num_true_1 + num_true_2#
+	# create vector of group category per sample#
+	grp_vec <- vector(length=num_true)#
+	# assign column names for design matrix#
+	col_name_vec <- vector(length=num_true)#
+	# j is current number to fill in truth_vec#
+	j <- 1#
+	for (i in 1:num_samples) {#
+		if (truth_table_1[i]) {#
+			grp_vec[j] <- 1#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+		else if (truth_table_2[i]) {#
+			grp_vec[j] <- 2#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+	}#
+	if (j != num_true + 1) {#
+		stop("Error: Not all of truth_vec covered")#
+	}#
+	out <- list()#
+	out[[1]] <- grp_vec#
+	out[[2]] <- col_name_vec#
+	out[[3]] <- samples_used#
+	return(out)#
+}#
+#
+perform_permtest <- function(class_list_1, class_list_2) {#
+	out_two_grps <- create_two_grps(class_list_1, class_list_2)#
+	samples_used <- out_two_grps[[3]]#
+	# assign data matrix based on subset used for classes 1 & 2#
+	data_matrix <- quantile_norm_data[,samples_used]#
+	# create designmatrix#
+	dm <- cbind(out_two_grps[[2]], out_two_grps[[1]])#
+	# do permtest#
+	result <- permtest(data_matrix, dm, distance="euclid", nperms=100000, designtype="random")#
+	return(result)#
+}#
+#
+# Do permutation tests#
+bc_vs_v_result <- perform_permtest("bc", c("v_s", "v_as"))#
+bc_vs_bl_result <- perform_permtest("bc", "bl")#
+v_vs_all_result <- perform_permtest(c("v_s", "v_as"), c("bc", "bl"))#
+v_vs_bl_result <- perform_permtest(c("v_s", "v_as"), c("bl"))#
+#
+# Write out summaries to txt files#
+write.table(bc_vs_v_result, "Data_out/bacterial_vs_viral.txt", sep="\t", quote=FALSE)#
+write.table(bc_vs_bl_result, "Data_out/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_all_result, "Data_out/viral_vs_all.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_bl_result, "Data_out/viral_vs_healthy.txt", sep="\t", quote=FALSE)
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_quantile_norm_data.r")
+# Load the following...#
+# sample_factors#
+# quantile_norm_data#
+#
+# For reference, factors are#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline - bl#
+# Bacteria - bc#
+#
+# Load permtest package#
+library(permtest)#
+#
+# Assign names for data matrix for input into permtest#
+column_names <- 1:ncol(quantile_norm_data)#
+colnames(quantile_norm_data) <- column_names#
+#
+assign_truth_table <- function(class_list, num_samples) {#
+	# initialize truth_table to all false#
+	truth_table <- vector(mode="logical", length=num_samples)#
+	# do logical or to make all considered samples true#
+	for (class in class_list) {#
+		truth_vals <- sample_factors == class#
+		truth_table <- truth_table | truth_vals#
+	}#
+	return(truth_table)#
+}#
+#
+create_two_grps <- function(class_list_1, class_list_2) {#
+# The output is a list... #
+# 1. list of 1s and 2s for grp assignment#
+# 2. column numbers used#
+# 3. truth table for samples used#
+	num_samples <- ncol(quantile_norm_data)#
+	truth_table_1 <- assign_truth_table(class_list_1, num_samples)#
+	truth_table_2 <- assign_truth_table(class_list_2, num_samples)#
+	# get truth table for samples used in classes 1 & 2#
+	samples_used <- truth_table_1 | truth_table_2#
+	# find number of samples for both classes#
+	num_true_1 <- length(which(truth_table_1))#
+	num_true_2 <- length(which(truth_table_2))#
+	num_true <- num_true_1 + num_true_2#
+	# create vector of group category per sample#
+	grp_vec <- vector(length=num_true)#
+	# assign column names for design matrix#
+	col_name_vec <- vector(length=num_true)#
+	# j is current number to fill in truth_vec#
+	j <- 1#
+	for (i in 1:num_samples) {#
+		if (truth_table_1[i]) {#
+			grp_vec[j] <- 1#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+		else if (truth_table_2[i]) {#
+			grp_vec[j] <- 2#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+	}#
+	if (j != num_true + 1) {#
+		stop("Error: Not all of truth_vec covered")#
+	}#
+	out <- list()#
+	out[[1]] <- grp_vec#
+	out[[2]] <- col_name_vec#
+	out[[3]] <- samples_used#
+	return(out)#
+}#
+#
+perform_permtest <- function(class_list_1, class_list_2) {#
+	out_two_grps <- create_two_grps(class_list_1, class_list_2)#
+	samples_used <- out_two_grps[[3]]#
+	# assign data matrix based on subset used for classes 1 & 2#
+	data_matrix <- quantile_norm_data[,samples_used]#
+	# create designmatrix#
+	dm <- cbind(out_two_grps[[2]], out_two_grps[[1]])#
+	# do permtest#
+	result <- permtest(data_matrix, dm, distance="euclid", nperms=100000, designtype="random")#
+	return(result)#
+}#
+#
+# Do permutation tests#
+bc_vs_v_result <- perform_permtest("bc", c("v_s", "v_as"))#
+bc_vs_bl_result <- perform_permtest("bc", "bl")#
+v_vs_all_result <- perform_permtest(c("v_s", "v_as"), c("bc", "bl"))#
+v_vs_bl_result <- perform_permtest(c("v_s", "v_as"), c("bl"))#
+#
+# Write out summaries to txt files#
+write.table(bc_vs_v_result, "Data_out/bacterial_vs_viral.txt", sep="\t", quote=FALSE)#
+write.table(bc_vs_bl_result, "Data_out/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_all_result, "Data_out/viral_vs_all.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_bl_result, "Data_out/viral_vs_healthy.txt", sep="\t", quote=FALSE)
+install.packages("permtest")
+# Load the following...#
+# sample_factors#
+# quantile_norm_data#
+#
+# For reference, factors are#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline - bl#
+# Bacteria - bc#
+#
+# Load permtest package#
+library(permtest)#
+#
+# Assign names for data matrix for input into permtest#
+column_names <- 1:ncol(quantile_norm_data)#
+colnames(quantile_norm_data) <- column_names#
+#
+assign_truth_table <- function(class_list, num_samples) {#
+	# initialize truth_table to all false#
+	truth_table <- vector(mode="logical", length=num_samples)#
+	# do logical or to make all considered samples true#
+	for (class in class_list) {#
+		truth_vals <- sample_factors == class#
+		truth_table <- truth_table | truth_vals#
+	}#
+	return(truth_table)#
+}#
+#
+create_two_grps <- function(class_list_1, class_list_2) {#
+# The output is a list... #
+# 1. list of 1s and 2s for grp assignment#
+# 2. column numbers used#
+# 3. truth table for samples used#
+	num_samples <- ncol(quantile_norm_data)#
+	truth_table_1 <- assign_truth_table(class_list_1, num_samples)#
+	truth_table_2 <- assign_truth_table(class_list_2, num_samples)#
+	# get truth table for samples used in classes 1 & 2#
+	samples_used <- truth_table_1 | truth_table_2#
+	# find number of samples for both classes#
+	num_true_1 <- length(which(truth_table_1))#
+	num_true_2 <- length(which(truth_table_2))#
+	num_true <- num_true_1 + num_true_2#
+	# create vector of group category per sample#
+	grp_vec <- vector(length=num_true)#
+	# assign column names for design matrix#
+	col_name_vec <- vector(length=num_true)#
+	# j is current number to fill in truth_vec#
+	j <- 1#
+	for (i in 1:num_samples) {#
+		if (truth_table_1[i]) {#
+			grp_vec[j] <- 1#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+		else if (truth_table_2[i]) {#
+			grp_vec[j] <- 2#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+	}#
+	if (j != num_true + 1) {#
+		stop("Error: Not all of truth_vec covered")#
+	}#
+	out <- list()#
+	out[[1]] <- grp_vec#
+	out[[2]] <- col_name_vec#
+	out[[3]] <- samples_used#
+	return(out)#
+}#
+#
+perform_permtest <- function(class_list_1, class_list_2) {#
+	out_two_grps <- create_two_grps(class_list_1, class_list_2)#
+	samples_used <- out_two_grps[[3]]#
+	# assign data matrix based on subset used for classes 1 & 2#
+	data_matrix <- quantile_norm_data[,samples_used]#
+	# create designmatrix#
+	dm <- cbind(out_two_grps[[2]], out_two_grps[[1]])#
+	# do permtest#
+	result <- permtest(data_matrix, dm, distance="euclid", nperms=100000, designtype="random")#
+	return(result)#
+}#
+#
+# Do permutation tests#
+bc_vs_v_result <- perform_permtest("bc", c("v_s", "v_as"))#
+bc_vs_bl_result <- perform_permtest("bc", "bl")#
+v_vs_all_result <- perform_permtest(c("v_s", "v_as"), c("bc", "bl"))#
+v_vs_bl_result <- perform_permtest(c("v_s", "v_as"), c("bl"))#
+#
+# Write out summaries to txt files#
+write.table(bc_vs_v_result, "Data_out/bacterial_vs_viral.txt", sep="\t", quote=FALSE)#
+write.table(bc_vs_bl_result, "Data_out/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_all_result, "Data_out/viral_vs_all.txt", sep="\t", quote=FALSE)#
+write.table(v_vs_bl_result, "Data_out/viral_vs_healthy.txt", sep="\t", quote=FALSE)

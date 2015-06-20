@@ -10,7 +10,7 @@ miRNA_names <- known_data[,1]
 rownames(raw_data) <- miRNA_names
 
 # save raw data
-save(raw_data, file="R_Data_out/saved_raw_data")
+save(raw_data, file="Data_out/saved_raw_data")
 
 # function to count zeros, return proportions
 count_zeros <- function(v) {
