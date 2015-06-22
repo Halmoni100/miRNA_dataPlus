@@ -14,8 +14,8 @@ combined_baseline_allviral <- processed_data[,1:42]
 
 
 # wilcoxon function
-do_wilcoxon <- function(s1, s2, is_paired) {
-	result <- wilcox.test(s1, s2, alternative="two.sided")
+do_wilcoxon <- function(s1, s2, paired) {
+	result <- wilcox.test(s1, s2, alternative="two.sided", paired=FALSE)
 	return(result$p.value)
 }
 
@@ -27,20 +27,32 @@ wp_vals <- matrix(, nrow=nrow(processed_data), ncol=11)
 # conducting a wilcoxon test using a for loop
 for (k in 1:nrow(processed_data)) {
 	woutput_vector <- vector(length=11)
-	woutput_vector[1] <- do_wilcoxon(allviral[k,], bacterial[k,])
-	woutput_vector[2] <- do_wilcoxon(allviral[k,], baseline[k,])
-	woutput_vector[3] <- do_wilcoxon(viral_symptomatic[k,], viral_asymptomatic[k,])
-	woutput_vector[4] <- do_wilcoxon(bacterial[k,], baseline[k,])
-	woutput_vector[5] <- do_wilcoxon(bacterial[k,], viral_symptomatic[k,])
-	woutput_vector[6] <- do_wilcoxon(bacterial[k,], viral_asymptomatic[k,])
-	woutput_vector[7] <- do_wilcoxon(baseline[k,], viral_symptomatic[k,])
-	woutput_vector[8] <- do_wilcoxon(baseline[k,], viral_asymptomatic[k,])
-	woutput_vector[9] <- do_wilcoxon(combined_bacterial_baseline[k,], allviral[k,])
-	woutput_vector[10] <- do_wilcoxon(combined_bacterial_allviral[k,], baseline[k,])
-	woutput_vector[11] <- do_wilcoxon(combined_baseline_allviral[k,], bacterial[k,])
+	woutput_vector[1] <- do_wilcoxon(allviral[k,], bacterial[k,], TRUE)
+	woutput_vector[2] <- do_wilcoxon(allviral[k,], baseline[k,], FALSE)
+	woutput_vector[3] <- do_wilcoxon(viral_symptomatic[k,], viral_asymptomatic[k,], TRUE)
+	woutput_vector[4] <- do_wilcoxon(bacterial[k,], baseline[k,], TRUE)
+	woutput_vector[5] <- do_wilcoxon(bacterial[k,], viral_symptomatic[k,], TRUE)
+	woutput_vector[6] <- do_wilcoxon(bacterial[k,], viral_asymptomatic[k,], TRUE)
+	woutput_vector[7] <- do_wilcoxon(baseline[k,], viral_symptomatic[k,], TRUE)
+	woutput_vector[8] <- do_wilcoxon(baseline[k,], viral_asymptomatic[k,], TRUE)
+	woutput_vector[9] <- do_wilcoxon(combined_bacterial_baseline[k,], allviral[k,], TRUE)
+	woutput_vector[10] <- do_wilcoxon(combined_bacterial_allviral[k,], baseline[k,], TRUE)
+	woutput_vector[11] <- do_wilcoxon(combined_baseline_allviral[k,], bacterial[k,], TRUE)
 	wp_vals[k,] <- woutput_vector
 }
 
 
 # save wp_vals matrix
 save(wp_vals, file="R_Data_temp/saved_wp_vals")
+
+
+# run a correlation test between p_vals and wp_vals to compare the t-test and wilcoxon test results (convert to vectors first)
+vector_ttest_matrix <- c(p_vals)
+vector_wilcox_matrix <- c(wp_vals)
+out_cor <- cor.test(vector_ttest_matrix, vector_wilcox_matrix)
+
+# plot the relationship
+qqplot(vector_ttest_matrix, vector_wilcox_matrix, plot.it=TRUE)
+
+
+
