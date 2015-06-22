@@ -1,0 +1,11 @@
+DESCRIPTION	COMPUTED	STAT	COUNT	PVALUE
+1	variability test(one sided)  :  	d11-d22	-0.32085923974892	5432	0.05432
+2	variability test(two sided)  :  	abs(d11-d22)	0.32085923974892	11287	0.11287
+3	location test                :  	d12-((d22+d11)/2)	0.055082659709849	5077	0.05077
+4	equivalence test             :  	d12-d11	0.215512279584309	1864	0.01864
+5	mean within group 1 distance :  	d11	1.47066568187523	NA	NA
+6	mean within group 2 distance :  	d22	1.79152492162415	NA	NA
+7	mean between group distance  :  	d12	1.68617796145954	NA	NA
+8	number of permutations       :  	1e+05	NA	NA	NA
+9	distance type                :  	euclid	NA	NA	NA
+10	design type                  :  	random	NA	NA	NA

@@ -7,7 +7,7 @@ known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header
 
 # extract raw data into matrix (just #s), exclude "norm" data
 data_raw <- known_data[,5:56]
-data_raw <- data.matrix(raw_data)
+data_raw <- data.matrix(data_raw)
 
 # save miRNA names
 miRNA_names <- known_data[,1]
@@ -32,12 +32,12 @@ count_zeros <- function(v) {
 zero_prop_miRNA <- apply(data_raw, 1, count_zeros)
 
 # delete miRNAs that have >50% zeros
-over_50 <- zero_props_miRNA > 0.5
-data_proc <- raw_data[!over_50,]
+over_50 <- zero_prop_miRNA > 0.5
+data_proc <- data_raw[!over_50,]
 
 # get miRNA names for data_proc
 miRNA_names_proc <- miRNA_names[!over_50]
-# get precurosrn names for data_proc
+# get precursor names for data_proc
 prec_names_proc <- prec_names[!over_50]
 
 
@@ -113,12 +113,17 @@ for (i in 1:n) {
 df <- as.data.frame(data)
 rownames(df) <- s_names
 colnames(df) <- f_names
+# make sure strings are not factors
+df <- data.frame(lapply(df, as.character), stringAsFactors=FALSE)
 
-# make matrix describing features
+# make data frame describing features
 features <- f_names
-features <- cbind(features, miRNA_names_proc)
-features <- cbind(features, prec_names_proc)
-features_cols <- c("names", "miRNA", "")
+features <- cbind.data.frame(features, miRNA_names_proc, prec_names_proc)
+features_cols <- c("names", "miRNA", "precursor")
+colnames(features) <- features_cols
+
+# save data frames for data and features
+save(df, feat_df, file="Data_out/data_frames.r")
 
 
 

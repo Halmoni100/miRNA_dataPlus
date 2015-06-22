@@ -1,413 +1,3 @@
-k
-for (k in 1:333){#
-	colneeded <- quantile_norm_data[,k]#
-	allviral[,k] <- quantile_norm_data[1:21]#
-baseline[,k] <- quantile_norm_data[22:42]#
-bacterial[,k] <- quantile_norm_data[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic[k,] <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic[k,] <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline[k,] <- quantile_norm_data[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral[k,] <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral[k,] <- quantile_norm_data[1:42]#
-}
-for (k in 1:333){#
-	colneeded <- quantile_norm_data[,k]#
-	allviral <- colneeded[1:21]#
-baseline <- quantile_norm_data[22:42]#
-bacterial <- quantile_norm_data[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[1:42]#
-}
-for (k in 1:333){#
-	colneeded <- quantile_norm_data[k]#
-	allviral <- colneeded[1:21]#
-baseline <- quantile_norm_data[22:42]#
-bacterial <- quantile_norm_data[43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[1:42]#
-}
-k
-allviral
-baseline
-allviral <- quantile_norm_data[k,1:21]
-allviral
-allviral <- quantile_norm_data[1:21,k]
-# load normalized data set#
-# doing a for loop to go throuhg each row (miRNA) and subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]
-bacterial
-for k in 1:nrow(quantile_norm_data) {#
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-for (k in 1:nrow(quantile_norm_data)) {#
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-for (k in 1:nrow(quantile_norm_data)) {#
-print(k)#
-allviral <- quantile_norm_data[k,1:21]#
-baseline <- quantile_norm_data[k,22:42]#
-bacterial <- quantile_norm_data[k,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[k,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[k,1:42]#
-}
-all viral
-allviral
-# load normalized data set using "Normalization" R script#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic_vector <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
-viral_asymptomatic_vector <- c(3,4,6,7,8,10,12,14)#
-viral_symptomatic <- quantile_norm_data[viral_symptomatic_vector]#
-viral_asymptomatic <- quantile_norm_data[viral_asymptomatic_vector]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral_vector <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)#
-combined_bacterial_allviral <- quantile_norm_data[combined_bacterial_allviral_vector]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic[k,], viral_asymptomatic[k,],alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-ttestmatrix[k,]#
-print(ttestmatrix)#
-}
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-#make an output vector for pvalues of all tests#
-output_vector <- vector()#
-#assign a test vector#
-test_vector <- c(test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-output_vector[k] <- (test_vector)#
-print(ttestmatrix[output_vector])#
-}
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-#make an output vector for pvalues of all tests#
-output_vector <- vector()#
-#assign a test vector#
-test_vector <- c(test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-output_vector[k] <- (test_vector)#
-print(ttestmatrix[output_vector])#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-print(ttestmatrix)#
-}
-?paste0
-?cat
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-test1 <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-test2 <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-test3 <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-test4 <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-test5 <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-test6 <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-test7 <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-test8 <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-test9 <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-test10 <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-test11 <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-output_vector[k] <- (test_vector)#
-ttestmatrix[k,] <- output_vector#
-}
-# load normalized data set using "Normalization" R script#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-#assign a test vector#
-test_vector <- c(test1, test2, test3, test4, test5, test6, test7, test8, test9, test10, test11)#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}#
-print(ttestmatrix)
-# load normalized data set using "Normalization" R script#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=j, nrow=i)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}#
-print(ttestmatrix)
-# load normalized data set using "Normalization" R script#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,43,44,45,46,47,48,49,50,51,52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=j, nrow=i)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=i)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=11, nrow=333)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-output_vector <- vector()#
-# make an output matrix for the pvalues of all the tests#
-ttestmatrix <- matrix(, ncol=j, nrow=i)#
-output_vector[1] <- t.test(allviral[k,],bacterial[k,],alternative="two.sided")#
-output_vector[2] <- t.test(allviral[k,],baseline[k,],alternative="two.sided", paired=TRUE)#
-# test2 is a paired t-test #
-output_vector[3] <- t.test(viral_symptomatic, viral_asymptomatic,alternative="two.sided")#
-output_vector[4] <- t.test(bacterial[k,],baseline[k,],alternative="two.sided")#
-output_vector[5] <- t.test(bacterial[k,],viral_symptomatic[k,],alternative="two.sided")#
-output_vector[6] <- t.test(bacterial[k,],viral_asymptomatic[k,],alternative="two.sided")#
-output_vector[7] <- t.test(baseline[k,], viral_symptomatic[k,], alternative="two.sided")#
-output_vector[8] <- t.test(baseline[k,], viral_asymptomatic[k,], alternative="two.sided")#
-output_vector[9] <- t.test(combined_bacterial_baseline[k,],allviral[k,],alternative="two.sided")#
-output_vector[10] <- t.test(combined_bacterial_allviral[k,],baseline[k,],alternative="two.sided")#
-output_vector[11] <- t.test(combined_baseline_allviral[k,],bacterial[k,],alternative="two.sided")#
-#
-ttestmatrix[k,] <- output_vector#
-}
-print(ttestmatrix)
-output_vector[9]
 library(igraph)
 ?infomap
 ?infomap.community
@@ -4205,3 +3795,1551 @@ write.table(bc_vs_v_result, "Data_out/bacterial_vs_viral.txt", sep="\t", quote=F
 write.table(bc_vs_bl_result, "Data_out/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)#
 write.table(v_vs_all_result, "Data_out/viral_vs_all.txt", sep="\t", quote=FALSE)#
 write.table(v_vs_bl_result, "Data_out/viral_vs_healthy.txt", sep="\t", quote=FALSE)
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_miRNA_names_proc.r")
+v_vs_bc <- miRNA_names_proc[c(19,20,32,86,93,111,141,165,191,199,200,201,209,211,329),]
+v_vs_bc <- miRNA_names_proc[c(19,20,32,86,93,111,141,165,191,199,200,201,209,211,329)]
+write.table(v_vs_bc, "Data_out/viral_vs_bacterial.txt", sep="\t", quote=FALSE)
+rownames(v_vs_bc) <- NULL
+colnames(v_vs_bc) <- NULL
+write.table(v_vs_bc, "Data_out/viral_vs_bacterial.txt", sep="\t", quote=FALSE)
+write.table(v_vs_bc, "Data_out/viral_vs_bacterial.txt", sep="\t", quote=FALSE, row.names=FALSE, col.names=FALSE)
+# Factors are:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Write factors for viral symptomatic & asymptomatic#
+viral_symp_indices <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)#
+viral_asymp_indices <- c(3,4,6,7,8,10,12,14)#
+viral <- vector(length=21)#
+for (i in viral_symp_indices) {#
+	viral[i] <- "v_s"#
+}#
+for (i in viral_asymp_indices) {#
+	viral[i] <- "v_as"#
+}#
+#
+# Write factors for baseline symptomatic & asymptomatic#
+baseline <- vector(length=21)#
+baseline_symp_indices <- c(22,23,24,26,27,28,29,31,33,34,37,41,42)#
+baseline_asymp_indices <- c(25,30,32,35,36,38,39,40)#
+baseline <- vector(length=21)#
+for (i in viral_symp_indices) {#
+	baseline[i] <- "bl_s"#
+}#
+for (i in viral_asymp_indices) {#
+	baseline[i] <- "bl_as"#
+}#
+# Write factors for bacteria#
+bacteria <- rep_len("bc", 10)#
+#
+# Get one big factor vector#
+category_vector <- c(viral, baseline, bacteria)#
+sample_factors <- factor(category_vector)#
+sample_factors#
+#
+# Save factor vector#
+save(sample_factors, file="Data_out/saved_sample_factors.r")#
+write.table(sample_factors, "Data_out/sample_factors.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(raw_data)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_props_miRNA > 0.5#
+data_proc <- raw_data[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precurosrn names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc)#
+features <- cbind(features, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_props_miRNA > 0.5#
+data_proc <- raw_data[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precurosrn names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc)#
+features <- cbind(features, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- raw_data[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precurosrn names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc)#
+features <- cbind(features, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- data_raw[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precurosrn names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc)#
+features <- cbind(features, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/data_frames.r")
+head(features_cols)
+features_cols
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- data_raw[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precurosrn names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc)#
+features <- cbind(features, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(features) <- features_cols#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/data_frames.r")
+head(features)
+miRNA_names_proc
+head(feat_df)
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- data_raw[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precurosrn names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc, prec_names_proc)#
+features <- cbind(features, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(features) <- features_cols#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- data_raw[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precurosrn names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(features) <- features_cols#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/data_frames.r")
+head(feat_df)
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- data_raw[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precurosrn names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(features) <- features_cols#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+head(feat_df)
+head(miRNA_names_proc)
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- data_raw[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precursor names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+# make sure strings are not factors#
+df <- data.frame(lapply(df, as.character), stringAsFactors=FALSE)#
+#
+# make matrix describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(features) <- features_cols#
+#
+# make features a data frame#
+feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+head(feat_df)
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- data_raw[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precursor names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+# make sure strings are not factors#
+df <- data.frame(lapply(df, as.character), stringAsFactors=FALSE)#
+#
+# make data frame describing features#
+features <- f_names#
+features <- cbind.data.frame(features, miRNA_names_proc, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(features) <- features_cols#
+#
+# make features a data frame#
+#feat_df <- as.data.frame(features)#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+head(features)
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+install.packages("FactoMineR")
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/Archive/saved_quantile_norm_data.r")
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+# Load the following...#
+# sample_factors#
+# quantile_norm_data#
+#
+# For reference, factors are#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Baseline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load permtest package#
+library(permtest)#
+#
+# Assign names for data matrix for input into permtest#
+column_names <- 1:ncol(quantile_norm_data)#
+colnames(quantile_norm_data) <- column_names#
+#
+assign_truth_table <- function(class_list, num_samples) {#
+	# initialize truth_table to all false#
+	truth_table <- vector(mode="logical", length=num_samples)#
+	# do logical or to make all considered samples true#
+	for (class in class_list) {#
+		truth_vals <- sample_factors == class#
+		truth_table <- truth_table | truth_vals#
+	}#
+	return(truth_table)#
+}#
+#
+create_two_grps <- function(class_list_1, class_list_2) {#
+# The output is a list... #
+# 1. list of 1s and 2s for grp assignment#
+# 2. column numbers used#
+# 3. truth table for samples used#
+	num_samples <- ncol(quantile_norm_data)#
+	truth_table_1 <- assign_truth_table(class_list_1, num_samples)#
+	truth_table_2 <- assign_truth_table(class_list_2, num_samples)#
+	# get truth table for samples used in classes 1 & 2#
+	samples_used <- truth_table_1 | truth_table_2#
+	# find number of samples for both classes#
+	num_true_1 <- length(which(truth_table_1))#
+	num_true_2 <- length(which(truth_table_2))#
+	num_true <- num_true_1 + num_true_2#
+	# create vector of group category per sample#
+	grp_vec <- vector(length=num_true)#
+	# assign column names for design matrix#
+	col_name_vec <- vector(length=num_true)#
+	# j is current number to fill in truth_vec#
+	j <- 1#
+	for (i in 1:num_samples) {#
+		if (truth_table_1[i]) {#
+			grp_vec[j] <- 1#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+		else if (truth_table_2[i]) {#
+			grp_vec[j] <- 2#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+	}#
+	if (j != num_true + 1) {#
+		stop("Error: Not all of truth_vec covered")#
+	}#
+	out <- list()#
+	out[[1]] <- grp_vec#
+	out[[2]] <- col_name_vec#
+	out[[3]] <- samples_used#
+	return(out)#
+}#
+#
+perform_permtest <- function(class_list_1, class_list_2) {#
+	out_two_grps <- create_two_grps(class_list_1, class_list_2)#
+	samples_used <- out_two_grps[[3]]#
+	# assign data matrix based on subset used for classes 1 & 2#
+	data_matrix <- quantile_norm_data[,samples_used]#
+	# create designmatrix#
+	dm <- cbind(out_two_grps[[2]], out_two_grps[[1]])#
+	# do permtest#
+	result <- permtest(data_matrix, dm, distance="euclid", nperms=100000, designtype="random")#
+	return(result)#
+}#
+#
+# Do permutation tests#
+v_s_vs_bl_s_result <- perform_permtest("v_s", "bl_s")#
+v_as_vs_bl_as_result <- perform_permtest("v_as", "bl_as")#
+v_s_vs_v_as_result <- perform_permtest("v_s", "v_as")#
+v_s_vs_bc_result <- perform_permtest("v_s", "bc")#
+bl_s_vs_bl_as_result <- perform_permtest("bl_s", "bl_as")#
+bc_vs_bl_result <- perform_permtest("bc", c("bl_s", "bl_as"))#
+#
+# Write out summaries to txt files#
+write.table(v_s_vs_bl_s_result, "Data_out/viral_symp_vs_baseline_symp.txt", sep="\t", quote=FALSE)#
+write.table(v_as_vs_bl_as_result, "Data_out/viral_asymp_vs_baseline_asymp.txt", sep="\t", quote=FALSE)#
+write.table(v_s_vs_v_as_result, "Data_out/viral_symp_vs_viral_asymp.txt", sep="\t", quote=FALSE)#
+write.table(v_s_vs_v_as_result, "Data_out/viral_symp_vs_viral_asymp.txt", sep="\t", quote=FALSE)#
+write.table(bl_s_vs_bl_as_result, "Data_out/baseline_symp_vs_baseline_asymp.txt", sep="\t", quote=FALSE)#
+write.table(bc_vs_bl_result, "Data_out/bacterial_vs_baseline.txt", sep="\t", quote=FALSE)
+# Load the following...#
+# sample_factors#
+# quantile_norm_data#
+#
+# For reference, factors are#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Baseline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load permtest package#
+library(permtest)#
+#
+# Assign names for data matrix for input into permtest#
+column_names <- 1:ncol(quantile_norm_data)#
+colnames(quantile_norm_data) <- column_names#
+#
+assign_truth_table <- function(class_list, num_samples) {#
+	# initialize truth_table to all false#
+	truth_table <- vector(mode="logical", length=num_samples)#
+	# do logical or to make all considered samples true#
+	for (class in class_list) {#
+		truth_vals <- sample_factors == class#
+		truth_table <- truth_table | truth_vals#
+	}#
+	return(truth_table)#
+}#
+#
+create_two_grps <- function(class_list_1, class_list_2) {#
+# The output is a list... #
+# 1. list of 1s and 2s for grp assignment#
+# 2. column numbers used#
+# 3. truth table for samples used#
+	num_samples <- ncol(quantile_norm_data)#
+	truth_table_1 <- assign_truth_table(class_list_1, num_samples)#
+	truth_table_2 <- assign_truth_table(class_list_2, num_samples)#
+	# get truth table for samples used in classes 1 & 2#
+	samples_used <- truth_table_1 | truth_table_2#
+	# find number of samples for both classes#
+	num_true_1 <- length(which(truth_table_1))#
+	num_true_2 <- length(which(truth_table_2))#
+	num_true <- num_true_1 + num_true_2#
+	# create vector of group category per sample#
+	grp_vec <- vector(length=num_true)#
+	# assign column names for design matrix#
+	col_name_vec <- vector(length=num_true)#
+	# j is current number to fill in truth_vec#
+	j <- 1#
+	for (i in 1:num_samples) {#
+		if (truth_table_1[i]) {#
+			grp_vec[j] <- 1#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+		else if (truth_table_2[i]) {#
+			grp_vec[j] <- 2#
+			col_name_vec[j] <- i#
+			j <- j + 1#
+		}#
+	}#
+	if (j != num_true + 1) {#
+		stop("Error: Not all of truth_vec covered")#
+	}#
+	out <- list()#
+	out[[1]] <- grp_vec#
+	out[[2]] <- col_name_vec#
+	out[[3]] <- samples_used#
+	return(out)#
+}#
+#
+perform_permtest <- function(class_list_1, class_list_2) {#
+	out_two_grps <- create_two_grps(class_list_1, class_list_2)#
+	samples_used <- out_two_grps[[3]]#
+	# assign data matrix based on subset used for classes 1 & 2#
+	data_matrix <- quantile_norm_data[,samples_used]#
+	# create designmatrix#
+	dm <- cbind(out_two_grps[[2]], out_two_grps[[1]])#
+	# do permtest#
+	result <- permtest(data_matrix, dm, distance="euclid", nperms=100000, designtype="random")#
+	return(result)#
+}#
+#
+# Do permutation tests#
+v_s_vs_bl_s_result <- perform_permtest("v_s", "bl_s")#
+v_as_vs_bl_as_result <- perform_permtest("v_as", "bl_as")#
+v_s_vs_v_as_result <- perform_permtest("v_s", "v_as")#
+v_s_vs_bc_result <- perform_permtest("v_s", "bc")#
+bl_s_vs_bl_as_result <- perform_permtest("bl_s", "bl_as")#
+bc_vs_bl_result <- perform_permtest("bc", c("bl_s", "bl_as"))#
+#
+# Write out summaries to txt files#
+write.table(v_s_vs_bl_s_result, "Data_out/viral_symp_vs_baseline_symp.txt", sep="\t", quote=FALSE)#
+write.table(v_as_vs_bl_as_result, "Data_out/viral_asymp_vs_baseline_asymp.txt", sep="\t", quote=FALSE)#
+write.table(v_s_vs_v_as_result, "Data_out/viral_symp_vs_viral_asymp.txt", sep="\t", quote=FALSE)#
+write.table(v_s_vs_bc_result, "Data_out/viral_symp_vs_bacteria.txt", sep="\t", quote=FALSE)#
+write.table(bl_s_vs_bl_as_result, "Data_out/baseline_symp_vs_baseline_asymp.txt", sep="\t", quote=FALSE)#
+write.table(bc_vs_bl_result, "Data_out/bacteria_vs_baseline.txt", sep="\t", quote=FALSE)
+bl_vs_sick_result <- perform_permtest(c("bl_s", "bl_as"), c("v_s", "v_as", "bc"))
+write.table(bl_vs_sick_result, "Data_out/baseline_vs_sick.txt", sep="\t", quote=FALSE)

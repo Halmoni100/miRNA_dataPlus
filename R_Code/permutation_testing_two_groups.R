@@ -5,7 +5,8 @@
 # For reference, factors are
 # Viral Symptomatic - v_s
 # Viral Asymptomatic - v_as
-# Baseline - bl
+# Baseline Symptomatic - bl_s
+# Baseline Asymptomatic - bl_as
 # Bacteria - bc
 
 # Load permtest package
@@ -82,16 +83,20 @@ perform_permtest <- function(class_list_1, class_list_2) {
 }
 
 # Do permutation tests
-bc_vs_v_result <- perform_permtest("bc", c("v_s", "v_as"))
-bc_vs_bl_result <- perform_permtest("bc", "bl")
-v_vs_all_result <- perform_permtest(c("v_s", "v_as"), c("bc", "bl"))
-v_vs_bl_result <- perform_permtest(c("v_s", "v_as"), c("bl"))
+v_s_vs_bl_s_result <- perform_permtest("v_s", "bl_s")
+v_as_vs_bl_as_result <- perform_permtest("v_as", "bl_as")
+v_s_vs_v_as_result <- perform_permtest("v_s", "v_as")
+v_s_vs_bc_result <- perform_permtest("v_s", "bc")
+bl_s_vs_bl_as_result <- perform_permtest("bl_s", "bl_as")
+bc_vs_bl_result <- perform_permtest("bc", c("bl_s", "bl_as"))
+bl_vs_sick_result <- perform_permtest(c("bl_s", "bl_as"), c("v_s", "v_as", "bc"))
 
 # Write out summaries to txt files
-write.table(bc_vs_v_result, "Data_out/bacterial_vs_viral.txt", sep="\t", quote=FALSE)
-write.table(bc_vs_bl_result, "Data_out/bacterial_vs_healthy.txt", sep="\t", quote=FALSE)
-write.table(v_vs_all_result, "Data_out/viral_vs_all.txt", sep="\t", quote=FALSE)
-write.table(v_vs_bl_result, "Data_out/viral_vs_healthy.txt", sep="\t", quote=FALSE)
-
-
+write.table(v_s_vs_bl_s_result, "Data_out/viral_symp_vs_baseline_symp.txt", sep="\t", quote=FALSE)
+write.table(v_as_vs_bl_as_result, "Data_out/viral_asymp_vs_baseline_asymp.txt", sep="\t", quote=FALSE)
+write.table(v_s_vs_v_as_result, "Data_out/viral_symp_vs_viral_asymp.txt", sep="\t", quote=FALSE)
+write.table(v_s_vs_bc_result, "Data_out/viral_symp_vs_bacteria.txt", sep="\t", quote=FALSE)
+write.table(bl_s_vs_bl_as_result, "Data_out/baseline_symp_vs_baseline_asymp.txt", sep="\t", quote=FALSE)
+write.table(bc_vs_bl_result, "Data_out/bacteria_vs_baseline.txt", sep="\t", quote=FALSE)
+write.table(bl_vs_sick_result, "Data_out/baseline_vs_sick.txt", sep="\t", quote=FALSE)
 
