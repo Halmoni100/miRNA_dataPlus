@@ -8,10 +8,7 @@ b_vector_test4 <- c(p_vals[,4])
 b_vector_test5 <- c(p_vals[,5])
 b_vector_test6 <- c(p_vals[,6])
 b_vector_test7 <- c(p_vals[,7])
-b_vector_test8 <- c(p_vals[,8])
-b_vector_test9 <- c(p_vals[,9])
-b_vector_test10 <- c(p_vals[,10])
-b_vector_test11 <- c(p_vals[,11])
+
 
 # run the bonferroni adjustment code on each vector
 b_adjustment1 <- p.adjust(b_vector_test1, method = "bonferroni")
@@ -21,14 +18,11 @@ b_adjustment4 <- p.adjust(b_vector_test4, method = "bonferroni")
 b_adjustment5 <- p.adjust(b_vector_test5, method = "bonferroni")
 b_adjustment6 <- p.adjust(b_vector_test6, method = "bonferroni")
 b_adjustment7 <- p.adjust(b_vector_test7, method = "bonferroni")
-b_adjustment8 <- p.adjust(b_vector_test8, method = "bonferroni")
-b_adjustment9 <- p.adjust(b_vector_test9, method = "bonferroni")
-b_adjustment10 <- p.adjust(b_vector_test10, method = "bonferroni")
-b_adjustment11 <- p.adjust(b_vector_test11, method = "bonferroni")
+
 
 # combine the vector and put it back into a matrix
-b_combined <- c(b_adjustment1, b_adjustment2, b_adjustment3, b_adjustment4, b_adjustment5, b_adjustment6, b_adjustment7, b_adjustment8, b_adjustment9, b_adjustment10, b_adjustment11)
-b_matrix <- matrix(b_combined, nrow=333, ncol=11)
+b_combined <- c(b_adjustment1, b_adjustment2, b_adjustment3, b_adjustment4, b_adjustment5, b_adjustment6, b_adjustment7)
+b_matrix <- matrix(b_combined, nrow=333, ncol=7)
 
 # assign all signifiant p-values as TRUE after Bonferroni
 significant_b_p_vals <- b_matrix <= .05
@@ -37,15 +31,11 @@ significant_b_p_vals <- b_matrix <= .05
 # create a function to choose only the TRUE values (significant pvalues)
 takingout <- function(significant_b_p_vals) {
 	takeout <- which(significant_b_p_vals == TRUE)
-	ranked_vals <- rank(takeout, ties.method="min")
-	return(ranked_vals)
+	return(takeout)
 }
 
-# use the apply function to create a list of significant miRNAs
+# use the applyg function to create a list of significant miRNAs
 list_significant_miRNA <- apply(significant_b_p_vals, 2, takingout)
-
-
-
 
 
 
