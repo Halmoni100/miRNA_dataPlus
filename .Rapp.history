@@ -1,14 +1,3 @@
-library(igraph)
-?infomap
-?infomap.community
-setwd("~/Desktop/edgelists")
-# old network#
-cdata = read.csv("e_cermi.csv", header = F)#
- cdata=as.matrix(cdata)#
- g=graph.edgelist(cdata[,1:2],directed=TRUE)#
- E(g)$weight=as.numeric(cdata[,3])#
-cdata_matrix <- get.adjacency(g,attr='weight',sparse=FALSE)
-cdata
 #infomap#
 infomap.community(g, e.weights=cdata[,3], nb.trials = 10, modularity = TRUE)
 print(communities)
@@ -5087,57 +5076,8 @@ install.packages("FactoMineR")
 # Do PCA Analysis#
 pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
 pca_analysis(quantile_norm_data, sample_factors, 10)
-# Load the following...#
-# quantile_norm_data#
-# sample_factors#
-#
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, sample_factors, 10)
 load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
 load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/Archive/saved_quantile_norm_data.r")
-# Load the following...#
-# quantile_norm_data#
-# sample_factors#
-#
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, sample_factors, 10)
-# Load the following...#
-# quantile_norm_data#
-# sample_factors#
-#
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, sample_factors, 10)
-# Load the following...#
-# quantile_norm_data#
-# sample_factors#
-#
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, sample_factors, 10)
-# Load the following...#
-# quantile_norm_data#
-# sample_factors#
-#
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, sample_factors, 10)
-# Load the following...#
-# quantile_norm_data#
-# sample_factors#
-#
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, sample_factors, 10)
-# Load the following...#
-# quantile_norm_data#
-# sample_factors#
-#
-# Do PCA Analysis#
-pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
-pca_analysis(quantile_norm_data, sample_factors, 10)
 # Load the following...#
 # quantile_norm_data#
 # sample_factors#
@@ -5343,3 +5283,305 @@ write.table(bl_s_vs_bl_as_result, "Data_out/baseline_symp_vs_baseline_asymp.txt"
 write.table(bc_vs_bl_result, "Data_out/bacteria_vs_baseline.txt", sep="\t", quote=FALSE)
 bl_vs_sick_result <- perform_permtest(c("bl_s", "bl_as"), c("v_s", "v_as", "bc"))
 write.table(bl_vs_sick_result, "Data_out/baseline_vs_sick.txt", sep="\t", quote=FALSE)
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+v_s_bool_vec <- sample_factors == "v_s"#
+v_as_bool_vec <- sample_factors == "v_as"#
+bl_s_bool_vec <- sample_factors == "bl_s"#
+bl_as_bool_vec <- sample_factors == "bl_as"#
+bc_bool_vec <- sample_factors == "bc"#
+#
+viral_symptomatic <- quantile_norm_data[, v_s_bool_vec]#
+viral_asymptomatic <- quantile_norm_data[, v_as_bool_vec]#
+baseline_symptomatic <- quantile_norm_data[, bl_s_bool_vec]#
+baseline_asymptomatic <- quantile_norm_data[, bl_as_bool_vec]#
+bacterial <- quantile_norm_data[, bc_bool_vec]#
+allviral <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec]#
+baseline <- quantile_norm_data[, bl_s_bool_vec | bl_as_bool_vec]#
+allviral_and_bacterial <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec | bc_vool_vec]#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	return(result$p.value)#
+}#
+#
+# make an output matrix for the pvalues of all the tests#
+p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=7)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	output_vector <- vector(length=7)#
+	output_vector[1] <- do_t_test(viral_symptomatic[k,], baseline_symptomatic[k,], TRUE)#
+	output_vector[2] <- do_t_test(viral_asymptomatic[k,], baseline_asymptomatic[k,], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[4] <- do_t_test(viral_symptomatic[k,], bacterial[k,], FALSE)#
+	output_vector[5] <- do_t_test(baseline_symptomatic[k,], baseline_asymptomatic[k,], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	output_vector[7] <- do_t_test(allviral_and_bacterial[k,], baseline[k,], FALSE)#
+	p_vals[k,] <- output_vector#
+}#
+#
+# save p_vals matrix#
+save(p_vals, file="Data_out/saved_p_vals.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/Archive/saved_quantile_norm_data.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+v_s_bool_vec <- sample_factors == "v_s"#
+v_as_bool_vec <- sample_factors == "v_as"#
+bl_s_bool_vec <- sample_factors == "bl_s"#
+bl_as_bool_vec <- sample_factors == "bl_as"#
+bc_bool_vec <- sample_factors == "bc"#
+#
+viral_symptomatic <- quantile_norm_data[, v_s_bool_vec]#
+viral_asymptomatic <- quantile_norm_data[, v_as_bool_vec]#
+baseline_symptomatic <- quantile_norm_data[, bl_s_bool_vec]#
+baseline_asymptomatic <- quantile_norm_data[, bl_as_bool_vec]#
+bacterial <- quantile_norm_data[, bc_bool_vec]#
+allviral <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec]#
+baseline <- quantile_norm_data[, bl_s_bool_vec | bl_as_bool_vec]#
+allviral_and_bacterial <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec | bc_vool_vec]#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	return(result$p.value)#
+}#
+#
+# make an output matrix for the pvalues of all the tests#
+p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=7)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	output_vector <- vector(length=7)#
+	output_vector[1] <- do_t_test(viral_symptomatic[k,], baseline_symptomatic[k,], TRUE)#
+	output_vector[2] <- do_t_test(viral_asymptomatic[k,], baseline_asymptomatic[k,], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[4] <- do_t_test(viral_symptomatic[k,], bacterial[k,], FALSE)#
+	output_vector[5] <- do_t_test(baseline_symptomatic[k,], baseline_asymptomatic[k,], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	output_vector[7] <- do_t_test(allviral_and_bacterial[k,], baseline[k,], FALSE)#
+	p_vals[k,] <- output_vector#
+}#
+#
+# save p_vals matrix#
+save(p_vals, file="Data_out/saved_p_vals.r")
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+v_s_bool_vec <- sample_factors == "v_s"#
+v_as_bool_vec <- sample_factors == "v_as"#
+bl_s_bool_vec <- sample_factors == "bl_s"#
+bl_as_bool_vec <- sample_factors == "bl_as"#
+bc_bool_vec <- sample_factors == "bc"#
+#
+viral_symptomatic <- quantile_norm_data[, v_s_bool_vec]#
+viral_asymptomatic <- quantile_norm_data[, v_as_bool_vec]#
+baseline_symptomatic <- quantile_norm_data[, bl_s_bool_vec]#
+baseline_asymptomatic <- quantile_norm_data[, bl_as_bool_vec]#
+bacterial <- quantile_norm_data[, bc_bool_vec]#
+allviral <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec]#
+baseline <- quantile_norm_data[, bl_s_bool_vec | bl_as_bool_vec]#
+allviral_and_bacterial <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec | bc_bool_vec]#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	return(result$p.value)#
+}#
+#
+# make an output matrix for the pvalues of all the tests#
+p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=7)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	output_vector <- vector(length=7)#
+	output_vector[1] <- do_t_test(viral_symptomatic[k,], baseline_symptomatic[k,], TRUE)#
+	output_vector[2] <- do_t_test(viral_asymptomatic[k,], baseline_asymptomatic[k,], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[4] <- do_t_test(viral_symptomatic[k,], bacterial[k,], FALSE)#
+	output_vector[5] <- do_t_test(baseline_symptomatic[k,], baseline_asymptomatic[k,], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	output_vector[7] <- do_t_test(allviral_and_bacterial[k,], baseline[k,], FALSE)#
+	p_vals[k,] <- output_vector#
+}#
+#
+# save p_vals matrix#
+save(p_vals, file="Data_out/saved_p_vals.r")
+# Load the following...#
+#	p_vals#
+#
+# compute Bonferroni p-values#
+#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	return(adjusted_v)#
+}#
+#
+b_matrix <- apply(p_vals, 2, bonferroni_adjust)#
+#
+# assign all signifiant p-values as TRUE after Bonferroni#
+significant_b_p_vals <- b_matrix <= .05#
+#
+# pulling out significant miRNAs expressed#
+# create a function to choose only the TRUE values (significant pvalues)#
+takingout <- function(significant_b_p_vals) {#
+	takeout <- which(significant_b_p_vals == TRUE)#
+	return(takeout)#
+}#
+#
+# use the applyg function to create a list of significant miRNAs#
+list_significant_miRNA <- apply(significant_b_p_vals, 2, takingout)
+list_significant_miRNA
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+v_s_bool_vec <- sample_factors == "v_s"#
+v_as_bool_vec <- sample_factors == "v_as"#
+bl_s_bool_vec <- sample_factors == "bl_s"#
+bl_as_bool_vec <- sample_factors == "bl_as"#
+bc_bool_vec <- sample_factors == "bc"#
+#
+viral_symptomatic <- quantile_norm_data[, v_s_bool_vec]#
+viral_asymptomatic <- quantile_norm_data[, v_as_bool_vec]#
+baseline_symptomatic <- quantile_norm_data[, bl_s_bool_vec]#
+baseline_asymptomatic <- quantile_norm_data[, bl_as_bool_vec]#
+bacterial <- quantile_norm_data[, bc_bool_vec]#
+allviral <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec]#
+baseline <- quantile_norm_data[, bl_s_bool_vec | bl_as_bool_vec]#
+allviral_and_bacterial <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec | bc_bool_vec]#
+#
+v_s_ordered <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
+v_as_ordered <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
+b_s_ordered <- quantile_norm_data[,c(22,41,24,31,27,42,29,26,28,23,37,33,34)]#
+b_as_ordered <- quantile_norm_data[,c(40,25,39,38,36,30,35,32)]#
+#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	return(result$p.value)#
+}#
+#
+# make an output matrix for the pvalues of all the tests#
+p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=7)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	output_vector <- vector(length=7)#
+	output_vector[1] <- do_t_test(v_s_ordered[k,], b_s_ordered[k,], TRUE)#
+	output_vector[2] <- do_t_test(v_as_ordered[k,], b_as_ordered[k,], TRUE)#
+	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	output_vector[4] <- do_t_test(viral_symptomatic[k,], bacterial[k,], FALSE)#
+	output_vector[5] <- do_t_test(baseline_symptomatic[k,], baseline_asymptomatic[k,], FALSE)#
+	output_vector[6] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	output_vector[7] <- do_t_test(allviral_and_bacterial[k,], baseline[k,], FALSE)#
+	p_vals[k,] <- output_vector#
+}#
+#
+# save p_vals matrix#
+save(p_vals, file="Data_out/saved_p_vals.r")
+# Load the following...#
+#	p_vals#
+#
+# compute Bonferroni p-values#
+#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	return(adjusted_v)#
+}#
+#
+b_matrix <- apply(p_vals, 2, bonferroni_adjust)#
+#
+# assign all signifiant p-values as TRUE after Bonferroni#
+significant_b_p_vals <- b_matrix <= .05#
+#
+# pulling out significant miRNAs expressed#
+# create a function to choose only the TRUE values (significant pvalues)#
+takingout <- function(significant_b_p_vals) {#
+	takeout <- which(significant_b_p_vals == TRUE)#
+	return(takeout)#
+}#
+#
+# use the applyg function to create a list of significant miRNAs#
+list_significant_miRNA <- apply(significant_b_p_vals, 2, takingout)
+list_significant_miRNA
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame()#
+	colnames(significant) <- c("index", "p-val")#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		colanmes#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame()#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		colanmes#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	colnames(significant) <- c("index", "p-val")#
+	significant_ordered <- significant[order(index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)

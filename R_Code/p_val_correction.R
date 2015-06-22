@@ -1,46 +1,25 @@
 # Load the following...
 #	p_vals
 
-# compute Bonferroni p-values
-
+# create list of data frames
+significant_miRNAs <- list()
+# compute Bonferroni p-values, order them in a data frame
 bonferroni_adjust <- function(v) {
 	adjusted_v <- p.adjust(v, method = "bonferroni")
-	return(adjusted_v)
+	significant_mat <- matrix(, nrow=0, ncol=2)
+	for (i in 1:length(adjusted_v)) {
+		val <- adjusted_v[i]
+		if (val <= .05) {
+			entry <- c(i, val)
+			significant_mat <- rbind(significant_mat, entry)
+		}
+	}
+	significant <- as.data.frame(significant_mat)
+	colnames(significant) <- c("index", "p_val")
+	significant_ordered <- significant[order(significant$p_val), ]
+	return(significant_ordered)
 }
-
-b_matrix <- apply(p_vals, 2, bonferroni_adjust)
-
-# assign all signifiant p-values as TRUE after Bonferroni
-significant_b_p_vals <- b_matrix <= .05
-
-# pulling out significant miRNAs expressed
-# create a function to choose only the TRUE values (significant pvalues)
-takingout <- function(significant_b_p_vals) {
-	takeout <- which(significant_b_p_vals == TRUE)
-	return(takeout)
-}
-
-# use the applyg function to create a list of significant miRNAs
-list_significant_miRNA <- apply(significant_b_p_vals, 2, takingout)
-
-
-
-
-#EXTRA
-# pulling out significant miRNAs expressed
-# create a function to choose only the TRUE values (significant pvalues)
-takingout <- function(b_matrix) {
-	takeout <- which(b_matrix <= .05)
-	takeout_p_vals <- b_matrix[takeout]
-	sorted_vals <- sort(takeout_p_vals, decreasing=FALSE)
-	return(sorted_vals)
-}
-# use the apply function to create a list of significant miRNAs
-list_significant_miRNA <- apply(b_matrix, 2, takingout)
-
-
-
-
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
 
 
 
