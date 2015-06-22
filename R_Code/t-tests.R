@@ -8,9 +8,9 @@ baseline <- quantile_norm_data[,22:42]
 bacterial <- quantile_norm_data[,43:52]
 viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]
 viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]
-combined_bacterial_baseline <- quantile_norm_data[,22:52]
-combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]
-combined_baseline_allviral <- quantile_norm_data[,1:42]
+baseline_symptomatic <- quantile_norm_data[,c(22,23,24,26,27,28,29,31,33,34,37,41,42)]
+baseline_asymptomatic <- quantile_norm_data[,c(25,30,32,35,36,38,39,40)]
+
 
 # t-test function
 do_t_test <- function(s1, s2, is_paired) {
@@ -24,17 +24,12 @@ p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)
 # conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop
 for (k in 1:nrow(quantile_norm_data)) {
 	output_vector <- vector(length=11)
-	output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)
-	output_vector[2] <- do_t_test(allviral[k,], baseline[k,], TRUE)
+	output_vector[1] <- do_t_test(viral_symptomatic[k,], baseline_symptomatic[k,], TRUE)
+	output_vector[2] <- do_t_test(viral_asymptomatic[k,], baseline_asymptomatic[k,], TRUE)
 	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)
-	output_vector[4] <- do_t_test(bacterial[k,], baseline[k,], FALSE)
-	output_vector[5] <- do_t_test(bacterial[k,], viral_symptomatic[k,], FALSE)
-	output_vector[6] <- do_t_test(bacterial[k,], viral_asymptomatic[k,], FALSE)
-	output_vector[7] <- do_t_test(baseline[k,], viral_symptomatic[k,], FALSE)
-	output_vector[8] <- do_t_test(baseline[k,], viral_asymptomatic[k,], FALSE)
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)
-	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)
+	output_vector[4] <- do_t_test(viral_symptomatic[k,], bacterial[k,], FALSE)
+	output_vector[5] <- do_t_test(baseline_symptomatic[k,], baseline_asymptomatic[k,], FALSE)
+	output_vector[6] <- do_t_test(bacterial[k,], baseline[k,], FALSE)
 	p_vals[k,] <- output_vector
 }
 
