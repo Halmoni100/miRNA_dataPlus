@@ -18,8 +18,8 @@ for (i in viral_asymp_indices) {
 
 # Write factors for baseline symptomatic & asymptomatic
 baseline <- vector(length=21)
-baseline_symp_indices <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)
-baseline_asymp_indices <- c(3,4,6,7,8,10,12,14)
+baseline_symp_indices <- c(22,23,24,26,27,28,29,31,33,34,37,41,42)
+baseline_asymp_indices <- c(25,30,32,35,36,38,39,40)
 baseline <- vector(length=21)
 for (i in viral_symp_indices) {
 	baseline[i] <- "bl_s"

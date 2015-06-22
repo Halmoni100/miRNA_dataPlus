@@ -4,7 +4,8 @@ Here’s a quick summary of the sample_factors vector:
 3. Each element in the vector is a character string that corresponds to the category.  For reference…
 	v_s - viral symptomatic
 	v_as - viral asymptomatic
-	bl - baseline
+	bl_s - baseline symptomatic
+	bl_as - baseline asymptomatic
 	bc - bacterial
 4. This is useful for subsetting our data matrix.  For example, say we want to subset our data matrix X to a new matrix X_sub_bc to extract just the bacterial samples.  Again, the vector with the factors is called sample_vectors.  You would write the following code:
 
