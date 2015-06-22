@@ -1,28 +1,14 @@
+# Load the following...
+#	p_vals
 
 # compute Bonferroni p-values
-# set up a vector for each test(column)
-b_vector_test1 <- c(p_vals[,1])
-b_vector_test2 <- c(p_vals[,2])
-b_vector_test3 <- c(p_vals[,3])
-b_vector_test4 <- c(p_vals[,4])
-b_vector_test5 <- c(p_vals[,5])
-b_vector_test6 <- c(p_vals[,6])
-b_vector_test7 <- c(p_vals[,7])
 
+bonferroni_adjust <- function(v) {
+	adjusted_v <- p.adjust(v, method = "bonferroni")
+	return(adjusted_v)
+}
 
-# run the bonferroni adjustment code on each vector
-b_adjustment1 <- p.adjust(b_vector_test1, method = "bonferroni")
-b_adjustment2 <- p.adjust(b_vector_test2, method = "bonferroni")
-b_adjustment3 <- p.adjust(b_vector_test3, method = "bonferroni")
-b_adjustment4 <- p.adjust(b_vector_test4, method = "bonferroni")
-b_adjustment5 <- p.adjust(b_vector_test5, method = "bonferroni")
-b_adjustment6 <- p.adjust(b_vector_test6, method = "bonferroni")
-b_adjustment7 <- p.adjust(b_vector_test7, method = "bonferroni")
-
-
-# combine the vector and put it back into a matrix
-b_combined <- c(b_adjustment1, b_adjustment2, b_adjustment3, b_adjustment4, b_adjustment5, b_adjustment6, b_adjustment7)
-b_matrix <- matrix(b_combined, nrow=333, ncol=7)
+b_matrix <- apply(p_vals, 2, bonferroni_adjust)
 
 # assign all signifiant p-values as TRUE after Bonferroni
 significant_b_p_vals <- b_matrix <= .05
@@ -36,10 +22,6 @@ takingout <- function(significant_b_p_vals) {
 
 # use the applyg function to create a list of significant miRNAs
 list_significant_miRNA <- apply(significant_b_p_vals, 2, takingout)
-
-
-
-
 
 
 
@@ -65,7 +47,7 @@ list_significant_miRNA <- apply(b_matrix, 2, takingout)
 
 # compute false discovery rates (less conservative method than the bonferroni correction)
 # set up a vector for each test(column)
-fdr_vector_test1 <- c(p_vals[,1])
+fdr_vector_test1 <- p_vals[,1]
 fdr_vector_test2 <- c(p_vals[,2])
 fdr_vector_test3 <- c(p_vals[,3])
 fdr_vector_test4 <- c(p_vals[,4])
