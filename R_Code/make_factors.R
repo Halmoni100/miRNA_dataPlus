@@ -1,7 +1,8 @@
 # Factors are:
 # Viral Symptomatic - v_s
 # Viral Asymptomatic - v_as
-# Baseline - bl
+# Baseline Symptomatic - bl_s
+# Basline Asymptomatic - bl_as
 # Bacteria - bc
 
 # Write factors for viral symptomatic & asymptomatic
@@ -15,8 +16,18 @@ for (i in viral_asymp_indices) {
 	viral[i] <- "v_as"
 }
 
-# Write factors for baseline
-baseline <- rep_len("bl", 21)
+# Write factors for baseline symptomatic & asymptomatic
+baseline <- vector(length=21)
+baseline_symp_indices <- c(1,2,5,9,11,13,15,16,17,18,19,20,21)
+baseline_asymp_indices <- c(3,4,6,7,8,10,12,14)
+baseline <- vector(length=21)
+for (i in viral_symp_indices) {
+	baseline[i] <- "bl_s"
+}
+for (i in viral_asymp_indices) {
+	baseline[i] <- "bl_as"
+}
+
 
 # Write factors for bacteria
 bacteria <- rep_len("bc", 10)
