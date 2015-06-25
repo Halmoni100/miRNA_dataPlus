@@ -113,14 +113,12 @@ for (i in 1:n) {
 df <- as.data.frame(data)
 rownames(df) <- s_names
 colnames(df) <- f_names
-# make sure strings are not factors
-df <- data.frame(lapply(df, as.character), stringAsFactors=FALSE)
 
 # make data frame describing features
 features <- f_names
-features <- cbind.data.frame(features, miRNA_names_proc, prec_names_proc)
+feat_df <- cbind.data.frame(features, miRNA_names_proc, prec_names_proc)
 features_cols <- c("names", "miRNA", "precursor")
-colnames(features) <- features_cols
+colnames(feat_df) <- features_cols
 
 # save data frames for data and features
 save(df, feat_df, file="Data_out/data_frames.r")

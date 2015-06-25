@@ -1,456 +1,3 @@
-#infomap#
-infomap.community(g, e.weights=cdata[,3], nb.trials = 10, modularity = TRUE)
-print(communities)
-print(g)
-length(g)
-print(g)
-length(communities)
-create.communities(membership)
-create.communities(g)
-info <- infomap.community(g, e.weights=cdata[,3], nb.trials = 10, modularity = TRUE)
-create.communities(info)
-print(info)
-print(length)
-modularity(info)
-is.hierarchial(info)
-is.hierarchical(info)
-plot(info)
-create.communities(info)
-ebc <- edge.betweenness.community(g, directed=F)#
- mods <- sapply(0:ecount(g), function(i){#
-   g2 <- delete.edges(g, ebc$removed.edges[seq(length=i)])#
-   cl <- clusters(g2)$membership#
- modularity(g,cl)#
- })
-modularity(g,cl)
-mods <- sapply(0:ecount(g)
-}
-g2 <- delete.edges(g, ebc$removed.edges[seq(length=i)])  cl <- clusters(g2)$membership
-g2 <- delete.edges(g, ebc$removed.edges[seq(length=i)])
-cl <- clusters(g2)$membership
-modularity(g, cl)
->>>>>>> origin/master
-setwd("~/Desktop/Data+/miRNA_dataPlus")
-# load normalized data#
-# loading quantile_norm_data#
-load("R_Data/saved_quantile_norm_data")#
-#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# t-test function#
-do_t_test <- function(s1, s2, is_paired) {#
-	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
-	return(result$p.value)#
-}#
-#
-# make an output matrix for the pvalues of all the tests#
-p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
-#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-	output_vector <- vector(length=11)#
-	output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
-	output_vector[2] <- do_t_test(allviral[k,], baseline[k,], TRUE)#
-	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[4] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
-	output_vector[5] <- do_t_test(bacterial[k,], viral_symptomatic[k,], FALSE)#
-	output_vector[6] <- do_t_test(bacterial[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[7] <- do_t_test(baseline[k,], viral_symptomatic[k,], FALSE)#
-	output_vector[8] <- do_t_test(baseline[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)#
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)#
-	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)#
-	p_vals[k,] <- output_vector#
-}#
-#
-# save p_vals matrix#
-save(p_vals, file="R_Data/saved_p_vals")
-# loading quantile_norm_data#
-load("R_Data/saved_quantile_norm_data.R")
-# Retrieve Data#
-# processed_data retreived#
-load("R_Data/saved_raw_data")#
-#
-# UQ normalization function#
-UQNorm <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-} #
-#
-# vector of Us needed to normalize data#
-Us <- apply(raw_data, 2, UQNorm)#
-#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-#
-# load processed data#
-load("R_Data/saved_processed_data")#
-#
-uqnorm <- matrix(, nrow=nrow(processed_data), ncol=ncol(processed_data))#
-#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(processed_data)) {#
-	colneeded <- processed_data[,i]#
-	uqnorm[,i] <- colneeded/Us[i]*U#
-}#
-#
-#create a function to normalize data#
-#order the data set according to rank#
-quantile_normalize <- function(v) {#
-	v_order <- rank(v,ties.method="average")#
-	#set the quantiles based on the order#
-	quantiles <- v_order/53#
-	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
-	return(quantile_norm_vec)	#
-}#
-#
-output_matrix <- matrix(, nrow=m, ncol=n)#
-# create quantile normalization function for each miRNA#
-quantile_norm_data <- apply(uqnorm, 1, quantile_normalize)#
-quantile_norm_data <- t(quantile_norm_data)#
-str(quantile_norm_data)#
-#
-# save final normalized data#
-save(quantile_norm_data, file="R_Data/saved_quantile_norm_data")
-load("/Users/kelseysumner/Desktop/Data+/miRNA_dataPlus/Data/R_Data-selected/saved_processed_data.r")
-# load normalized data#
-# loading quantile_norm_data#
-load("R_Data/saved_quantile_norm_data")#
-#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# t-test function#
-do_t_test <- function(s1, s2, is_paired) {#
-	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
-	return(result$p.value)#
-}#
-#
-# make an output matrix for the pvalues of all the tests#
-p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
-#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-	output_vector <- vector(length=11)#
-	output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
-	output_vector[2] <- do_t_test(allviral[k,], baseline[k,], TRUE)#
-	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[4] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
-	output_vector[5] <- do_t_test(bacterial[k,], viral_symptomatic[k,], FALSE)#
-	output_vector[6] <- do_t_test(bacterial[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[7] <- do_t_test(baseline[k,], viral_symptomatic[k,], FALSE)#
-	output_vector[8] <- do_t_test(baseline[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)#
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)#
-	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)#
-	p_vals[k,] <- output_vector#
-}#
-#
-# save p_vals matrix#
-save(p_vals, file="R_Data/saved_p_vals")
-# load normalized data#
-# loading quantile_norm_data#
-load("Data/saved_quantile_norm_data")#
-#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-allviral <- quantile_norm_data[,1:21]#
-baseline <- quantile_norm_data[,22:42]#
-bacterial <- quantile_norm_data[,43:52]#
-viral_symptomatic <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-viral_asymptomatic <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-combined_bacterial_baseline <- quantile_norm_data[,22:52]#
-combined_bacterial_allviral <- quantile_norm_data[,c(1:21,43:52)]#
-combined_baseline_allviral <- quantile_norm_data[,1:42]#
-#
-# t-test function#
-do_t_test <- function(s1, s2, is_paired) {#
-	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
-	return(result$p.value)#
-}#
-#
-# make an output matrix for the pvalues of all the tests#
-p_vals <- matrix(, nrow=nrow(quantile_norm_data), ncol=11)#
-#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-	output_vector <- vector(length=11)#
-	output_vector[1] <- do_t_test(allviral[k,], bacterial[k,], FALSE)#
-	output_vector[2] <- do_t_test(allviral[k,], baseline[k,], TRUE)#
-	output_vector[3] <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[4] <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
-	output_vector[5] <- do_t_test(bacterial[k,], viral_symptomatic[k,], FALSE)#
-	output_vector[6] <- do_t_test(bacterial[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[7] <- do_t_test(baseline[k,], viral_symptomatic[k,], FALSE)#
-	output_vector[8] <- do_t_test(baseline[k,], viral_asymptomatic[k,], FALSE)#
-	output_vector[9] <- do_t_test(combined_bacterial_baseline[k,], allviral[k,], FALSE)#
-	output_vector[10] <- do_t_test(combined_bacterial_allviral[k,], baseline[k,], FALSE)#
-	output_vector[11] <- do_t_test(combined_baseline_allviral[k,], bacterial[k,], FALSE)#
-	p_vals[k,] <- output_vector#
-}#
-#
-# save p_vals matrix#
-save(p_vals, file="Data/saved_p_vals")
-# Retrieve Data#
-# processed_data retreived#
-load("Data/saved_raw_data")
-pvals
-setwd(~/Box Sync/Sharing/Data_Plus/R_Data)
-setwd(~Box Sync/Sharing/Data_Plus/R_Data)
-setwd(~/Box Sync/Sharing/Data_Plus)
-load("/Users/kelseysumner/Box Sync/Sharing/Data_Plus/R_Data/saved_raw_data.r")
-load("/Users/kelseysumner/Box Sync/Sharing/Data_Plus/R_Data/saved_p_vals.r")
-p_vals
-fdr_vector_test1 <- c(p_vals[,1])#
-fdr_vector_test2 <- c(p_vals[,2])#
-fdr_vector_test3 <- c(p_vals[,3])#
-fdr_vector_test4 <- c(p_vals[,4])#
-fdr_vector_test5 <- c(p_vals[,5])#
-fdr_vector_test6 <- c(p_vals[,6])#
-fdr_vector_test7 <- c(p_vals[,7])#
-fdr_vector_test8 <- c(p_vals[,8])#
-fdr_vector_test9 <- c(p_vals[,9])#
-fdr_vector_test10 <- c(p_vals[,10])#
-fdr_vector_test11 <- c(p_vals[,11])
-fdr_adjustment1 <- p.adjust(fdr_vector_test1, method = "fdr")#
-fdr_adjustment2 <- p.adjust(fdr_vector_test2, method = "fdr")#
-fdr_adjustment3 <- p.adjust(fdr_vector_test3, method = "fdr")#
-fdr_adjustment4 <- p.adjust(fdr_vector_test4, method = "fdr")#
-fdr_adjustment5 <- p.adjust(fdr_vector_test5, method = "fdr")#
-fdr_adjustment6 <- p.adjust(fdr_vector_test6, method = "fdr")#
-fdr_adjustment7 <- p.adjust(fdr_vector_test7, method = "fdr")#
-fdr_adjustment8 <- p.adjust(fdr_vector_test8, method = "fdr")#
-fdr_adjustment9 <- p.adjust(fdr_vector_test9, method = "fdr")#
-fdr_adjustment10 <- p.adjust(fdr_vector_test10, method = "fdr")#
-fdr_adjustment11 <- p.adjust(fdr_vector_test11, method = "fdr")#
-fdr_combined <- c(fdr_adjustment1, fdr_adjustment2, fdr_adjustment3, fdr_adjustment4, fdr_adjustment5, fdr_adjustment6, fdr_adjustment7, fdr_adjustment8, fdr_adjustment9, fdr_adjustment10, fdr_adjustment11)#
-fdr_matrix <- matrix(fdr_combined, nrow=333, ncol=11)
-fdr_matrix
-b_vector_test1 <- c(p_vals[,1])#
-b_vector_test2 <- c(p_vals[,2])#
-b_vector_test3 <- c(p_vals[,3])#
-b_vector_test4 <- c(p_vals[,4])#
-b_vector_test5 <- c(p_vals[,5])#
-b_vector_test6 <- c(p_vals[,6])#
-b_vector_test7 <- c(p_vals[,7])#
-b_vector_test8 <- c(p_vals[,8])#
-b_vector_test9 <- c(p_vals[,9])#
-b_vector_test10 <- c(p_vals[,10])#
-b_vector_test11 <- c(p_vals[,11])#
-b_adjustment1 <- p.adjust(b_vector_test1, method = "bonferroni")#
-b_adjustment2 <- p.adjust(b_vector_test2, method = "bonferroni")#
-b_adjustment3 <- p.adjust(b_vector_test3, method = "bonferroni")#
-b_adjustment4 <- p.adjust(b_vector_test4, method = "bonferroni")#
-b_adjustment5 <- p.adjust(b_vector_test5, method = "bonferroni")#
-b_adjustment6 <- p.adjust(b_vector_test6, method = "bonferroni")#
-b_adjustment7 <- p.adjust(b_vector_test7, method = "bonferroni")#
-b_adjustment8 <- p.adjust(b_vector_test8, method = "bonferroni")#
-b_adjustment9 <- p.adjust(b_vector_test9, method = "bonferroni")#
-b_adjustment10 <- p.adjust(b_vector_test10, method = "bonferroni")#
-b_adjustment11 <- p.adjust(b_vector_test11, method = "bonferroni")#
-b_combined <- c(b_adjustment1, b_adjustment2, b_adjustment3, b_adjustment4, b_adjustment5, b_adjustment6, b_adjustment7, b_adjustment8, b_adjustment9, b_adjustment10, b_adjustment11)#
-b_matrix <- matrix(b_combined, nrow=333, ncol=11)
-b_matrix
-<<<<<<< HEAD
-significant_b_p_vals <- b_matrix <= .05
-significant_b_p_vals
-significant_fdr_p_vals <- fdr_matrix <= .05
-signifiant_fdr_p_vals
-significant_fdr_p_vals
-b_matrix
-significant_b_p_vals <- b_matrix <= .05
-significant_b_p_vals
-subset(significant_b_p_vals, subset=TRUE)
-significant_b_p_vals[TRUE]
-significant_b_p_vals(FALSE, drop = TRUE)
-significant_b_p_vals <- b_matrix <= .05
-significant_b_p_vals(FALSE, drop = TRUE)
-?subset
-subset(significant_b_p_vals, FALSE, drop = TRUE)
-subset(significant_b_p_vals, TRUE, drop = TRUE)
-apply(significant_b_p_vals, 2, subset(significant_b_p_vals, FALSE, drop = TRUE))
-?which
-apply(significant_b_p_vals, 2, significant_b_p_vals[TRUE])
-significant_b_p_vals[TRUE]
-takeout <- x==TRUE
-takeout <- significant_b_p_vals==TRUE
-takeout
-takingout <- function(significant_b_p_vals) {#
-	takeout <- significant_b_p_vals==TRUE#
-	return(takeout)#
-}
-apply(significant_b_p_vals, 2, takingout)
-takeout <- c(significant_b_p_vals==FALSE)
-takeout
-takingout <- function(significant_b_p_vals) {#
-#
-	takeout <- which(significant_b_p_vals == TRUE)#
-	return(takeout)#
-}
-apply(significant_b_p_vals, 2, takingout)
-takingout <- function(significant_b_p_vals) {#
-	takeout <- which(significant_b_p_vals == TRUE)#
-	return(takeout)#
-}
-apply(significant_b_p_vals, 2, takingout)
-?hclust
-clustergram <- hclust(dist(b_matrix))
-clustergram
-plot(clustergram)
-clustergram <- hclust(dist(b_matrix), "ave")
-plot(clustergram)
-clustergram <- hclust(dist(b_matrix), "complete")
-plot(clustergram)
-clustergram <- hclust(dist(b_matrix), "complete")#
-plot(clustergram)
-load("/Users/kelseysumner/Box Sync/Sharing/Data_Plus/R_Data/saved_raw_data.r")
-saved_raw_data
-raw_data
-processed_data
-head(processed_data)
-str(processed_data)
-?wilcoxin
-=======
->>>>>>> Stashed changes
-# Load the following...#
-# sample_factors#
-# quantile_norm_data#
-#
-# For reference, factors are#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline - bl#
-# Bacteria - bc#
-#
-# Load permtest package#
-library(permtest)#
-#
-create_truth_vec <- function(class) {#
-	# Assume that group 1 is class in consideration, group 2 is everything else#
-	truth_vec <- rep.int(2, ncol(quantile_norm_data))#
-	truth_table <- sample_factors == class#
-	for (i in 1:length(truth_vec)) {#
-		if (truth_table[i]) {#
-			truth_vec[i] <- 1#
-		}#
-	}#
-	return(truth_vec)#
-}#
-#
-# Assign 1s and 2s based on group#
-v_s_vec <- create_truth_vec("v_s")#
-v_as_vec <- create_truth_vec("v_as")#
-bl_vec <- create_truth_vec("bl")#
-bc_vec <- create_truth_vec("bc")#
-#
-# Assign names for data matrix for input into permtest#
-column_names <- 1:ncol(quantile_norm_data)#
-colnames(quantile_norm_data) <- column_names#
-#
-# Create designmatrices#
-v_s_dm <- cbind(column_names, v_s_vec)#
-v_as_dm <- cbind(column_names, v_as_vec)#
-bl_dm <- cbind(column_names, bl_vec)#
-bc_dm <- cbind(column_names, bc_vec)#
-#
-# Do permutation tests#
-v_s_result <- permtest(quantile_norm_data, v_s_dm, distance="euclid", nperms=1000, designtype="random")#
-v_as_result <- permtest(quantile_norm_data, v_as_dm, distance="euclid", nperms=1000, designtype="random")#
-bl_result <- permtest(quantile_norm_data, bl_dm, distance="euclid", nperms=1000, designtype="random")#
-bc_result <- permtest(quantile_norm_data, bc_dm, distance="euclid", nperms=1000, designtype="random")#
-#
-# Write out summaries to txt files#
-write.table(v_s_result, "R_Data_temp/permutation_test_summary/viral_symptomatic.txt", sep="\t", quote=FALSE)#
-write.table(v_as_result, "R_Data_temp/permutation_test_summary/viral_asymptomatic.txt", sep="\t", quote=FALSE)#
-write.table(bl_result, "R_Data_temp/permutation_test_summary/baseline.txt", sep="\t", quote=FALSE)#
-write.table(bc_result, "R_Data_temp/permutation_test_summary/bacteria.txt", sep="\t", quote=FALSE)
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_quantile_norm_data.r")
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
-# Load the following...#
-# sample_factors#
-# quantile_norm_data#
-#
-# For reference, factors are#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline - bl#
-# Bacteria - bc#
-#
-# Load permtest package#
-library(permtest)#
-#
-create_truth_vec <- function(class) {#
-	# Assume that group 1 is class in consideration, group 2 is everything else#
-	truth_vec <- rep.int(2, ncol(quantile_norm_data))#
-	truth_table <- sample_factors == class#
-	for (i in 1:length(truth_vec)) {#
-		if (truth_table[i]) {#
-			truth_vec[i] <- 1#
-		}#
-	}#
-	return(truth_vec)#
-}#
-#
-# Assign 1s and 2s based on group#
-v_s_vec <- create_truth_vec("v_s")#
-v_as_vec <- create_truth_vec("v_as")#
-bl_vec <- create_truth_vec("bl")#
-bc_vec <- create_truth_vec("bc")#
-#
-# Assign names for data matrix for input into permtest#
-column_names <- 1:ncol(quantile_norm_data)#
-colnames(quantile_norm_data) <- column_names#
-#
-# Create designmatrices#
-v_s_dm <- cbind(column_names, v_s_vec)#
-v_as_dm <- cbind(column_names, v_as_vec)#
-bl_dm <- cbind(column_names, bl_vec)#
-bc_dm <- cbind(column_names, bc_vec)#
-#
-# Do permutation tests#
-v_s_result <- permtest(quantile_norm_data, v_s_dm, distance="euclid", nperms=1000, designtype="random")#
-v_as_result <- permtest(quantile_norm_data, v_as_dm, distance="euclid", nperms=1000, designtype="random")#
-bl_result <- permtest(quantile_norm_data, bl_dm, distance="euclid", nperms=1000, designtype="random")#
-bc_result <- permtest(quantile_norm_data, bc_dm, distance="euclid", nperms=1000, designtype="random")#
-#
-# Write out summaries to txt files#
-write.table(v_s_result, "R_Data_temp/permutation_test_summary/viral_symptomatic.txt", sep="\t", quote=FALSE)#
-write.table(v_as_result, "R_Data_temp/permutation_test_summary/viral_asymptomatic.txt", sep="\t", quote=FALSE)#
-write.table(bl_result, "R_Data_temp/permutation_test_summary/baseline.txt", sep="\t", quote=FALSE)#
-write.table(bc_result, "R_Data_temp/permutation_test_summary/bacteria.txt", sep="\t", quote=FALSE)
-# Do permutation tests#
-v_s_result <- permtest(quantile_norm_data, v_s_dm, distance="euclid", nperms=100000, designtype="random")#
-v_as_result <- permtest(quantile_norm_data, v_as_dm, distance="euclid", nperms=100000, designtype="random")#
-bl_result <- permtest(quantile_norm_data, bl_dm, distance="euclid", nperms=100000, designtype="random")#
-bc_result <- permtest(quantile_norm_data, bc_dm, distance="euclid", nperms=100000, designtype="random")#
-#
-# Write out summaries to txt files#
-write.table(v_s_result, "R_Data_temp/permutation_test_summary/viral_symptomatic.txt", sep="\t", quote=FALSE)#
-write.table(v_as_result, "R_Data_temp/permutation_test_summary/viral_asymptomatic.txt", sep="\t", quote=FALSE)#
-write.table(bl_result, "R_Data_temp/permutation_test_summary/baseline.txt", sep="\t", quote=FALSE)#
-write.table(bc_result, "R_Data_temp/permutation_test_summary/bacteria.txt", sep="\t", quote=FALSE)
-install.packages("clusterSim")
-x <- c(TRUE, TRUE, FALSE, FALSE, TRUE)
-y <- c(FALSE, TRUE, TRUE, FALSE, FALSE)
-z <- x | y
-z
-x <- 1
 class(x)
 x <- "tummy"
 x
@@ -5585,3 +5132,1154 @@ bonferroni_adjust <- function(v) {#
 	return(significant_ordered)#
 }#
 significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_p_vals.r")
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame()#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		colanmes#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	colnames(significant) <- c("index", "p-val")#
+	significant_ordered <- significant[order(index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=integer(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		colanmes#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=integer(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=integer(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+significant_miRNA_dfs
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=integer(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			print("ran")#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=integer(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	print(significant)#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=integer(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			print(entry)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=numeric(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			print(entry)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=numeric(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind.data.frame(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+significant_miRNA_dfs
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant <- data.frame(index=numeric(), p_val=double())#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind(significant, entry)#
+		}#
+	}#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+significant_miRNA_dfs
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind(significant, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+significant_miRNA_dfs
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	print(significant)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	print(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			print(entry)#
+			rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			print(entry)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$index), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+significant_miRNA_dfs
+# Load the following...#
+#	p_vals#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values, order them in a data frame#
+bonferroni_adjust <- function(v) {#
+	adjusted_v <- p.adjust(v, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			entry <- c(i, val)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+significant_miRNA_dfs
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_quantile_norm_data.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
+# Load the following...#
+# quantile_norm_data#
+# sample_factors#
+#
+# Do PCA Analysis#
+pca_analysis <- dget("R_Code/PCA/analyze_PCs_samples.r")#
+pca_analysis(quantile_norm_data, sample_factors, 10)
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_quantile_norm_data.r")
+# Load the following...#
+# 	quantile_norm_data#
+#	sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+v_s_bool_vec <- sample_factors == "v_s"#
+v_as_bool_vec <- sample_factors == "v_as"#
+bl_s_bool_vec <- sample_factors == "bl_s"#
+bl_as_bool_vec <- sample_factors == "bl_as"#
+bc_bool_vec <- sample_factors == "bc"#
+#
+viral_symptomatic <- quantile_norm_data[, v_s_bool_vec]#
+viral_asymptomatic <- quantile_norm_data[, v_as_bool_vec]#
+baseline_symptomatic <- quantile_norm_data[, bl_s_bool_vec]#
+baseline_asymptomatic <- quantile_norm_data[, bl_as_bool_vec]#
+bacterial <- quantile_norm_data[, bc_bool_vec]#
+allviral <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec]#
+baseline <- quantile_norm_data[, bl_s_bool_vec | bl_as_bool_vec]#
+allviral_and_bacterial <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec | bc_bool_vec]#
+#
+v_s_ordered <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
+v_as_ordered <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
+b_s_ordered <- quantile_norm_data[,c(22,41,24,31,27,42,29,26,28,23,37,33,34)]#
+b_as_ordered <- quantile_norm_data[,c(40,25,39,38,36,30,35,32)]#
+#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	out = list()#
+	out[[1]] <- result$p.value#
+	out[[2]] <- result$conf.int#
+}#
+#
+# make an output matrix for the p values of all the tests#
+p_vals <- matrix( , nrow=nrow(quantile_norm_data), ncol=7)#
+# make an output matrix for the standard errors of all the p values#
+conf_ints <- matrix( , nrow=nrow(quantile_norm_data), ncol=7)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	p_val_vec <- vector(length=7)#
+	conf_int_vec <- vector(length=7)#
+	result_1 <- do_t_test(v_s_ordered[k,], b_s_ordered[k,], TRUE)#
+	p_val_vec[1] <- result_1[[1]]#
+	conf_int_vec[1] <- result_1[[2]]#
+	result_2 <- do_t_test(v_as_ordered[k,], b_as_ordered[k,], TRUE)#
+	p_val_vec[2] <- result_2[[1]]#
+	conf_int_vec[2] <- result_2[[2]]#
+	result_3 <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	p_val_vec[3] <- result_3[[1]]#
+	conf_int_vec[3] <- result_3[[2]]#
+	result_4 <- do_t_test(viral_symptomatic[k,], bacterial[k,], FALSE)#
+	p_val_vec[4] <- result_4[[1]]#
+	conf_int_vec[4] <- result_4[[2]]#
+	result_5 <- do_t_test(baseline_symptomatic[k,], baseline_asymptomatic[k,], FALSE)#
+	p_val_vec[5] <- result_5[[1]]#
+	conf_int_vec[5] <- result_5[[2]]#
+	result_6 <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	p_val_vec[6] <- result_6[[1]]#
+	conf_int_vec[6] <- result_6[[2]]#
+	result_7 <- do_t_test(allviral_and_bacterial[k,], baseline[k,], FALSE)#
+	p_val_vec[7] <- result_7[[1]]#
+	conf_int_vec[7] <- result_7[[2]]#
+	p_vals[k,] <- p_val_vec#
+	conf_ints[k,] <- conf_int_vec#
+}#
+#
+# save p_vals matrix#
+save(p_vals, file="Data_out/saved_p_vals.r")#
+# save conf_ints matrix#
+save(conf_ints, file="Data_out/saved_conf_ints_p_vals.r")
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[ , test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[i] <- bonferroni_adjust(i)#
+}#
+significant_miRNAs
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[i] <- bonferroni_adjust(i)#
+}#
+significant_miRNAs
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			print(conf_int)#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[i] <- bonferroni_adjust(i)#
+}
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			print(paste("->",conf_int))#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[i] <- bonferroni_adjust(i)#
+}
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[i] <- bonferroni_adjust(i)#
+}
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}
+significant_miRNAs
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
+v_s_bool_vec <- sample_factors == "v_s"#
+v_as_bool_vec <- sample_factors == "v_as"#
+bl_s_bool_vec <- sample_factors == "bl_s"#
+bl_as_bool_vec <- sample_factors == "bl_as"#
+bc_bool_vec <- sample_factors == "bc"#
+#
+viral_symptomatic <- quantile_norm_data[, v_s_bool_vec]#
+viral_asymptomatic <- quantile_norm_data[, v_as_bool_vec]#
+baseline_symptomatic <- quantile_norm_data[, bl_s_bool_vec]#
+baseline_asymptomatic <- quantile_norm_data[, bl_as_bool_vec]#
+bacterial <- quantile_norm_data[, bc_bool_vec]#
+allviral <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec]#
+baseline <- quantile_norm_data[, bl_s_bool_vec | bl_as_bool_vec]#
+allviral_and_bacterial <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec | bc_bool_vec]#
+#
+v_s_ordered <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
+v_as_ordered <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
+b_s_ordered <- quantile_norm_data[,c(22,41,24,31,27,42,29,26,28,23,37,33,34)]#
+b_as_ordered <- quantile_norm_data[,c(40,25,39,38,36,30,35,32)]#
+#
+# t-test function#
+do_t_test <- function(s1, s2, is_paired) {#
+	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
+	out = list()#
+	out[[1]] <- result$p.value#
+	out[[2]] <- result$conf.int#
+	return(out)#
+}#
+#
+# make an output matrix for the p values of all the tests#
+p_vals <- matrix( , nrow=nrow(quantile_norm_data), ncol=7)#
+# make an output matrix for the standard errors of all the p values#
+conf_ints <- matrix( , nrow=nrow(quantile_norm_data), ncol=7)#
+#
+# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
+for (k in 1:nrow(quantile_norm_data)) {#
+	p_val_vec <- vector(length=7)#
+	conf_int_vec <- vector(length=7)#
+	result_1 <- do_t_test(v_s_ordered[k,], b_s_ordered[k,], TRUE)#
+	p_val_vec[1] <- result_1[[1]]#
+	conf_int_vec[1] <- result_1[[2]]#
+	result_2 <- do_t_test(v_as_ordered[k,], b_as_ordered[k,], TRUE)#
+	p_val_vec[2] <- result_2[[1]]#
+	conf_int_vec[2] <- result_2[[2]]#
+	result_3 <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
+	p_val_vec[3] <- result_3[[1]]#
+	conf_int_vec[3] <- result_3[[2]]#
+	result_4 <- do_t_test(viral_symptomatic[k,], bacterial[k,], FALSE)#
+	p_val_vec[4] <- result_4[[1]]#
+	conf_int_vec[4] <- result_4[[2]]#
+	result_5 <- do_t_test(baseline_symptomatic[k,], baseline_asymptomatic[k,], FALSE)#
+	p_val_vec[5] <- result_5[[1]]#
+	conf_int_vec[5] <- result_5[[2]]#
+	result_6 <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
+	p_val_vec[6] <- result_6[[1]]#
+	conf_int_vec[6] <- result_6[[2]]#
+	result_7 <- do_t_test(allviral_and_bacterial[k,], baseline[k,], FALSE)#
+	p_val_vec[7] <- result_7[[1]]#
+	conf_int_vec[7] <- result_7[[2]]#
+	p_vals[k,] <- p_val_vec#
+	conf_ints[k,] <- conf_int_vec#
+}#
+#
+# save p_vals matrix#
+save(p_vals, file="Data_out/saved_p_vals.r")#
+# save conf_ints matrix#
+save(conf_ints, file="Data_out/saved_conf_ints_p_vals.r")
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}
+significant_miRNAs
+library(MASS)
+library(ISLR)
+install.packages("ISLR")
+library(ISLR)
+fix(Boston)
+names(Boston)
+?Boston
+lm.fit = lm(medv~lstat, data=Boston)
+lm.fit
+attach(Boston)
+summary(lm.fit)
+names(lm.fit)
+coef(lm.fit)
+confint(lm.fit)
+predict(lm.fit, data.frame(lstat=(c(5,10,15))), interval="confidence")
+predict(lm.fit, data.frame(lstat=(c(5,10,15))), interval="prediction")
+plot(lstat, medv)
+abline(lm.fit)
+abline(lm.fit, lwd=3)
+abline(lm.fit, lwd=3, col="red")
+plot(lstat, medv, col="red")
+plot(lstat,medv, pch=20)
+plot(lstat, medv, pch="+")
+plot(1:20,1:20,pch=1:20)
+par(mfrow=c(2,2))
+plot(lm.fit)
+plot(predict(lm.fit), residuals(lm.fit))
+?Boston
+plot(hatvalues(lm.fit))
+plot(predict(lm.fit), rstudent(lm.fit))
+lm.fit=lm(medv~lstat+age)
+summary(lm.fit)
+lm.fit=lm(medv~.,data=Boston)
+summary(lm.fit)
+?summary.lm
+names(Smarket)
+summary(Smarket)
+head(Smarket)
+glm.fit=glm(Direction~Lag1+Lag2+Lag3+Lag4+Lag5+Volume, data=Smarket, family=binomial)
+summary(glm.fit)
+str(Smarket$Direction)
+x <- c(1,2,3)
+poly(x,3)
+poly(x,2)
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/data_frames.r")
+head(df)
+################
+# Retrieve Data#
+################
+#
+# insert data set#
+known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
+#
+# extract raw data into matrix (just #s), exclude "norm" data#
+data_raw <- known_data[,5:56]#
+data_raw <- data.matrix(data_raw)#
+#
+# save miRNA names#
+miRNA_names <- known_data[,1]#
+# save precursor names#
+prec_names <- known_data[,3]#
+#
+# function to count zeros, return proportions#
+count_zeros <- function(v) {#
+	len <- length(v)#
+	zero_bool <- v==0#
+	zero_count <- length(which(zero_bool == "TRUE"))#
+	prop <- zero_count / len#
+	return(prop)#
+}#
+################
+# Eliminate >50% zero proportions#
+################
+#
+# find zero proportions for each miRNA#
+zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
+#
+# delete miRNAs that have >50% zeros#
+over_50 <- zero_prop_miRNA > 0.5#
+data_proc <- data_raw[!over_50,]#
+#
+# get miRNA names for data_proc#
+miRNA_names_proc <- miRNA_names[!over_50]#
+# get precursor names for data_proc#
+prec_names_proc <- prec_names[!over_50]#
+################
+# Normalize Data#
+################
+#
+# UQ normalization function#
+uq_normalize <- function(v) {#
+    nonzero_data <- subset(v, v > 0)#
+    quartiles <- quantile(nonzero_data)#
+    uq <- quartiles[4]#
+    return(uq)#
+}#
+#
+# vector of Us needed to normalize data#
+Us <- apply(data_raw, 2, uq_normalize)#
+# finding mean of the of the uq samples#
+U <- mean(Us)#
+#
+# do UQ normalization#
+uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
+# doing a for loop to normalize on each sample#
+for (i in 1:ncol(data_proc)) {#
+	col <- data_proc[,i]#
+	uqnorm[,i] <- col/Us[i]*U#
+}#
+#
+# quantile normalization function#
+quantile_normalize <- function(v) {#
+	v_order <- rank(v,ties.method="average")#
+	#set the quantiles based on the order#
+	quantiles <- v_order/53#
+	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
+	return(quantile_norm_vec)	#
+}#
+#
+# do quantile normalization#
+# create quantile normalization function for each miRNA#
+q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
+q_norm_data <- t(q_norm_data)#
+# debugging check#
+print(paste("m =", nrow(q_norm_data)))#
+print(paste("n =", ncol(q_norm_data)))#
+################
+# Format Data Frame#
+################
+#
+# transpose data_proc, name it as data#
+data <- t(q_norm_data)#
+#
+# Get m (# rows) and n (# cols) for data#
+# m represents samples, n represents features#
+m <- nrow(data)#
+n <- ncol(data)#
+#
+# name samples s1, s2, etc.#
+s_names <- vector(mode="character", length=m)#
+for (i in 1:m) {#
+	s_name <- paste("s", i, sep="")#
+	s_names[i] <- s_name#
+}#
+# name features f1, f2, etc.#
+f_names <- vector(mode="character", length=n)#
+for (i in 1:n) {#
+	f_name <- paste("f", i, sep="")#
+	f_names[i] <- f_name#
+}#
+#
+# make data into data frame, assign sample & feature names#
+df <- as.data.frame(data)#
+rownames(df) <- s_names#
+colnames(df) <- f_names#
+#
+# make data frame describing features#
+features <- f_names#
+features <- cbind.data.frame(features, miRNA_names_proc, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(features) <- features_cols#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+head(df)
+head(feat_df)
+miRNA_names_proc
+# make data frame describing features#
+features <- f_names#
+features <- cbind(features, miRNA_names_proc, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(features) <- features_cols
+# make data frame describing features#
+features <- f_names#
+feat_df <- cbind.data.frame(features, miRNA_names_proc, prec_names_proc)#
+features_cols <- c("names", "miRNA", "precursor")#
+colnames(feat_df) <- features_cols#
+#
+# save data frames for data and features#
+save(df, feat_df, file="Data_out/data_frames.r")
+head(feat_df)
+df[1:10,1:10]
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/data_frames.r")
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral_Symp", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+print(head(df_sub))
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral_Symp", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+print(head(df_sub))
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral_Symp", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+print(head(df_sub))
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral_Symp", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral_Symp", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral_Symp", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral_Symp", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)
+df_sub[1:10,1:10]
+df_sub[1:10,330:334]
+str(df_sub$y)

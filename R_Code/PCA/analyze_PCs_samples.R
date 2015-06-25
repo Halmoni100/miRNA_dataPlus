@@ -34,7 +34,7 @@ function(data, factors, num) {
 	}
 
 	# Plot all combinations of PCs, store in files
-	# red=viral, green=baseline, blue=bacteria
+	# red = viral symp, orange = viral asymp, blue = baseline, green = bacteria
 	from_i <- 1
 	to_i <- num - 1
 	to_j <- num
@@ -44,8 +44,9 @@ function(data, factors, num) {
 			plot_name <- paste(i,"vs",j, sep="_")
 			dir_name <- paste("Data_out/plots/",
 					plot_name, ".jpeg", sep="")
-			jpeg(dir_name)
+			jpeg(dir_name, width=15, height=15, units="cm", res=300)
 			plot(pcs_viral_symp[[i]], pcs_viral_symp[[j]], col="red", pch=16,
+					xlab=paste("PC", i), ylab=paste("PC", j),
 					xlim=c(min(pcs_all[[i]]), max(pcs_all[[i]])),
 					ylim=c(min(pcs_all[[j]]), max(pcs_all[[j]])))
 			points(pcs_viral_asymp[[i]], pcs_viral_asymp[[j]], col="orange", pch=16)

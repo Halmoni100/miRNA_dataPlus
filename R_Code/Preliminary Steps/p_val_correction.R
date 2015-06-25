@@ -1,25 +1,34 @@
 # Load the following...
 #	p_vals
+#	conf_ints
 
 # create list of data frames
 significant_miRNAs <- list()
-# compute Bonferroni p-values, order them in a data frame
-bonferroni_adjust <- function(v) {
-	adjusted_v <- p.adjust(v, method = "bonferroni")
-	significant_mat <- matrix(, nrow=0, ncol=2)
-	for (i in 1:length(adjusted_v)) {
-		val <- adjusted_v[i]
+# compute Bonferroni p-values
+# returns data frame of index, p value, and confidence interval
+bonferroni_adjust <- function(test_num) {
+	p_val_vec <- p_vals[, test_num]
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")
+	significant_mat <- matrix(, nrow=0, ncol=3)
+	for (i in 1:length(adjusted_p_val_vec)) {
+		val <- adjusted_p_val_vec[i]
 		if (val <= .05) {
-			entry <- c(i, val)
+			conf_int <- conf_ints[i, test_num]
+			entry <- c(i, val, conf_int)
 			significant_mat <- rbind(significant_mat, entry)
 		}
 	}
 	significant <- as.data.frame(significant_mat)
-	colnames(significant) <- c("index", "p_val")
+	colnames(significant) <- c("index", "p_val", "conf_int")
 	significant_ordered <- significant[order(significant$p_val), ]
 	return(significant_ordered)
 }
-significant_miRNA_dfs <- apply(p_vals, 2, bonferroni_adjust)
+# get # cols
+n <- ncol(p_vals)
+# perform function for each column
+for (i in 1:n) {
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)
+}
 
 
 

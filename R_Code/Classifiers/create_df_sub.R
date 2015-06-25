@@ -1,17 +1,11 @@
-create_X_and_y <- function(data, factors, factor_names, factor_vec) {
-# Create X and y based on data and factors
-# Make sure data rows are labeled with names
-# data is mxn matrix, m describes miRNAs, n describes samples
-# factors is list that describes the two groups to specify in y
+create_df_sub <- function(df, factor_vec, factors, factor_names) {
+# Create df_sub based on data and factors
+# df is mxn data frame, m describes samples, n describes miRNAs
+# factors is list that describes the two groups to specify based on factor_vec
 # factor_names describe the name to assign the two groups of factors
-# - must be factor vector where first level is failure
+# - must be vector where first element is success (1), other element is failure (0)
 # factor_vec provides labels
 
-	# transpose data to mxn matrix where m describes samples, n describes miRNAs
-	data_t <- t(data)
-	m <- nrow(data_t)
-	n <- ncol(data_t)
-	
 	assign_truth_table <- function(class_list, factor_vec) {
 		# initialize truth_table to all false
 		num_samples = length(factor_vec)
@@ -23,16 +17,16 @@ create_X_and_y <- function(data, factors, factor_names, factor_vec) {
 		}
 		return(truth_table)
 	}
-
+	
 	truth_table_1 <- assign_truth_table(factors[[1]], factor_vec)
 	truth_table_2 <- assign_truth_table(factors[[2]], factor_vec)
 	
 	# extract only samples specified in factors
 	truth_table_all <- truth_table_1 | truth_table_2
-	X <- data_t[truth_table_all, ]
+	df_sub <- df[truth_table_all, ]
 	
 	# create factor name vector
-	y <- vector(mode="character", length=nrow(X))
+	y <- vector(mode="character", length=nrow(df_sub))
 	# j is current number to fill in y
 	j <- 1
 	for (i in 1:m) {
@@ -45,11 +39,18 @@ create_X_and_y <- function(data, factors, factor_names, factor_vec) {
 			j <- j + 1
 		}
 	}
-	if (j != nrow(X) + 1) {
+	if (j != nrow(df_sub) + 1) {
 		stop("Error: Not all of y covered")
 	}
 	
-	# return X and y
-	out <- list(X, y)
-	return(out)
+	y <- factor(y, order=TRUE, levels=factor_names)
+	
+	# Debugging: check structure of y
+	print(str(y))
+	
+	# incorporate y into df_sub
+	df_sub <- cbind.data.frame(df_sub, y)
+	
+	# return df_sub
+	return(df_sub)
 }
