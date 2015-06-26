@@ -17,15 +17,16 @@ for (i in viral_asymp_indices) {
 }
 
 # Write factors for baseline symptomatic & asymptomatic
-baseline <- vector(length=21)
 baseline_symp_indices <- c(22,23,24,26,27,28,29,31,33,34,37,41,42)
 baseline_asymp_indices <- c(25,30,32,35,36,38,39,40)
 baseline <- vector(length=21)
-for (i in viral_symp_indices) {
-	baseline[i] <- "bl_s"
+for (i in baseline_symp_indices) {
+	j <- i-21
+	baseline[j] <- "bl_s"
 }
-for (i in viral_asymp_indices) {
-	baseline[i] <- "bl_as"
+for (i in baseline_asymp_indices) {
+	j <- i-21
+	baseline[j] <- "bl_as"
 }
 
 
@@ -35,7 +36,6 @@ bacteria <- rep_len("bc", 10)
 # Get one big factor vector
 category_vector <- c(viral, baseline, bacteria)
 sample_factors <- factor(category_vector)
-sample_factors
 
 # Save factor vector
 save(sample_factors, file="Data_out/saved_sample_factors.r")

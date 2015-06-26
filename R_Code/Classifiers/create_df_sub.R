@@ -29,7 +29,7 @@ create_df_sub <- function(df, factor_vec, factors, factor_names) {
 	y <- vector(mode="character", length=nrow(df_sub))
 	# j is current number to fill in y
 	j <- 1
-	for (i in 1:m) {
+	for (i in 1:nrow(df)) {
 		if (truth_table_1[i]) {
 			y[j] <- factor_names[1]
 			j <- j + 1
@@ -44,9 +44,6 @@ create_df_sub <- function(df, factor_vec, factors, factor_names) {
 	}
 	
 	y <- factor(y, order=TRUE, levels=factor_names)
-	
-	# Debugging: check structure of y
-	print(str(y))
 	
 	# incorporate y into df_sub
 	df_sub <- cbind.data.frame(df_sub, y)
