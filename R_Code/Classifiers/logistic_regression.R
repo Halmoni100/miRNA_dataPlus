@@ -1,6 +1,8 @@
 # Load the following...
 # df (from data_frames.r)
 # sample_factors
+load("Data_in/data_frames.r")
+load("Data_in/saved_sample_factors.r")
 
 # For reference:
 # Viral Symptomatic - v_s
@@ -20,13 +22,15 @@ create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")
 grp1 <- "v_s"
 grp2 <- "bc"
 factors <- list(grp1, grp2)
-factor_names <- c("G1", "G2")
+factor_names <- c("Viral Symptomatic", "Bacteria")
 # get df_sub
 df_sub <- create_df_sub(df, sample_factors, factors, factor_names)
 
 # get nrow (m) and ncol (n) of df_sub
 m <- nrow(df_sub)
 n <- ncol(df_sub)
+
+print(str(df_sub$y))
 
 # Perform lasso logistic regression on all of the data
 grid = 10^seq(10, -2, length=100)
