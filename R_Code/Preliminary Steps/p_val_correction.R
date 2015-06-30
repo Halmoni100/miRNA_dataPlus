@@ -1,6 +1,8 @@
 # Load the following...
 #	p_vals
 #	conf_ints
+load("Data_in/saved_p_vals.r")
+load("Data_in/saved_conf_ints_p_vals.r")
 
 # create list of data frames
 significant_miRNAs <- list()
@@ -62,10 +64,10 @@ head(fdr_significant_miRNAs[[i]]$p_val)
 for (i in 1:7) {
 	new_frame <- fdr_significant_miRNAs[[i]]
 	if (nrow(new_frame) > 0) {
-		p_vals <- new_frame$p_val
+		adjusted_fdr_pvals <- new_frame$p_val
 		quartz()
 		plot_name <- paste("Test #", i)
-		hist(p_vals, main = plot_name)
+		hist(adjusted_fdr_pvals, main = plot_name)
 	}
 }
 
