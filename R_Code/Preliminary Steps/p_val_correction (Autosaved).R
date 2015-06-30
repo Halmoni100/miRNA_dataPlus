@@ -36,10 +36,10 @@ fdr_significant_miRNAs <- list()
 # compute FDR p-values, order them in data frame
 fdr_adjust <- function(test_num) {
 	p_val_vec <- p_vals[, test_num]
-	adjusted_v <- p.adjust(p_val_vec, method = "fdr")
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")
 	significant_mat <- matrix(, nrow=0, ncol=3)
-	for (i in 1:length(adjusted_v)) {
-		val <- adjusted_v[i]
+	for (i in 1:length(adjusted_p_val_vec)) {
+		val <- adjusted_p_val_vec[i]
 		if (val <= .05) {
 			conf_int <- conf_ints[i, test_num]
 			entry <- c(i, val, conf_int)
