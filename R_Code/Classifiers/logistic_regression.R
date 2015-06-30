@@ -24,22 +24,40 @@ factor_names <- c("G1", "G2")
 # get df_sub
 df_sub <- create_df_sub(df, sample_factors, factors, factor_names)
 
-# get nrow (m) and ncol (n) of df
+# get nrow (m) and ncol (n) of df_sub
 m <- nrow(df_sub)
 n <- ncol(df_sub)
 
-set.seed(1)
-grid=10^seq(10,-2,length=100)
+# Perform lasso logistic regression on all of the data
+grid = 10^seq(10, -2, length=100)
+lasso.mod = glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial", alpha=1)
 
-print(head(df_sub))
-
-y <- as.integer(df_sub[,n])
-y <- y-1
-y
-lasso.mod = glmnet(as.matrix(df_sub[,1:n-1]), y, alpha=1, lambda=grid)
-cv.out=cv.glmnet(as.matrix(df_sub[,1:n-1]), y, alpha=1, nfolds=m)
+# Do leave one out cross validation
+cv.out = cv.glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial", type.measure="class", alpha=1, nfolds=m)
+# Plot misclassification rates from LOOCV vs lambda parameter
 plot(cv.out)
+# Choose best lambda from LOOCV
+bestlam = cv.out$lambda.min
 
+# Do lasso logistic regression on all of the data using best lambda
 lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)
 
-
+# Print out coefficients
+indices <- rownames(lasso.coef)
+nonzero_coef <- matrix(, nrow=0, ncol=2)
+colnames(nonzero_coef) <- c("index", "coef")
+for (i in 2:length(lasso.coef)) {
+	if (abs(lasso.coef[i]) > 0) {
+		print(i)
+		print(lasso.coef[i])
+		feat_string <- indices[i]
+		index_string <- substring(feat_string, 2)
+		index <- as.integer(index_string)
+		new_coef <- c(index, lasso.coef[i])
+		nonzero_coef <- rbind(nonzero_coef, new_coef)
+	}
+}
+nonzero_coef_df <- as.data.frame(nonzero_coef)
+lr_nonzero_coef_sorted <- nonzero_coef_df[order(-abs(nonzero_coef_df$coef)),]
+rownames(lr_nonzero_coef_sorted) <- NULL
+write.table(lr_nonzero_coef_sorted, file="Data_out/logistic_regression_coefs.txt", sep="\t", row.names=FALSE)
