@@ -11,57 +11,101 @@ load("Data_in/saved_sample_factors.r")
 # Basline Asymptomatic - bl_as
 # Bacteria - bc
 
-# Load glmnet
-library(glmnet)
 # Load create_df_sub function
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")
+create_df_sub = dget("R_Code/Classifiers/create_df_sub.r")
+# Load do_log_reg function
+do_log_reg = dget("R_Code/Classifiers/do_log_reg.r")
 
-# test...
-# try on viral symptomatic vs bacteria
+# create main directory
+dir.create("Data_out/logistic_regression_out")
+main_dir = "Data_out/logistic_regression_out/"
+
+#######################
+# Viral Symptomatic vs Baseline Symptomatic
+#######################
 # create factors and factor_names
-grp1 <- "v_s"
-grp2 <- "bc"
-factors <- list(grp1, grp2)
-factor_names <- c("Viral Symptomatic", "Bacteria")
+grp1 = "v_s"
+grp2 = "bl_s"
+factors = list(grp1, grp2)
+factor_names = c("Viral Symptomatic", "Baseline Symptomatic")
 # get df_sub
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)
+df_sub = create_df_sub(df, sample_factors, factors, factor_names)
+# create directory
+dir.create(paste(main_dir, "viral_symp_vs_baseline_symp", sep=""))
+# perform logistic regression
+do_log_reg(df_sub, 1, paste(main_dir, "viral_symp_vs_baseline_symp/", sep=""))
 
-# get nrow (m) and ncol (n) of df_sub
-m <- nrow(df_sub)
-n <- ncol(df_sub)
+#######################
+# Viral Asymptomatic vs Baseline Asymptomatic
+#######################
+# create factors and factor_names
+grp1 = "v_as"
+grp2 = "bl_as"
+factors = list(grp1, grp2)
+factor_names = c("Viral Asymptomatic", "Baseline Asymptomatic")
+# get df_sub
+df_sub = create_df_sub(df, sample_factors, factors, factor_names)
+# create directory
+dir.create(paste(main_dir, "viral_asymp_vs_baseline_asymp", sep=""))
+# perform logistic regression
+do_log_reg(df_sub, 1, paste(main_dir, "viral_asymp_vs_baseline_asymp/", sep=""))
 
-print(str(df_sub$y))
+#######################
+# Viral Symptomatic vs Bacteria
+#######################
+# create factors and factor_names
+grp1 = "v_s"
+grp2 = "bc"
+factors = list(grp1, grp2)
+factor_names = c("Viral Symptomatic", "Bacteria")
+# get df_sub
+df_sub = create_df_sub(df, sample_factors, factors, factor_names)
+# create directory
+dir.create(paste(main_dir, "viral_symp_vs_bacteria", sep=""))
+# perform logistic regression
+do_log_reg(df_sub, 1, paste(main_dir, "viral_symp_vs_bacteria/", sep=""))
 
-# Perform lasso logistic regression on all of the data
-grid = 10^seq(10, -2, length=100)
-lasso.mod = glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial", alpha=1)
+#######################
+# Baseline Symptomatic vs Baseline Asymptomatic
+#######################
+# create factors and factor_names
+grp1 = "bl_s"
+grp2 = "bl_as"
+factors = list(grp1, grp2)
+factor_names = c("Baseline Symptomatic", "Baseline Asymptomatic")
+# get df_sub
+df_sub = create_df_sub(df, sample_factors, factors, factor_names)
+# create directory
+dir.create(paste(main_dir, "baseline_symp_vs_baseline_asymp", sep=""))
+# perform logistic regression
+do_log_reg(df_sub, 1, paste(main_dir, "baseline_symp_vs_baseline_asymp/", sep=""))
 
-# Do leave one out cross validation
-cv.out = cv.glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial", type.measure="class", alpha=1, nfolds=m)
-# Plot misclassification rates from LOOCV vs lambda parameter
-plot(cv.out)
-# Choose best lambda from LOOCV
-bestlam = cv.out$lambda.min
+#######################
+# Bacteria vs Baseline
+#######################
+# create factors and factor_names
+grp1 = "bc"
+grp2 = c("bl_s", "bl_as")
+factors = list(grp1, grp2)
+factor_names = c("Bacteria", "Baseline")
+# get df_sub
+df_sub = create_df_sub(df, sample_factors, factors, factor_names)
+# create directory
+dir.create(paste(main_dir, "bacteria_vs_baseline", sep=""))
+# perform logistic regression
+do_log_reg(df_sub, 1, paste(main_dir, "bacteria_vs_baseline/", sep=""))
 
-# Do lasso logistic regression on all of the data using best lambda
-lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)
-
-# Print out coefficients
-indices <- rownames(lasso.coef)
-nonzero_coef <- matrix(, nrow=0, ncol=2)
-colnames(nonzero_coef) <- c("index", "coef")
-for (i in 2:length(lasso.coef)) {
-	if (abs(lasso.coef[i]) > 0) {
-		print(i)
-		print(lasso.coef[i])
-		feat_string <- indices[i]
-		index_string <- substring(feat_string, 2)
-		index <- as.integer(index_string)
-		new_coef <- c(index, lasso.coef[i])
-		nonzero_coef <- rbind(nonzero_coef, new_coef)
-	}
-}
-nonzero_coef_df <- as.data.frame(nonzero_coef)
-lr_nonzero_coef_sorted <- nonzero_coef_df[order(-abs(nonzero_coef_df$coef)),]
-rownames(lr_nonzero_coef_sorted) <- NULL
-write.table(lr_nonzero_coef_sorted, file="Data_out/logistic_regression_coefs.txt", sep="\t", row.names=FALSE)
+#######################
+# Sick vs Baseline
+#######################
+# create factors and factor_names
+grp1 = c("bc", "v_s", "v_as")
+grp2 = c("bl_s", "bl_as")
+factors = list(grp1, grp2)
+factor_names = c("Sick", "Baseline")
+# get df_sub
+df_sub = create_df_sub(df, sample_factors, factors, factor_names)
+# create directory
+dir.create(paste(main_dir, "sick_vs_baseline", sep=""))
+# perform logistic regression
+do_log_reg(df_sub, 1, paste(main_dir, "sick_vs_baseline/", sep=""))
