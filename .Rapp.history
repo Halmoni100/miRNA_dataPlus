@@ -1,793 +1,4 @@
 # Load the following...#
-#	p_vals#
-#	conf_ints#
-#
-# create list of data frames#
-significant_miRNAs <- list()#
-# compute Bonferroni p-values#
-# returns data frame of index, p value, and confidence interval#
-bonferroni_adjust <- function(test_num) {#
-	p_val_vec <- p_vals[ , test_num]#
-	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
-	significant_mat <- matrix(, nrow=0, ncol=2)#
-	for (i in 1:length(adjusted_p_val_vec)) {#
-		val <- adjusted_p_val_vec[i]#
-		if (val <= .05) {#
-			conf_int <- conf_ints[i, test_num]#
-			entry <- c(i, val, conf_int)#
-			significant_mat <- rbind(significant_mat, entry)#
-		}#
-	}#
-	significant <- as.data.frame(significant_mat)#
-	colnames(significant) <- c("index", "p_val", "conf_int")#
-	significant_ordered <- significant[order(significant$p_val), ]#
-	return(significant_ordered)#
-}#
-# get # cols#
-n <- ncol(p_vals)#
-# perform function for each column#
-for (i in 1:n) {#
-	significant_miRNAs[i] <- bonferroni_adjust(i)#
-}#
-significant_miRNAs
-# Load the following...#
-#	p_vals#
-#	conf_ints#
-#
-# create list of data frames#
-significant_miRNAs <- list()#
-# compute Bonferroni p-values#
-# returns data frame of index, p value, and confidence interval#
-bonferroni_adjust <- function(test_num) {#
-	p_val_vec <- p_vals[, test_num]#
-	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
-	significant_mat <- matrix(, nrow=0, ncol=3)#
-	for (i in 1:length(adjusted_p_val_vec)) {#
-		val <- adjusted_p_val_vec[i]#
-		if (val <= .05) {#
-			conf_int <- conf_ints[i, test_num]#
-			entry <- c(i, val, conf_int)#
-			significant_mat <- rbind(significant_mat, entry)#
-		}#
-	}#
-	significant <- as.data.frame(significant_mat)#
-	colnames(significant) <- c("index", "p_val", "conf_int")#
-	significant_ordered <- significant[order(significant$p_val), ]#
-	return(significant_ordered)#
-}#
-# get # cols#
-n <- ncol(p_vals)#
-# perform function for each column#
-for (i in 1:n) {#
-	significant_miRNAs[i] <- bonferroni_adjust(i)#
-}#
-significant_miRNAs
-# Load the following...#
-#	p_vals#
-#	conf_ints#
-#
-# create list of data frames#
-significant_miRNAs <- list()#
-# compute Bonferroni p-values#
-# returns data frame of index, p value, and confidence interval#
-bonferroni_adjust <- function(test_num) {#
-	p_val_vec <- p_vals[, test_num]#
-	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
-	significant_mat <- matrix(, nrow=0, ncol=3)#
-	for (i in 1:length(adjusted_p_val_vec)) {#
-		val <- adjusted_p_val_vec[i]#
-		if (val <= .05) {#
-			conf_int <- conf_ints[i, test_num]#
-			print(conf_int)#
-			entry <- c(i, val, conf_int)#
-			significant_mat <- rbind(significant_mat, entry)#
-		}#
-	}#
-	significant <- as.data.frame(significant_mat)#
-	colnames(significant) <- c("index", "p_val", "conf_int")#
-	significant_ordered <- significant[order(significant$p_val), ]#
-	return(significant_ordered)#
-}#
-# get # cols#
-n <- ncol(p_vals)#
-# perform function for each column#
-for (i in 1:n) {#
-	significant_miRNAs[i] <- bonferroni_adjust(i)#
-}
-# Load the following...#
-#	p_vals#
-#	conf_ints#
-#
-# create list of data frames#
-significant_miRNAs <- list()#
-# compute Bonferroni p-values#
-# returns data frame of index, p value, and confidence interval#
-bonferroni_adjust <- function(test_num) {#
-	p_val_vec <- p_vals[, test_num]#
-	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
-	significant_mat <- matrix(, nrow=0, ncol=3)#
-	for (i in 1:length(adjusted_p_val_vec)) {#
-		val <- adjusted_p_val_vec[i]#
-		if (val <= .05) {#
-			conf_int <- conf_ints[i, test_num]#
-			print(paste("->",conf_int))#
-			entry <- c(i, val, conf_int)#
-			significant_mat <- rbind(significant_mat, entry)#
-		}#
-	}#
-	significant <- as.data.frame(significant_mat)#
-	colnames(significant) <- c("index", "p_val", "conf_int")#
-	significant_ordered <- significant[order(significant$p_val), ]#
-	return(significant_ordered)#
-}#
-# get # cols#
-n <- ncol(p_vals)#
-# perform function for each column#
-for (i in 1:n) {#
-	significant_miRNAs[i] <- bonferroni_adjust(i)#
-}
-# Load the following...#
-#	p_vals#
-#	conf_ints#
-#
-# create list of data frames#
-significant_miRNAs <- list()#
-# compute Bonferroni p-values#
-# returns data frame of index, p value, and confidence interval#
-bonferroni_adjust <- function(test_num) {#
-	p_val_vec <- p_vals[, test_num]#
-	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
-	significant_mat <- matrix(, nrow=0, ncol=3)#
-	for (i in 1:length(adjusted_p_val_vec)) {#
-		val <- adjusted_p_val_vec[i]#
-		if (val <= .05) {#
-			conf_int <- conf_ints[i, test_num]#
-			entry <- c(i, val, conf_int)#
-			significant_mat <- rbind(significant_mat, entry)#
-		}#
-	}#
-	significant <- as.data.frame(significant_mat)#
-	colnames(significant) <- c("index", "p_val", "conf_int")#
-	significant_ordered <- significant[order(significant$p_val), ]#
-	return(significant_ordered)#
-}#
-# get # cols#
-n <- ncol(p_vals)#
-# perform function for each column#
-for (i in 1:n) {#
-	significant_miRNAs[i] <- bonferroni_adjust(i)#
-}
-# Load the following...#
-#	p_vals#
-#	conf_ints#
-#
-# create list of data frames#
-significant_miRNAs <- list()#
-# compute Bonferroni p-values#
-# returns data frame of index, p value, and confidence interval#
-bonferroni_adjust <- function(test_num) {#
-	p_val_vec <- p_vals[, test_num]#
-	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
-	significant_mat <- matrix(, nrow=0, ncol=3)#
-	for (i in 1:length(adjusted_p_val_vec)) {#
-		val <- adjusted_p_val_vec[i]#
-		if (val <= .05) {#
-			conf_int <- conf_ints[i, test_num]#
-			entry <- c(i, val, conf_int)#
-			significant_mat <- rbind(significant_mat, entry)#
-		}#
-	}#
-	significant <- as.data.frame(significant_mat)#
-	colnames(significant) <- c("index", "p_val", "conf_int")#
-	significant_ordered <- significant[order(significant$p_val), ]#
-	return(significant_ordered)#
-}#
-# get # cols#
-n <- ncol(p_vals)#
-# perform function for each column#
-for (i in 1:n) {#
-	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
-}
-significant_miRNAs
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# subset viral, bacterial, baseline, asymptomatic/symptomatic miRNA expression#
-v_s_bool_vec <- sample_factors == "v_s"#
-v_as_bool_vec <- sample_factors == "v_as"#
-bl_s_bool_vec <- sample_factors == "bl_s"#
-bl_as_bool_vec <- sample_factors == "bl_as"#
-bc_bool_vec <- sample_factors == "bc"#
-#
-viral_symptomatic <- quantile_norm_data[, v_s_bool_vec]#
-viral_asymptomatic <- quantile_norm_data[, v_as_bool_vec]#
-baseline_symptomatic <- quantile_norm_data[, bl_s_bool_vec]#
-baseline_asymptomatic <- quantile_norm_data[, bl_as_bool_vec]#
-bacterial <- quantile_norm_data[, bc_bool_vec]#
-allviral <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec]#
-baseline <- quantile_norm_data[, bl_s_bool_vec | bl_as_bool_vec]#
-allviral_and_bacterial <- quantile_norm_data[, v_s_bool_vec | v_as_bool_vec | bc_bool_vec]#
-#
-v_s_ordered <- quantile_norm_data[,c(1,2,5,9,11,13,15,16,17,18,19,20,21)]#
-v_as_ordered <- quantile_norm_data[,c(3,4,6,7,8,10,12,14)]#
-b_s_ordered <- quantile_norm_data[,c(22,41,24,31,27,42,29,26,28,23,37,33,34)]#
-b_as_ordered <- quantile_norm_data[,c(40,25,39,38,36,30,35,32)]#
-#
-# t-test function#
-do_t_test <- function(s1, s2, is_paired) {#
-	result <- t.test(s1, s2, alternative="two.sided", paired=is_paired)#
-	out = list()#
-	out[[1]] <- result$p.value#
-	out[[2]] <- result$conf.int#
-	return(out)#
-}#
-#
-# make an output matrix for the p values of all the tests#
-p_vals <- matrix( , nrow=nrow(quantile_norm_data), ncol=7)#
-# make an output matrix for the standard errors of all the p values#
-conf_ints <- matrix( , nrow=nrow(quantile_norm_data), ncol=7)#
-#
-# conducting a Welch Two Sample t-test on every variable (not assuming equal standard deviation) using a for loop#
-for (k in 1:nrow(quantile_norm_data)) {#
-	p_val_vec <- vector(length=7)#
-	conf_int_vec <- vector(length=7)#
-	result_1 <- do_t_test(v_s_ordered[k,], b_s_ordered[k,], TRUE)#
-	p_val_vec[1] <- result_1[[1]]#
-	conf_int_vec[1] <- result_1[[2]]#
-	result_2 <- do_t_test(v_as_ordered[k,], b_as_ordered[k,], TRUE)#
-	p_val_vec[2] <- result_2[[1]]#
-	conf_int_vec[2] <- result_2[[2]]#
-	result_3 <- do_t_test(viral_symptomatic[k,], viral_asymptomatic[k,], FALSE)#
-	p_val_vec[3] <- result_3[[1]]#
-	conf_int_vec[3] <- result_3[[2]]#
-	result_4 <- do_t_test(viral_symptomatic[k,], bacterial[k,], FALSE)#
-	p_val_vec[4] <- result_4[[1]]#
-	conf_int_vec[4] <- result_4[[2]]#
-	result_5 <- do_t_test(baseline_symptomatic[k,], baseline_asymptomatic[k,], FALSE)#
-	p_val_vec[5] <- result_5[[1]]#
-	conf_int_vec[5] <- result_5[[2]]#
-	result_6 <- do_t_test(bacterial[k,], baseline[k,], FALSE)#
-	p_val_vec[6] <- result_6[[1]]#
-	conf_int_vec[6] <- result_6[[2]]#
-	result_7 <- do_t_test(allviral_and_bacterial[k,], baseline[k,], FALSE)#
-	p_val_vec[7] <- result_7[[1]]#
-	conf_int_vec[7] <- result_7[[2]]#
-	p_vals[k,] <- p_val_vec#
-	conf_ints[k,] <- conf_int_vec#
-}#
-#
-# save p_vals matrix#
-save(p_vals, file="Data_out/saved_p_vals.r")#
-# save conf_ints matrix#
-save(conf_ints, file="Data_out/saved_conf_ints_p_vals.r")
-# Load the following...#
-#	p_vals#
-#	conf_ints#
-#
-# create list of data frames#
-significant_miRNAs <- list()#
-# compute Bonferroni p-values#
-# returns data frame of index, p value, and confidence interval#
-bonferroni_adjust <- function(test_num) {#
-	p_val_vec <- p_vals[, test_num]#
-	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
-	significant_mat <- matrix(, nrow=0, ncol=3)#
-	for (i in 1:length(adjusted_p_val_vec)) {#
-		val <- adjusted_p_val_vec[i]#
-		if (val <= .05) {#
-			conf_int <- conf_ints[i, test_num]#
-			entry <- c(i, val, conf_int)#
-			significant_mat <- rbind(significant_mat, entry)#
-		}#
-	}#
-	significant <- as.data.frame(significant_mat)#
-	colnames(significant) <- c("index", "p_val", "conf_int")#
-	significant_ordered <- significant[order(significant$p_val), ]#
-	return(significant_ordered)#
-}#
-# get # cols#
-n <- ncol(p_vals)#
-# perform function for each column#
-for (i in 1:n) {#
-	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
-}
-significant_miRNAs
-library(MASS)
-library(ISLR)
-install.packages("ISLR")
-library(ISLR)
-fix(Boston)
-names(Boston)
-?Boston
-lm.fit = lm(medv~lstat, data=Boston)
-lm.fit
-attach(Boston)
-summary(lm.fit)
-names(lm.fit)
-coef(lm.fit)
-confint(lm.fit)
-predict(lm.fit, data.frame(lstat=(c(5,10,15))), interval="confidence")
-predict(lm.fit, data.frame(lstat=(c(5,10,15))), interval="prediction")
-plot(lstat, medv)
-abline(lm.fit)
-abline(lm.fit, lwd=3)
-abline(lm.fit, lwd=3, col="red")
-plot(lstat, medv, col="red")
-plot(lstat,medv, pch=20)
-plot(lstat, medv, pch="+")
-plot(1:20,1:20,pch=1:20)
-par(mfrow=c(2,2))
-plot(lm.fit)
-plot(predict(lm.fit), residuals(lm.fit))
-?Boston
-plot(hatvalues(lm.fit))
-plot(predict(lm.fit), rstudent(lm.fit))
-lm.fit=lm(medv~lstat+age)
-summary(lm.fit)
-lm.fit=lm(medv~.,data=Boston)
-summary(lm.fit)
-?summary.lm
-names(Smarket)
-summary(Smarket)
-head(Smarket)
-glm.fit=glm(Direction~Lag1+Lag2+Lag3+Lag4+Lag5+Volume, data=Smarket, family=binomial)
-summary(glm.fit)
-str(Smarket$Direction)
-x <- c(1,2,3)
-poly(x,3)
-poly(x,2)
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/data_frames.r")
-head(df)
-################
-# Retrieve Data#
-################
-#
-# insert data set#
-known_data <-read.delim("Data_in/known_miRNAs_expressed_all_samples.txt", header=TRUE)#
-#
-# extract raw data into matrix (just #s), exclude "norm" data#
-data_raw <- known_data[,5:56]#
-data_raw <- data.matrix(data_raw)#
-#
-# save miRNA names#
-miRNA_names <- known_data[,1]#
-# save precursor names#
-prec_names <- known_data[,3]#
-#
-# function to count zeros, return proportions#
-count_zeros <- function(v) {#
-	len <- length(v)#
-	zero_bool <- v==0#
-	zero_count <- length(which(zero_bool == "TRUE"))#
-	prop <- zero_count / len#
-	return(prop)#
-}#
-################
-# Eliminate >50% zero proportions#
-################
-#
-# find zero proportions for each miRNA#
-zero_prop_miRNA <- apply(data_raw, 1, count_zeros)#
-#
-# delete miRNAs that have >50% zeros#
-over_50 <- zero_prop_miRNA > 0.5#
-data_proc <- data_raw[!over_50,]#
-#
-# get miRNA names for data_proc#
-miRNA_names_proc <- miRNA_names[!over_50]#
-# get precursor names for data_proc#
-prec_names_proc <- prec_names[!over_50]#
-################
-# Normalize Data#
-################
-#
-# UQ normalization function#
-uq_normalize <- function(v) {#
-    nonzero_data <- subset(v, v > 0)#
-    quartiles <- quantile(nonzero_data)#
-    uq <- quartiles[4]#
-    return(uq)#
-}#
-#
-# vector of Us needed to normalize data#
-Us <- apply(data_raw, 2, uq_normalize)#
-# finding mean of the of the uq samples#
-U <- mean(Us)#
-#
-# do UQ normalization#
-uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))#
-# doing a for loop to normalize on each sample#
-for (i in 1:ncol(data_proc)) {#
-	col <- data_proc[,i]#
-	uqnorm[,i] <- col/Us[i]*U#
-}#
-#
-# quantile normalization function#
-quantile_normalize <- function(v) {#
-	v_order <- rank(v,ties.method="average")#
-	#set the quantiles based on the order#
-	quantiles <- v_order/53#
-	quantile_norm_vec <- qnorm(quantiles,mean=0,sd=1)#
-	return(quantile_norm_vec)	#
-}#
-#
-# do quantile normalization#
-# create quantile normalization function for each miRNA#
-q_norm_data <- apply(uqnorm, 1, quantile_normalize)#
-q_norm_data <- t(q_norm_data)#
-# debugging check#
-print(paste("m =", nrow(q_norm_data)))#
-print(paste("n =", ncol(q_norm_data)))#
-################
-# Format Data Frame#
-################
-#
-# transpose data_proc, name it as data#
-data <- t(q_norm_data)#
-#
-# Get m (# rows) and n (# cols) for data#
-# m represents samples, n represents features#
-m <- nrow(data)#
-n <- ncol(data)#
-#
-# name samples s1, s2, etc.#
-s_names <- vector(mode="character", length=m)#
-for (i in 1:m) {#
-	s_name <- paste("s", i, sep="")#
-	s_names[i] <- s_name#
-}#
-# name features f1, f2, etc.#
-f_names <- vector(mode="character", length=n)#
-for (i in 1:n) {#
-	f_name <- paste("f", i, sep="")#
-	f_names[i] <- f_name#
-}#
-#
-# make data into data frame, assign sample & feature names#
-df <- as.data.frame(data)#
-rownames(df) <- s_names#
-colnames(df) <- f_names#
-#
-# make data frame describing features#
-features <- f_names#
-features <- cbind.data.frame(features, miRNA_names_proc, prec_names_proc)#
-features_cols <- c("names", "miRNA", "precursor")#
-colnames(features) <- features_cols#
-#
-# save data frames for data and features#
-save(df, feat_df, file="Data_out/data_frames.r")
-head(df)
-head(feat_df)
-miRNA_names_proc
-# make data frame describing features#
-features <- f_names#
-features <- cbind(features, miRNA_names_proc, prec_names_proc)#
-features_cols <- c("names", "miRNA", "precursor")#
-colnames(features) <- features_cols
-# make data frame describing features#
-features <- f_names#
-feat_df <- cbind.data.frame(features, miRNA_names_proc, prec_names_proc)#
-features_cols <- c("names", "miRNA", "precursor")#
-colnames(feat_df) <- features_cols#
-#
-# save data frames for data and features#
-save(df, feat_df, file="Data_out/data_frames.r")
-head(feat_df)
-df[1:10,1:10]
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/data_frames.r")
-load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_sample_factors.r")
-# Load the following...#
-# df (from data_frames.r)#
-# sample_factors#
-#
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# Load create_df_sub function#
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
-#
-# test...#
-# try on viral symptomatic vs bacteria#
-# create factors and factor_names#
-grp1 <- "v_s"#
-grp2 <- "bc"#
-factors <- list(grp1, grp2)#
-factor_names <- c("Viral_Symp", "Bacteria")#
-# get df_sub#
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
-print(head(df_sub))
-# Load the following...#
-# df (from data_frames.r)#
-# sample_factors#
-#
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# Load create_df_sub function#
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
-#
-# test...#
-# try on viral symptomatic vs bacteria#
-# create factors and factor_names#
-grp1 <- "v_s"#
-grp2 <- "bc"#
-factors <- list(grp1, grp2)#
-factor_names <- c("Viral_Symp", "Bacteria")#
-# get df_sub#
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)
-df_sub[1:10,1:10]
-df_sub[1:10,330:334]
-str(df_sub$y)
-# Load the following...#
-# df (from data_frames.r)#
-# sample_factors#
-#
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# Load glmnet#
-library(glmnet)#
-# Load create_df_sub function#
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
-#
-# test...#
-# try on viral symptomatic vs bacteria#
-# create factors and factor_names#
-grp1 <- "v_s"#
-grp2 <- "bc"#
-factors <- list(grp1, grp2)#
-factor_names <- c("Viral_Symp", "Bacteria")#
-# get df_sub#
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
-#
-# get nrow (m) and ncol (n) of df#
-m <- nrow(df)#
-n <- ncol(df)#
-#
-set.seed(1)#
-grid=10^seq(10,-2,length=100)#
-#
-lasso.mod = glmnet(as.matrix(df[,1:m-1]), as.matrix(df[,m]), alpha=1, lambda=grid)#
-cv.out=cv.glmnet(as.matrix(df[,1:m-1]), as.matrix(df[,m]), alpha=1)#
-plot(cv.out)
-# Load the following...#
-# df (from data_frames.r)#
-# sample_factors#
-#
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# Load glmnet#
-library(glmnet)#
-# Load create_df_sub function#
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
-#
-# test...#
-# try on viral symptomatic vs bacteria#
-# create factors and factor_names#
-grp1 <- "v_s"#
-grp2 <- "bc"#
-factors <- list(grp1, grp2)#
-factor_names <- c("Viral_Symp", "Bacteria")#
-# get df_sub#
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
-#
-# get nrow (m) and ncol (n) of df#
-m <- nrow(df)#
-n <- ncol(df)#
-#
-set.seed(1)#
-grid=10^seq(10,-2,length=100)#
-#
-lasso.mod = glmnet(as.matrix(df[,1:m-1]), as.matrix(df[,m]), alpha=1, lambda=grid)#
-cv.out=cv.glmnet(as.matrix(df[,1:m-1]), as.matrix(df[,m]), alpha=1)#
-plot(cv.out)#
-#
-bestlam = cv.out$lambda.min#
-lasso.pred = predict(lasso.mod, s=bestlam, newx=as.matrix(df[1,1:m-1]))#
-print(lasso.pred)
-lasso.pred = predict(lasso.mod, s=bestlam, newx=as.matrix(df[n,1:m-1]))#
-print(lasso.pred)
-# Load the following...#
-# df (from data_frames.r)#
-# sample_factors#
-#
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# Load glmnet#
-library(glmnet)#
-# Load create_df_sub function#
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
-#
-# test...#
-# try on viral symptomatic vs bacteria#
-# create factors and factor_names#
-grp1 <- "v_s"#
-grp2 <- "bc"#
-factors <- list(grp1, grp2)#
-factor_names <- c("Viral_Symp", "Bacteria")#
-# get df_sub#
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
-#
-# get nrow (m) and ncol (n) of df#
-m <- nrow(df)#
-n <- ncol(df)#
-#
-set.seed(1)#
-grid=10^seq(10,-2,length=100)#
-#
-lasso.mod = glmnet(as.matrix(df[,1:n-1]), as.matrix(df[,n]), alpha=1, lambda=grid)#
-cv.out=cv.glmnet(as.matrix(df[,1:n-1]), as.matrix(df[,n]), alpha=1)#
-plot(cv.out)#
-#
-bestlam = cv.out$lambda.min#
-lasso.pred = predict(lasso.mod, s=bestlam, newx=as.matrix(df[m,1:n-1]))#
-print(lasso.pred)
-lasso.coef = predict(out, type="coefficients", s=bestlam)#
-lasso.coef
-lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)#
-lasso.coef
-bestlam = cv.out$lambda.min#
-lasso.pred = predict(lasso.mod, s=bestlam, newx=as.matrix(df[1,1:n-1]))#
-print(lasso.pred)
-bestlam = cv.out$lambda.min#
-lasso.pred = predict(lasso.mod, s=bestlam, newx=as.matrix(df[2,1:n-1]))#
-print(lasso.pred)
-# Load the following...#
-# df (from data_frames.r)#
-# sample_factors#
-#
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# Load glmnet#
-library(glmnet)#
-# Load create_df_sub function#
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
-#
-# test...#
-# try on viral symptomatic vs bacteria#
-# create factors and factor_names#
-grp1 <- "v_s"#
-grp2 <- "bc"#
-factors <- list(grp1, grp2)#
-factor_names <- c("Viral_Symp", "Bacteria")#
-# get df_sub#
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
-#
-# get nrow (m) and ncol (n) of df#
-m <- nrow(df)#
-n <- ncol(df)#
-#
-set.seed(1)#
-grid=10^seq(10,-2,length=100)#
-#
-lasso.mod = glmnet(as.matrix(df[,1:n-1]), as.matrix(df[,n]), alpha=1, lambda=grid)#
-cv.out=cv.glmnet(as.matrix(df[,1:n-1]), as.matrix(df[,n]), alpha=1, nfolds=m)#
-plot(cv.out)#
-#
-bestlam = cv.out$lambda.min#
-lasso.pred = predict(lasso.mod, s=bestlam, newx=as.matrix(df[2,1:n-1]))#
-print(lasso.pred)#
-#
-lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)#
-lasso.coef
-# Load the following...#
-# df (from data_frames.r)#
-# sample_factors#
-#
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# Load glmnet#
-library(glmnet)#
-# Load create_df_sub function#
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
-#
-# test...#
-# try on viral symptomatic vs bacteria#
-# create factors and factor_names#
-grp1 <- "bc"#
-grp2 <- c("bl_s", "bl_as")#
-factors <- list(grp1, grp2)#
-factor_names <- c("Bacteria", "Baseline")#
-# get df_sub#
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
-#
-# get nrow (m) and ncol (n) of df#
-m <- nrow(df)#
-n <- ncol(df)#
-#
-set.seed(1)#
-grid=10^seq(10,-2,length=100)#
-#
-lasso.mod = glmnet(as.matrix(df[,1:n-1]), as.matrix(df[,n]), alpha=1, lambda=grid)#
-cv.out=cv.glmnet(as.matrix(df[,1:n-1]), as.matrix(df[,n]), alpha=1, nfolds=m)#
-plot(cv.out)#
-#
-bestlam = cv.out$lambda.min#
-lasso.pred = predict(lasso.mod, s=bestlam, newx=as.matrix(df[2,1:n-1]))#
-print(lasso.pred)#
-#
-lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)#
-lasso.coef
-# Load the following...#
-# df (from data_frames.r)#
-# sample_factors#
-#
-# For reference:#
-# Viral Symptomatic - v_s#
-# Viral Asymptomatic - v_as#
-# Baseline Symptomatic - bl_s#
-# Basline Asymptomatic - bl_as#
-# Bacteria - bc#
-#
-# Load glmnet#
-library(glmnet)#
-# Load create_df_sub function#
-create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
-#
-# test...#
-# try on viral symptomatic vs bacteria#
-# create factors and factor_names#
-grp1 <- "v_s"#
-grp2 <- "bc"#
-factors <- list(grp1, grp2)#
-factor_names <- c("Viral_Symp", "Bacteria")#
-# get df_sub#
-df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
-#
-# get nrow (m) and ncol (n) of df#
-m <- nrow(df)#
-n <- ncol(df)#
-#
-set.seed(1)#
-grid=10^seq(10,-2,length=100)#
-#
-lasso.mod = glmnet(as.matrix(df[,1:n-1]), as.matrix(df[,n]), alpha=1, lambda=grid)#
-cv.out=cv.glmnet(as.matrix(df[,1:n-1]), as.matrix(df[,n]), alpha=1, nfolds=m)#
-plot(cv.out)#
-#
-bestlam = cv.out$lambda.min#
-lasso.pred = predict(lasso.mod, s=bestlam, newx=as.matrix(df[2,1:n-1]))#
-print(lasso.pred)#
-#
-lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)#
-lasso.coef
-# Load the following...#
 # df (from data_frames.r)#
 # sample_factors#
 #
@@ -3606,3 +2817,1689 @@ nonzero_coef_df <- as.data.frame(nonzero_coef)#
 lr_nonzero_coef_sorted <- nonzero_coef_df[order(-abs(nonzero_coef_df$coef)),]#
 rownames(lr_nonzero_coef_sorted) <- NULL#
 write.table(lr_nonzero_coef_sorted, file="Data_out/logistic_regression_coefs.txt", sep="\t", row.names=FALSE)
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(significant_miRNA_dfs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- significant_miRNA_dfs[[i]]#
+	p_vals <- new_frame$p_val#
+	quartz()#
+	plot_name <- paste("Test #", i)#
+	hist(p_vals, main = plot_name)#
+}
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_p_vals.r")
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(significant_miRNA_dfs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- significant_miRNA_dfs[[i]]#
+	p_vals <- new_frame$p_val#
+	quartz()#
+	plot_name <- paste("Test #", i)#
+	hist(p_vals, main = plot_name)#
+}
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# perform function for each column#
+for (i in 1:n) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNA_dfs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNA_dfs[[i]]#
+	p_vals <- new_frame$p_val#
+	quartz()#
+	plot_name <- paste("Test #", i)#
+	hist(p_vals, main = plot_name)#
+}
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_conf_ints_p_vals.r")
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# perform function for each column#
+for (i in 1:n) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNA_dfs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNA_dfs[[i]]#
+	p_vals <- new_frame$p_val#
+	quartz()#
+	plot_name <- paste("Test #", i)#
+	hist(p_vals, main = plot_name)#
+}
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# perform function for each column#
+for (i in 1:n) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNA[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	p_vals <- new_frame$p_val#
+	quartz()#
+	plot_name <- paste("Test #", i)#
+	hist(p_vals, main = plot_name)#
+}
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# perform function for each column#
+for (i in 1:n) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	p_vals <- new_frame$p_val#
+	quartz()#
+	plot_name <- paste("Test #", i)#
+	hist(p_vals, main = plot_name)#
+}
+n
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	p_vals <- new_frame$p_val#
+	quartz()#
+	plot_name <- paste("Test #", i)#
+	hist(p_vals, main = plot_name)#
+}
+n
+ncol(p_vals)
+p_vals
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_p_vals.r")
+p_vals
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	p_vals <- new_frame$p_val#
+	quartz()#
+	plot_name <- paste("Test #", i)#
+	hist(p_vals, main = plot_name)#
+}
+p_vals
+significant_miRNAs
+fdr_significant_miRNAs
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	if (nrow(new_frame) > 0) {#
+		p_vals <- new_frame$p_val#
+		quartz()#
+		plot_name <- paste("Test #", i)#
+		hist(p_vals, main = plot_name)#
+	}#
+}
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_v <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_v)) {#
+		val <- adjusted_v[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	if (nrow(new_frame) > 0) {#
+		p_vals <- new_frame$p_val#
+		quartz()#
+		plot_name <- paste("Test #", i)#
+		hist(p_vals, main = plot_name)#
+	}#
+}
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}
+p_vals
+load("/Users/mrincredible/Box Sync/Home Folder csh36/Sharing/Data_Plus/R_Data/saved_p_vals.r")
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}
+fdr_significant_miRNAs
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	if (nrow(new_frame) > 0) {#
+		p_vals <- new_frame$p_val#
+		quartz()#
+		plot_name <- paste("Test #", i)#
+		hist(p_vals, main = plot_name)#
+	}#
+}
+p_vals
+# Load the following...#
+#	p_vals#
+#	conf_ints#
+load("Data_in/saved_p_vals.r")#
+load("Data_in/saved_conf_ints_p_vals.r")#
+#
+# create list of data frames#
+significant_miRNAs <- list()#
+# compute Bonferroni p-values#
+# returns data frame of index, p value, and confidence interval#
+bonferroni_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "bonferroni")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+# get # cols#
+n <- ncol(p_vals)#
+# perform function for each column#
+for (i in 1:n) {#
+	significant_miRNAs[[i]] <- bonferroni_adjust(i)#
+}#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=3)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		if (val <= .05) {#
+			conf_int <- conf_ints[i, test_num]#
+			entry <- c(i, val, conf_int)#
+			significant_mat <- rbind(significant_mat, entry)#
+		}#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val", "conf_int")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	if (nrow(new_frame) > 0) {#
+		adjusted_fdr_pvals <- new_frame$p_val#
+		quartz()#
+		plot_name <- paste("Test #", i)#
+		hist(adjusted_fdr_pvals, main = plot_name)#
+	}#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	if (nrow(new_frame) > 0) {#
+		adjusted_fdr_pvals <- new_frame$p_val#
+		quartz()#
+		plot_name <- paste("Test #", i)#
+		hist(adjusted_fdr_pvals, main = plot_name)#
+	}#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	dir_name <- paste("Data_out/", plot_name, ".jpeg", sep="")#
+	jpeg(dir_name, res=300)#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	dir_name <- paste("Data_out/", plot_name, ".jpeg", sep="")#
+	jpeg(dir_name)#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	dir_name <- paste("Data_out/", plot_name, ".jpeg", sep="")#
+#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	#dir_name <- paste("Data_out/", plot_name, ".jpeg", sep="")#
+#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	#dir_name <- paste("Data_out/", plot_name, ".jpeg", sep="")#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	dir_name <- paste("Data_out/", plot_name, ".jpeg", sep="")#
+	jpeg(dir_name)#
+	dev.off()#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	dir_name <- paste("Data_out/", plot_name, ".jpeg", sep="")#
+	jpeg(dir_name)#
+}
+getwd()
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	dir_name <- paste("/Data_out/", plot_name, ".jpeg", sep="")#
+	jpeg(filename=dir_name)#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	dir_name <- paste("/Data_out/", plot_name, ".jpeg", sep="")#
+	jpeg(filename=dir_name)#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	dev.off()#
+}
+# Load the following...#
+#	p_vals#
+load("Data_in/saved_p_vals.r")#
+#
+# get # cols#
+n <- ncol(p_vals)#
+#
+# compute false discovery rates (less conservative method than the bonferroni correction)#
+fdr_significant_miRNAs <- list()#
+# compute FDR p-values, order them in data frame#
+fdr_adjust <- function(test_num) {#
+	p_val_vec <- p_vals[, test_num]#
+	adjusted_p_val_vec <- p.adjust(p_val_vec, method = "fdr")#
+	significant_mat <- matrix(, nrow=0, ncol=2)#
+	for (i in 1:length(adjusted_p_val_vec)) {#
+		val <- adjusted_p_val_vec[i]#
+		entry <- c(i, val)#
+		significant_mat <- rbind(significant_mat, entry)#
+	}#
+	significant <- as.data.frame(significant_mat)#
+	colnames(significant) <- c("index", "p_val")#
+	significant_ordered <- significant[order(significant$p_val), ]#
+	return(significant_ordered)#
+}#
+#
+# perform function for each column#
+for (i in 1:7) {#
+	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)#
+}#
+#
+head(fdr_significant_miRNAs[[i]]$p_val)#
+# extract data frame out of the list#
+# get save directory#
+#
+for (i in 1:7) {#
+	new_frame <- fdr_significant_miRNAs[[i]]#
+	adjusted_fdr_pvals <- new_frame$p_val#
+	plot_name <- paste("Test_num_", i, sep="")#
+	dir_name <- paste("Data_out/", plot_name, ".jpeg", sep="")#
+	jpeg(filename=dir_name)#
+	hist(adjusted_fdr_pvals, main = plot_name)#
+	dev.off()#
+}
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+load("Data_in/data_frames.r")#
+load("Data_in/saved_sample_factors.r")#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load tree package#
+library(tree)#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral Symptomatic", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+#
+# get nrow (m) and ncol (n) of df_sub#
+m <- nrow(df_sub)#
+n <- ncol(df_sub)#
+#
+tree.miRNA <- tree(y~. , data=df_sub)#
+summary(tree.miRNA)
+install.packages(tree)
+install.packages("tree")
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+load("Data_in/data_frames.r")#
+load("Data_in/saved_sample_factors.r")#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load tree package#
+library(tree)#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral Symptomatic", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+#
+# get nrow (m) and ncol (n) of df_sub#
+m <- nrow(df_sub)#
+n <- ncol(df_sub)#
+#
+tree.miRNA <- tree(y~. , data=df_sub)#
+summary(tree.miRNA)
+plot(tree.miRNA)
+plot(tree.miRNA)#
+text(tree.miRNA, pretty=0)
+jpeg("Data_out/decision_tree.jpeg")#
+plot(tree.miRNA)#
+text(tree.miRNA, pretty=0)#
+dev.off()
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+load("Data_in/data_frames.r")#
+load("Data_in/saved_sample_factors.r")#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load glmnet#
+library(glmnet)#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral Symptomatic", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+#
+# get nrow (m) and ncol (n) of df_sub#
+m <- nrow(df_sub)#
+n <- ncol(df_sub)#
+#
+print(str(df_sub$y))#
+#
+# Perform lasso logistic regression on all of the data#
+grid = 10^seq(10, -2, length=100)#
+lasso.mod = glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial", alpha=1)#
+#
+# Do leave one out cross validation#
+cv.out = cv.glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial", type.measure="class", alpha=1, nfolds=m)#
+# Plot misclassification rates from LOOCV vs lambda parameter#
+plot(cv.out)#
+# Choose best lambda from LOOCV#
+bestlam = cv.out$lambda.min#
+#
+# Do lasso logistic regression on all of the data using best lambda#
+lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)#
+#
+# Print out coefficients#
+indices <- rownames(lasso.coef)#
+nonzero_coef <- matrix(, nrow=0, ncol=2)#
+colnames(nonzero_coef) <- c("index", "coef")#
+for (i in 2:length(lasso.coef)) {#
+	if (abs(lasso.coef[i]) > 0) {#
+		print(i)#
+		print(lasso.coef[i])#
+		feat_string <- indices[i]#
+		index_string <- substring(feat_string, 2)#
+		index <- as.integer(index_string)#
+		new_coef <- c(index, lasso.coef[i])#
+		nonzero_coef <- rbind(nonzero_coef, new_coef)#
+	}#
+}#
+nonzero_coef_df <- as.data.frame(nonzero_coef)#
+lr_nonzero_coef_sorted <- nonzero_coef_df[order(-abs(nonzero_coef_df$coef)),]#
+rownames(lr_nonzero_coef_sorted) <- NULL#
+write.table(lr_nonzero_coef_sorted, file="Data_out/logistic_regression_coefs.txt", sep="\t", row.names=FALSE)
+df_sub$y
+install.packages("randomForest")
+bag.miRNA <- randomForest(y~., data=df_sub, ntree=100)
+# Load random forest package#
+library(randomForest)#
+bag.miRNA <- randomForest(y~., data=df_sub, ntree=100)
+plot(bag.miRNA)
+# Load random forest package#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+importance(rf.miRNA)
+write.table(imp.miRNA, file="Data_out/importance.txt", sep="\t", row.names=FALSE, col.names=FALSE)
+imp.miRNA <- importance(rf.miRNA)#
+write.table(imp.miRNA, file="Data_out/importance.txt", sep="\t", row.names=FALSE, col.names=FALSE)
+write.csv(imp.miRNA, file="Data_out/importance.txt", row.names=FALSE, col.names=FALSE)
+write.csv(imp.miRNA, file="Data_out/importance.txt")
+write.csv(imp.miRNA, file="Data_out/importance.csv")
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA$MeanDecreaseGini), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+class(imp.miRNA)
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,MeanDecreaseGini]), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+x <- matrix(c(1,2,3,4), nrow=2, ncol=2)
+colnames <- c("a","b")
+x$a
+x["a",]
+x[1]
+x[1,1]
+x[1,]
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4]), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+load("Data_in/data_frames.r")#
+load("Data_in/saved_sample_factors.r")#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load tree package#
+library(tree)#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral Symptomatic", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+#
+# get nrow (m) and ncol (n) of df_sub#
+m <- nrow(df_sub)#
+n <- ncol(df_sub)#
+#
+tree.miRNA <- tree(y~. , data=df_sub)#
+summary(tree.miRNA)#
+jpeg("Data_out/decision_tree.jpeg")#
+plot(tree.miRNA)#
+text(tree.miRNA, pretty=0)#
+dev.off()#
+#
+# Load random forest package#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+jpeg("Data_out/random_forest_errors.jpeg")#
+plot(rf.miRNA)#
+dev.off()#
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+load("Data_in/data_frames.r")#
+load("Data_in/saved_sample_factors.r")#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load tree package#
+library(tree)#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral Symptomatic", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+#
+# get nrow (m) and ncol (n) of df_sub#
+m <- nrow(df_sub)#
+n <- ncol(df_sub)#
+#
+tree.miRNA <- tree(y~. , data=df_sub)#
+summary(tree.miRNA)#
+jpeg("Data_out/decision_tree.jpeg")#
+plot(tree.miRNA)#
+text(tree.miRNA, pretty=0)#
+dev.off()#
+#
+# Load random forest package#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+jpeg("Data_out/random_forest_errors.jpeg")#
+# note: #
+plot(rf.miRNA)#
+legend("top", colnames(rf.miRNA$err.rate),col=1:3,cex=0.8,fill=1:3)#
+dev.off()#
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+load("Data_in/data_frames.r")#
+load("Data_in/saved_sample_factors.r")#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load tree package#
+library(tree)#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral Symptomatic", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+#
+# get nrow (m) and ncol (n) of df_sub#
+m <- nrow(df_sub)#
+n <- ncol(df_sub)#
+#
+tree.miRNA <- tree(y~. , data=df_sub)#
+summary(tree.miRNA)#
+jpeg("Data_out/decision_tree.jpeg", res=300)#
+plot(tree.miRNA)#
+text(tree.miRNA, pretty=0)#
+dev.off()#
+#
+# Load random forest package#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+jpeg("Data_out/random_forest_errors.jpeg", res=300)#
+# note: #
+plot(rf.miRNA)#
+legend("top", colnames(rf.miRNA$err.rate),col=1:3,cex=0.8,fill=1:3)#
+dev.off()#
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+load("Data_in/data_frames.r")#
+load("Data_in/saved_sample_factors.r")#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load tree package#
+library(tree)#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral Symptomatic", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+#
+# get nrow (m) and ncol (n) of df_sub#
+m <- nrow(df_sub)#
+n <- ncol(df_sub)#
+#
+tree.miRNA <- tree(y~. , data=df_sub)#
+summary(tree.miRNA)#
+png("Data_out/decision_tree.png", res=300)#
+plot(tree.miRNA)#
+text(tree.miRNA, pretty=0)#
+dev.off()#
+#
+# Load random forest package#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+png("Data_out/random_forest_errors.png", res=300)#
+# note: #
+plot(rf.miRNA)#
+legend("top", colnames(rf.miRNA$err.rate),col=1:3,cex=0.8,fill=1:3)#
+dev.off()#
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+# Load the following...#
+# df (from data_frames.r)#
+# sample_factors#
+load("Data_in/data_frames.r")#
+load("Data_in/saved_sample_factors.r")#
+#
+# For reference:#
+# Viral Symptomatic - v_s#
+# Viral Asymptomatic - v_as#
+# Baseline Symptomatic - bl_s#
+# Basline Asymptomatic - bl_as#
+# Bacteria - bc#
+#
+# Load tree package#
+library(tree)#
+# Load create_df_sub function#
+create_df_sub <- dget("R_Code/Classifiers/create_df_sub.r")#
+#
+# test...#
+# try on viral symptomatic vs bacteria#
+# create factors and factor_names#
+grp1 <- "v_s"#
+grp2 <- "bc"#
+factors <- list(grp1, grp2)#
+factor_names <- c("Viral Symptomatic", "Bacteria")#
+# get df_sub#
+df_sub <- create_df_sub(df, sample_factors, factors, factor_names)#
+#
+# get nrow (m) and ncol (n) of df_sub#
+m <- nrow(df_sub)#
+n <- ncol(df_sub)#
+#
+tree.miRNA <- tree(y~. , data=df_sub)#
+summary(tree.miRNA)#
+jpeg("Data_out/decision_tree.jpeg")#
+plot(tree.miRNA)#
+text(tree.miRNA, pretty=0)#
+dev.off()#
+#
+# Load random forest package#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+jpeg("Data_out/random_forest_errors.jpeg")#
+# note: #
+plot(rf.miRNA)#
+legend("top", colnames(rf.miRNA$err.rate),col=1:3,cex=0.8,fill=1:3)#
+dev.off()#
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+# Load random forest package#
+# set seed#
+set.seed(100)#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+jpeg("Data_out/random_forest_errors.jpeg")#
+# note: #
+plot(rf.miRNA)#
+legend("top", colnames(rf.miRNA$err.rate),col=1:3,cex=0.8,fill=1:3)#
+dev.off()#
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+# Load random forest package#
+# set seed#
+set.seed(101)#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+jpeg("Data_out/random_forest_errors.jpeg")#
+# note: #
+plot(rf.miRNA)#
+legend("top", colnames(rf.miRNA$err.rate),col=1:3,cex=0.8,fill=1:3)#
+dev.off()#
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")
+rnames <- rownames(imp.miRNA_ordered)
+# Load random forest package#
+# set seed#
+set.seed(101)#
+library(randomForest)#
+rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+jpeg("Data_out/random_forest_errors.jpeg")#
+# note: #
+plot(rf.miRNA)#
+legend("top", colnames(rf.miRNA$err.rate),col=1:3,cex=0.8,fill=1:3)#
+dev.off()#
+imp.miRNA <- importance(rf.miRNA)#
+imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+write.csv(imp.miRNA_ordered, file="Data_out/importance_gini_ordered.csv")#
+rnames <- rownames(imp.miRNA_ordered)#
+print(rnames[1:10])
+# perform random forest w/ different seeds#
+important_features <- matrix(, nrow=0, ncol=10)#
+for (i in 100:110) {#
+	set.seed(i)#
+	rf.miRNA <- randomForest(y~., data=df_sub, ntree=100, importance=TRUE)#
+	imp.miRNA <- importance(rf.miRNA)#
+	imp.miRNA_ordered <- imp.miRNA[order(imp.miRNA[,4], decreasing=TRUE), ]#
+	rnames <- rownames(imp.miRNA_ordered)#
+	important_features <- rbind(important_features, rnames[1:10])#
+}#
+important_features
+imp.miRNA
