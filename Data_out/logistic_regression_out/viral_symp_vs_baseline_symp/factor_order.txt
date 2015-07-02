@@ -1,0 +1,2 @@
+1	Viral Symptomatic
+2	Baseline Symptomatic

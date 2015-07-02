@@ -1,0 +1,2 @@
+1	Sick
+2	Baseline

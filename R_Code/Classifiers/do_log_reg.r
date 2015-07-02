@@ -15,6 +15,10 @@ do_log_reg = function(df_sub, type, dir) {
 	# Perform logistic regression on all of the data
 	grid = 10^seq(10, -2, length=100)
 	
+	# Check order of categories, print out
+	factor_order = levels(df_sub$y)
+	write.table(factor_order, file=paste(dir, "factor_order.txt", sep=""), sep="\t",
+			 quote=FALSE, col.names=FALSE)
 	# Do leave one out cross validation
 	cv.out = cv.glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial",
 			type.measure="class", alpha=1, nfolds=m)

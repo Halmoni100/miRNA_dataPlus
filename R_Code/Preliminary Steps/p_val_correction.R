@@ -28,8 +28,11 @@ bonferroni_adjust <- function(test_num) {
 # get # cols
 n <- ncol(p_vals)
 # perform function for each column
+# save to txt file
+file_names <- 
 for (i in 1:n) {
 	significant_miRNAs[[i]] <- bonferroni_adjust(i)
+	
 }
 
 

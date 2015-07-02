@@ -1,0 +1,2 @@
+1	Viral Asymptomatic
+2	Baseline Asymptomatic
