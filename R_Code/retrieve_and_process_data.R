@@ -59,12 +59,15 @@ Us <- apply(data_raw, 2, uq_normalize)
 U <- mean(Us)
 
 # do UQ normalization
-uqnorm <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))
+uqnorm_data <- matrix(, nrow=nrow(data_proc), ncol=ncol(data_proc))
 # doing a for loop to normalize on each sample
 for (i in 1:ncol(data_proc)) {
 	col <- data_proc[,i]
-	uqnorm[,i] <- col/Us[i]*U
+	uqnorm_data[,i] <- col/Us[i]*U
 }
+
+# save upper quartilze normalized data
+save(uqnorm_data, file="Data_out/saved_uqnorm_data.r")
 
 # quantile normalization function
 quantile_normalize <- function(v) {

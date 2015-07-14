@@ -32,12 +32,10 @@ n <- ncol(p_vals)
 file_names <- 
 for (i in 1:n) {
 	significant_miRNAs[[i]] <- bonferroni_adjust(i)
-	
 }
+save(significant_miRNAs, file="Data_out/saved_significant_miRNAs.r")
 
 
-# compute false discovery rates (less conservative method than the bonferroni correction)
-fdr_significant_miRNAs <- list()
 # compute FDR p-values, order them in data frame
 fdr_adjust <- function(test_num) {
 	p_val_vec <- p_vals[, test_num]
@@ -57,22 +55,29 @@ fdr_adjust <- function(test_num) {
 	return(significant_ordered)
 }
 
-# perform function for each column
-for (i in 1:7) {
-	fdr_significant_miRNAs[[i]] <- fdr_adjust(i)
-}
+# Do FDR?
+do_fdr = FALSE 
+if (do_fdr){
+	# compute false discovery rates (less conservative method than the bonferroni correction)
+	fdr_significant_miRNAs <- list()
+	# perform function for each column
+	for (i in 1:7) {
+		fdr_significant_miRNAs[[i]] <- fdr_adjust(i)
+	}
 
-head(fdr_significant_miRNAs[[i]]$p_val)
-# extract data frame out of the list
-for (i in 1:7) {
-	new_frame <- fdr_significant_miRNAs[[i]]
-	if (nrow(new_frame) > 0) {
-		adjusted_fdr_pvals <- new_frame$p_val
-		quartz()
-		plot_name <- paste("Test #", i)
-		hist(adjusted_fdr_pvals, main = plot_name)
+	head(fdr_significant_miRNAs[[i]]$p_val)
+	# extract data frame out of the list
+	for (i in 1:7) {
+		new_frame <- fdr_significant_miRNAs[[i]]
+		if (nrow(new_frame) > 0) {
+			adjusted_fdr_pvals <- new_frame$p_val
+			quartz()
+			plot_name <- paste("Test #", i)
+			hist(adjusted_fdr_pvals, main = plot_name)
+		}
 	}
 }
+
 
 
 

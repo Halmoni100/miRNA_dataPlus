@@ -1,2 +1,0 @@
-1	Baseline Symptomatic
-2	Baseline Asymptomatic

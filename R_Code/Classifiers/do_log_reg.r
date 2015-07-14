@@ -8,19 +8,21 @@ do_log_reg = function(df_sub, type, dir) {
 	# Load glmnet
 	library(glmnet)
 	
-	# get nrow (m) and ncol (n) of df_sub
+	# get nrow (m) and ncol (n) of X, the matrix without the response
 	m = nrow(df_sub)
-	n = ncol(df_sub)
+	n = ncol(df_sub) - 1
 	
-	# Perform logistic regression on all of the data
-	grid = 10^seq(10, -2, length=100)
-	
+	# define X as the matrix without the response
+	X = data.matrix(df_sub[ ,1:n])
+	# define y as the response
+	y = df_sub$y
+
 	# Check order of categories, print out
-	factor_order = levels(df_sub$y)
+	factor_order = levels(y)
 	write.table(factor_order, file=paste(dir, "factor_order.txt", sep=""), sep="\t",
 			 quote=FALSE, col.names=FALSE)
 	# Do leave one out cross validation
-	cv.out = cv.glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial",
+	cv.out = cv.glmnet(X, y, family="binomial",
 			type.measure="class", alpha=1, nfolds=m)
 	
 	# Plot misclassification rates from LOOCV vs lambda parameter
@@ -32,7 +34,7 @@ do_log_reg = function(df_sub, type, dir) {
 	bestlam = cv.out$lambda.min
 	
 	# Do lasso logistic regression on all of the data using best lambda
-	lasso.mod = glmnet(as.matrix(df_sub[,1:n-1]), df_sub$y, family="binomial", alpha=type)
+	lasso.mod = glmnet(X, y, family="binomial", alpha=type)
 	lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)
 	
 	# Print out coefficients
@@ -53,5 +55,26 @@ do_log_reg = function(df_sub, type, dir) {
 	rownames(lr_nonzero_coef_sorted) = NULL
 	write.table(lr_nonzero_coef_sorted, file=paste(dir, "coefs.txt", sep=""), sep="\t",
 			row.names=FALSE)
+			
+	# Do LOOCV manually, plot ROC curve
+	# http://stackoverflow.com/questions/18292419/how-to-obtain-auc-using-leave-one-out-cross-validation-in-r
+	# get predictions for each sample left out in LOOCV
+	predictions = c()
+	for (i in 1:m) {
+		model = glmnet(X[-i,], y[-i], family="binomial")
+		new_x = matrix(X[i,], nrow=1, ncol=n)
+		predictions <- c(predictions, predict(model, newx=new_x, s=cv.out$lambda.min))
+	}
+	# Plot ROC curve
+	library(pROC)
+	jpeg(paste(dir, "roc_curve.jpeg", sep=""))
+	bin_comp.loocv_roc = roc(y, predictions)
+	plot(bin_comp.loocv_roc)
+	dev.off()
+	
+	# Get AUC
+	bin_comp.auc = auc(bin_comp.loocv_roc)
+	roc_set = list(y, predictions, bin_comp.auc)
+	return(roc_set)
 }
 
