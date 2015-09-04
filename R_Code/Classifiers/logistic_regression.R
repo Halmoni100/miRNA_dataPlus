@@ -1,14 +1,13 @@
-# Load the following...
-# bin_comp_dfs
-# bin_comp_names
-# feat_df (from data_frames.r)
+load("R_Data/saved_bin_comp_dfs.r")
+load("R_Data/saved_bin_comp_names.r")
+load("R_Data/data_frames.r")
 
 # Loading do_log_reg func
-do_log_reg = dget("R_Code/Classifiers/do_log_reg.r")
+do_log_reg = dget("miRNA_dataPlus_GitHub/R_Code/Classifiers/do_log_reg.r")
 
 # create main directory
-dir.create("Data_out/logistic_regression_out")
-main_dir = "Data_out/logistic_regression_out/"
+dir.create("Results/logistic_regression")
+main_dir = "Results/logistic_regression/"
 
 # Obtain data for roc curves
 return_data = list()
@@ -36,7 +35,6 @@ save(log_reg_misclass_rates, file=paste(main_dir, "saved_log_reg_misclass_rates.
 # Make bar plot
 postscript(paste(main_dir, "misclass_bar_plot.eps", sep=""), width=7, height=6)
 par(mar=c(3,15,3,3), las=2)
-title(col.sub="white")
 barplot(log_reg_misclass_rates, names.arg=gsub("_", " ", bin_comp_names), horiz=TRUE, col="blue")
 dev.off()
 

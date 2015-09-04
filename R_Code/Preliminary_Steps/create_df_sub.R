@@ -6,22 +6,35 @@ create_df_sub = function(df, factor_vec, factors, factor_names) {
 # - must be vector where first element is failure (0), other element is success (1)
 # factor_vec provides labels
 	
-	# extract only samples specified in factors list
-	factor_1_bool_vec = factor_vec == factors[[1]];
-	factor_2_bool_vec = factor_vec == factors[[2]];
-	df_sub = df[factor_1_bool_vec | factor_2_bool_vec, ];
-	
+  assign_truth_table <- function(class_list, factor_vec) {
+    # initialize truth_table to all false
+    num_samples = length(factor_vec)
+    truth_table <- vector(mode="logical", length=num_samples)
+    # do logical or to make all considered samples true
+    for (class in class_list) {
+      truth_vals <- factor_vec == class
+      truth_table <- truth_table | truth_vals
+    }
+    return(truth_table)
+  }
+  
+  truth_table_1 <- assign_truth_table(factors[[1]], factor_vec)
+  truth_table_2 <- assign_truth_table(factors[[2]], factor_vec)
+  
+  # extract only samples specified in factors
+  truth_table_all <- truth_table_1 | truth_table_2
+  df_sub <- df[truth_table_all, ]
 	
 	# create factor name vector
 	y = vector(mode="character", length=nrow(df_sub))
 	# j is current number to fill in y
 	j = 1
 	for (i in 1:nrow(df)) {
-		if (factor_1_bool_vec[i]) {
+		if (truth_table_1[i]) {
 			y[j] = factor_names[1]
 			j = j + 1
 		}
-		else if (factor_2_bool_vec[i]) {
+		else if (truth_table_2[i]) {
 			y[j] = factor_names[2]
 			j = j + 1
 		}

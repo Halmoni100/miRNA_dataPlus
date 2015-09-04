@@ -9,18 +9,19 @@ function(data, factors, num) {
 
 	# Find proportion of variance, etc.
 	prop_of_var <- pca_df$eig[1:num,]
-	write.table(prop_of_var, "Data_out/prop_of_vars_samples.txt", sep="\t", quote=FALSE)
+	dir.create("Results/PCA")
+	write.table(prop_of_var, "Results/PCA/prop_of_vars_samples.txt", sep="\t", quote=FALSE)
 	# Plot cumulative proportion of variance
 	cum_var <- prop_of_var[ , 3]
-	postscript(file="Data_out/cum_var.eps", width=5, height=5)
+	postscript(file="Results/PCA/cum_var.eps", width=5, height=5)
 	plot(1:length(cum_var), cum_var, main="Cumulative Percentage of Variance", xlab="PCs", ylab="Cum. % of Var.", ylim=c(0,100))
 	lines(1:length(cum_var), cum_var)
 	dev.off()
 	
 	# Get correlations b/w variables and PCs
 	corr <- pca_df$var$coord
-	save(corr, file="Data_out/saved_corr_samples.r")
-	write.table(corr, "Data_out/correlation_samples.txt", sep="\t", quote=FALSE)
+	save(corr, file="Results/PCA/saved_corr_samples.r")
+	write.table(corr, "Results/PCA/correlation_samples.txt", sep="\t", quote=FALSE)
 
 
 	# Get first n PCs, store in lists
@@ -41,7 +42,7 @@ function(data, factors, num) {
 	}
 
 	# create plots folder
-	dir.create("Data_out/plots")
+	dir.create("Results/PCA/plots")
 	
 	# Plot all combinations of PCs, store in files
 	# red = viral symp, orange = viral asymp, blue = baseline, green = bacteria
@@ -52,7 +53,7 @@ function(data, factors, num) {
 		from_j <- i + 1
 		for (j in from_j:to_j) {
 			plot_name <- paste(i,"vs",j, sep="_")
-			dir_name <- paste("Data_out/plots/",
+			dir_name <- paste("Results/PCA/plots/",
 					plot_name, ".jpeg", sep="")
 			jpeg(dir_name, width=15, height=15, units="cm", res=300)
 			plot(pcs_viral_symp[[i]], pcs_viral_symp[[j]], col="red", pch=16,

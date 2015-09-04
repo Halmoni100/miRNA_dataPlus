@@ -1,13 +1,12 @@
-# Load the following...
-# bin_comp_dfs
-# bin_comp_names
+load("R_Data/saved_bin_comp_dfs.r")
+load("R_Data/saved_bin_comp_names.r")
 
 # Loading do_random_forest func
-do_random_forest = dget("R_Code/Classifiers/do_random_forest.r")
+do_random_forest = dget("miRNA_dataPlus_GitHub/R_Code/Classifiers/do_random_forest.r")
 
 # create main directory
-dir.create("Data_out/random_forest_out")
-main_dir = "Data_out/random_forest_out/"
+dir.create("Results/random_forest")
+main_dir = "Results/random_forest/"
 
 # Do random forest for each binary comparison
 for (i in 1:7) {

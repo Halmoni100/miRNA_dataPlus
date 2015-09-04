@@ -1,7 +1,6 @@
-# Load the following...
-# uqnorm_data
-# sample_factors
-# feat_df (from data_frames.r)
+load("R_Data/saved_uqnorm_data.r")
+load("R_Data/saved_sample_factors.r")
+load("R_Data/data_frames.r")
 
 # function to log transform the data
 log_transform = function(x) {
@@ -22,8 +21,8 @@ logged_df = as.data.frame(logged_data)
 # - 51
 
 # extract miRNAs
-#miRNA_indices = c(200, 86, 195, 211, 51)
-miRNA_indices = c(51, 111, 141, 200)
+miRNA_indices = c(200, 86, 195, 211, 51)
+#miRNA_indices = c(51, 111, 141, 200)
 # extract miRNA names from feat_df
 miRNA_names = feat_df$miRNA[miRNA_indices]
 select_logged_df = logged_df[ , miRNA_indices]
@@ -64,7 +63,7 @@ for (i in 1:num_miRNAs) {
 
 # select only certain miRNA indices
 # make boxplots
-postscript("Data_out/miRNA_distributions.eps", width=11.5, height=8)
+postscript("Results/miRNA_distributions.eps", width=11.5, height=8)
 # divide figure into 6 cells
 par(mfrow=c(2,3))
 col_scheme = c("red", "green", "blue", "orange")

@@ -19,6 +19,7 @@ function(pcs_all, z_data, num, root_dir) {
 			plot = ggplot(plot_df, aes(x=xval, y=yval, color=zval)) +
 					geom_point() + 
 					scale_colour_gradientn(colours=rainbow(5))
+			
 			ggsave(dir_name, plot)
 		}
 	}
