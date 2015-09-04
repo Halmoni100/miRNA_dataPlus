@@ -1,12 +1,8 @@
 # Create list of data frames describing binary comparisons
 
-# Load the following...
-# df
-# sample_factors
-# create_df_sub func
-load("Data_in/data_frames.r")
-load("Data_in/saved_sample_factors.r")
-create_df_sub = dget("R_Code/Preliminary Steps/create_df_sub.r")
+load("R_Data/data_frames.r")
+load("R_Data/saved_sample_factors.r")
+create_df_sub = dget("miRNA_dataPlus_GitHub/R_Code/Preliminary_Steps/create_df_sub.r")
 
 # For reference:
 # Viral Symptomatic - v_s
@@ -65,4 +61,4 @@ for (i in 1:7) {
 	bin_comp_dfs[[i]] = df_sub
 }
 
-save(bin_comp_dfs, file="Data_out/saved_bin_comp_dfs.r")
+save(bin_comp_dfs, file="R_Data/saved_bin_comp_dfs.r")

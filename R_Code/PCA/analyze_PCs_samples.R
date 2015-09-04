@@ -4,17 +4,24 @@ function(data, factors, num) {
 	library(FactoMineR)
 
 	# PCA analysis, samples are data points, miRNAs are features
-	# transpose (features are columns)
-	pca_df = PCA(t(data), ncp=num, graph=FALSE)
+	# In data, rows are samples, columns are miRNA features
+	pca_df = PCA(data, ncp=num, graph=FALSE)
 
 	# Find proportion of variance, etc.
 	prop_of_var <- pca_df$eig[1:num,]
 	write.table(prop_of_var, "Data_out/prop_of_vars_samples.txt", sep="\t", quote=FALSE)
+	# Plot cumulative proportion of variance
+	cum_var <- prop_of_var[ , 3]
+	postscript(file="Data_out/cum_var.eps", width=5, height=5)
+	plot(1:length(cum_var), cum_var, main="Cumulative Percentage of Variance", xlab="PCs", ylab="Cum. % of Var.", ylim=c(0,100))
+	lines(1:length(cum_var), cum_var)
+	dev.off()
 	
 	# Get correlations b/w variables and PCs
 	corr <- pca_df$var$coord
 	save(corr, file="Data_out/saved_corr_samples.r")
 	write.table(corr, "Data_out/correlation_samples.txt", sep="\t", quote=FALSE)
+
 
 	# Get first n PCs, store in lists
 	pca_result <- pca_df$ind$coord
@@ -33,6 +40,9 @@ function(data, factors, num) {
 		pcs_bacteria[[i]] = pca_result[43:52,i]
 	}
 
+	# create plots folder
+	dir.create("Data_out/plots")
+	
 	# Plot all combinations of PCs, store in files
 	# red = viral symp, orange = viral asymp, blue = baseline, green = bacteria
 	from_i <- 1

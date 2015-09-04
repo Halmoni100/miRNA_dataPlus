@@ -1,9 +1,10 @@
-do_log_reg = function(df_sub, type, dir) {
+do_log_reg = function(df_sub, type, dir, feat_df) {
 # Performs logistic regression on the data frame df_sub
 # Arguments:
 # df_sub - data frame; column y (the last column) represents response
 # type - integer describing regularization; 0 for ridge, 1 for lasso
 # dir - directory to save results
+# feat_df - data frame of miRNA and precursor names by index
 
 	# Load glmnet
 	library(glmnet)
@@ -19,11 +20,12 @@ do_log_reg = function(df_sub, type, dir) {
 
 	# Check order of categories, print out
 	factor_order = levels(y)
-	write.table(factor_order, file=paste(dir, "factor_order.txt", sep=""), sep="\t",
+	write.csv(factor_order, file=paste(dir, "factor_order.csv", sep=""),
 			 quote=FALSE, col.names=FALSE)
 	# Do leave one out cross validation
 	cv.out = cv.glmnet(X, y, family="binomial",
 			type.measure="class", alpha=1, nfolds=m)
+	loocv_misclass_rate = min(cv.out$cvm)
 	
 	# Plot misclassification rates from LOOCV vs lambda parameter
 	jpeg(paste(dir, "loocv_misclassification_rates.jpeg", sep=""))
@@ -53,7 +55,11 @@ do_log_reg = function(df_sub, type, dir) {
 	nonzero_coef_df = as.data.frame(nonzero_coef)
 	lr_nonzero_coef_sorted = nonzero_coef_df[order(-abs(nonzero_coef_df$coef)),]
 	rownames(lr_nonzero_coef_sorted) = NULL
-	write.table(lr_nonzero_coef_sorted, file=paste(dir, "coefs.txt", sep=""), sep="\t",
+	# get miRNA names, append to coefficeint table
+	miRNA_names = feat_df$miRNA[lr_nonzero_coef_sorted$index]
+	lr_nonzero_coef_sorted = cbind(lr_nonzero_coef_sorted, miRNA_names)
+	
+	write.csv(lr_nonzero_coef_sorted, file=paste(dir, "coefs.csv", sep=""),
 			row.names=FALSE)
 			
 	# Do LOOCV manually, plot ROC curve
@@ -72,9 +78,9 @@ do_log_reg = function(df_sub, type, dir) {
 	plot(bin_comp.loocv_roc)
 	dev.off()
 	
-	# Get AUC
+	# Get AUC, also return loocv misclassification rate
 	bin_comp.auc = auc(bin_comp.loocv_roc)
-	roc_set = list(y, predictions, bin_comp.auc)
-	return(roc_set)
+	return_set = list(y, predictions, bin_comp.auc, loocv_misclass_rate)
+	return(return_set)
 }
 

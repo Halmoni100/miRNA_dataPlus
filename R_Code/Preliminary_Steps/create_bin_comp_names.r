@@ -5,4 +5,4 @@ bin_comp_names = c("viral_symp_vs_baseline_symp",
 		"baseline_symp_vs_baseline_asymp",
 		"bacteria_vs_baseline",
 		"sick_vs_baseline")
-save(bin_comp_names, file="Data_out/saved_bin_comp_names.r")
+save(bin_comp_names, file="R_Data/saved_bin_comp_names.r")

@@ -4,13 +4,16 @@ function(data, miRNA_lengths, miRNA_gc_content,
 	# Load package
 	library(FactoMineR)
 	
+	# Make directories
+	dir.create("Data_out/PCA")
+	dir.create("Data_out/PCA/")
+	
 	# PCA analysis, miRNAs are data points, samples are features
 	pca_df = PCA(data, ncp=num, graph=FALSE)
 	
 	# Find proportion of variance, etc.
 	prop_of_var <- pca_df$eig[1:num,]
-	write.table(prop_of_var, "Preliminary_Steps/PCA/analysis/prop_of_vars_miRNA.txt", sep="\t", quote=FALSE)
-	write.table(prop_of_var, "Preliminary_Steps/PCA/PCA_Sequence_Data/prop_of_vars_miRNA.txt", sep="\t", quote=FALSE)
+	write.table(prop_of_var, "Data_out/prop_of_vars_miRNA.txt", sep="\t", quote=FALSE)
 	
 	# Get first n PCs, store in lists
 	pca_result <- pca_df$ind$coord

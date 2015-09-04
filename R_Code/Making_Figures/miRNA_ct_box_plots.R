@@ -5,7 +5,8 @@
 
 # function to log transform the data
 log_transform = function(x) {
-	return log(x + 1)
+	out = log(x + 1)
+	return(out)
 }
 
 # log the data, transform it, make it into data frame
@@ -21,7 +22,8 @@ logged_df = as.data.frame(logged_data)
 # - 51
 
 # extract miRNAs
-miRNA_indices = c(200, 86, 195, 211, 51)
+#miRNA_indices = c(200, 86, 195, 211, 51)
+miRNA_indices = c(51, 111, 141, 200)
 # extract miRNA names from feat_df
 miRNA_names = feat_df$miRNA[miRNA_indices]
 select_logged_df = logged_df[ , miRNA_indices]

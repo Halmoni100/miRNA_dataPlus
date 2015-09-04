@@ -16,7 +16,7 @@ do_random_forest = function(df_sub, num_trees, seed, dir) {
 	rf.miRNA = randomForest(y~., data=df_sub, ntree=num_trees, importance=TRUE)
 	
 	# plot error rates
-	jpeg(paste(dir, "rf_errors.jpeg", sep=""))
+	postscript(paste(dir, "rf_errors.eps", sep=""), width=5, height=5)
 	plot(rf.miRNA)
 	legend("top", colnames(rf.miRNA$err.rate), col=1:3, cex=0.8, fill=1:3)
 	dev.off()

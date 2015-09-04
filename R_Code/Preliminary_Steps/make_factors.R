@@ -38,5 +38,5 @@ category_vector <- c(viral, baseline, bacteria)
 sample_factors <- factor(category_vector)
 
 # Save factor vector
-save(sample_factors, file="Data_out/saved_sample_factors.r")
-write.table(sample_factors, "Data_out/sample_factors.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
+save(sample_factors, file="R_Data/saved_sample_factors.r")
+write.table(sample_factors, "Misc/misc_data/sample_factors.txt", row.names=FALSE, col.names=FALSE, sep="\t", quote=FALSE)
