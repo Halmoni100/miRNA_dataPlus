@@ -5,9 +5,14 @@ load("R_Data/data_frames.r")
 # Loading do_log_reg func
 do_log_reg = dget("miRNA_dataPlus_GitHub/R_Code/Classifiers/do_log_reg.r")
 
-# create main directory
-dir.create("Results/logistic_regression")
-main_dir = "Results/logistic_regression/"
+# create main directory ridge
+#dir.create("Results/logistic_regression")
+#main_dir = "Results/logistic_regression/"
+#alpha = 1 (ridge)
+# create main directory elastic net
+dir.create("Results/logistic_regression_elastic_net")
+main_dir = "Results/logistic_regression_elastic_net/"
+alpha = 0.5 #(elastic net)
 
 # Obtain data for roc curves
 return_data = list()
@@ -23,7 +28,7 @@ for (i in 1:7) {
 	dir.create(paste(main_dir, bin_comp_names[i], sep=""))
 	# perform logistic regression
 	sub_dir = paste(bin_comp_names[i], "/", sep="")
-	return_data[[i]] = do_log_reg(df_sub, 1, paste(main_dir, sub_dir, sep=""), feat_df)
+	return_data[[i]] = do_log_reg(df_sub, alpha, paste(main_dir, sub_dir, sep=""), feat_df)
 	# retrieve misclassification rate
 	log_reg_misclass_rates[i] = return_data[[i]][[4]]
 }

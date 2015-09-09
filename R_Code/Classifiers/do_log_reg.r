@@ -1,8 +1,8 @@
-do_log_reg = function(df_sub, type, dir, feat_df) {
+do_log_reg = function(df_sub, alpha, dir, feat_df) {
 # Performs logistic regression on the data frame df_sub
 # Arguments:
 # df_sub - data frame; column y (the last column) represents response
-# type - integer describing regularization; 0 for ridge, 1 for lasso
+# alpha - 0 for ridge, 1 for lasso, 0.5 for elastic net
 # dir - directory to save results
 # feat_df - data frame of miRNA and precursor names by index
 
@@ -24,7 +24,7 @@ do_log_reg = function(df_sub, type, dir, feat_df) {
 			 quote=FALSE, col.names=FALSE)
 	# Do leave one out cross validation
 	cv.out = cv.glmnet(X, y, family="binomial",
-			type.measure="class", alpha=1, nfolds=m)
+			type.measure="class", alpha=alpha, nfolds=m)
 	loocv_misclass_rate = min(cv.out$cvm)
 	
 	# Plot misclassification rates from LOOCV vs lambda parameter
@@ -36,7 +36,7 @@ do_log_reg = function(df_sub, type, dir, feat_df) {
 	bestlam = cv.out$lambda.min
 	
 	# Do lasso logistic regression on all of the data using best lambda
-	lasso.mod = glmnet(X, y, family="binomial", alpha=type)
+	lasso.mod = glmnet(X, y, family="binomial", alpha=alpha)
 	lasso.coef = predict(lasso.mod, type="coefficients", s=bestlam)
 	
 	# Print out coefficients
